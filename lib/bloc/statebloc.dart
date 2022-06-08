@@ -1,18 +1,26 @@
 import 'package:flutter/cupertino.dart';
+import 'package:nightplayer/module/theme.dart';
 
 @immutable
-abstract class BlocState {}
+abstract class StateBloc {}
 
-class Loading extends BlocState {}
+class ThemeState extends StateBloc {
+  final AppTheme theme;
+  ThemeState(this.theme);
+}
 
-class Play extends BlocState {}
+class Loading extends StateBloc {}
 
-class Stop extends BlocState {}
+class Initial extends StateBloc {}
 
-class Next extends BlocState {}
+class Play extends StateBloc {}
 
-class Back extends BlocState {}
+class Stop extends StateBloc {}
 
-class Failed extends BlocState {}
+class Next extends StateBloc {}
 
-class Done extends BlocState {}
+class Back extends StateBloc {}
+
+class Failed extends StateBloc {}
+
+class Done extends StateBloc {}
