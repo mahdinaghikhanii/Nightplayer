@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nightplayer/module/extention.dart';
 
 import '../bloc/statebloc.dart';
 import '../module/constans.dart';
@@ -15,10 +16,12 @@ class Home extends StatelessWidget {
         automaticallyImplyLeading: false,
         leadingWidth: 0,
         titleSpacing: 0,
-        title: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: Constans.kdefualtAppPading),
+        title: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: Constans.kdefualtAppPading),
           child: Text(
             'NightPlayer',
+            style: context.textTheme.subtitle1!.copyWith(fontSize: 20),
           ),
         ),
         centerTitle: false,

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nightplayer/bloc/audiobloc.dart';
-import 'package:nightplayer/bloc/statebloc.dart';
-import 'package:nightplayer/bloc/themebloc.dart';
-import 'package:nightplayer/module/constans.dart';
-import 'package:nightplayer/module/theme.dart';
-import 'package:nightplayer/views/home.dart';
+
+import 'bloc/audiobloc.dart';
+import 'bloc/statebloc.dart';
+import 'bloc/themebloc.dart';
+import 'module/theme.dart';
+import 'views/home.dart';
 
 void main() {
   runApp(MultiBlocProvider(providers: [

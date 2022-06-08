@@ -5,11 +5,17 @@ enum AppTheme { dark, light }
 
 final Map<AppTheme, ThemeData> appthemdata = {
   AppTheme.dark: ThemeData(
+      scaffoldBackgroundColor: Constans.kdefultAppColor,
       textTheme: TextTheme(
-          subtitle1:
-              TextStyle(color: Constans.kwhite, fontWeight: FontWeight.bold))),
+          subtitle1: TextStyle(
+        color: Constans.kwhite,
+        fontWeight: FontWeight.bold,
+      ))),
   AppTheme.light: ThemeData(
+      scaffoldBackgroundColor: Constans.kdefultAppColor,
       textTheme: TextTheme(
-          subtitle1:
-              TextStyle(color: Constans.kwhite, fontWeight: FontWeight.bold)))
+          subtitle1: TextStyle(
+        color: Constans.kwhite,
+        fontWeight: FontWeight.bold,
+      )))
 };
