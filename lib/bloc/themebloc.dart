@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nightplayer/bloc/statebloc.dart';
 import 'package:nightplayer/module/theme.dart';
@@ -9,7 +11,6 @@ class ThemeBloc extends Cubit<ThemeState> {
   }
 
   void loadTheme() async {
-    // ignore: no_leading_underscores_for_local_identifiers
     SharedPreferences _prfs = await SharedPreferences.getInstance();
     String _str = _prfs.getString('theme') ?? '';
 
