@@ -39,6 +39,8 @@ dependencies:
   flutter_hex_color: ^2.0.0
   shared_preferences: ^2.0.13
   flutter_bloc: ^8.0.1
+  dot_navigation_bar: ^1.0.1+4
+
 
 
 dev_dependencies:

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nightplayer/bloc/navbarbloc.dart';
 
 import 'bloc/audiobloc.dart';
 import 'bloc/statebloc.dart';
@@ -10,7 +11,8 @@ import 'views/home.dart';
 void main() {
   runApp(MultiBlocProvider(providers: [
     BlocProvider<ThemeBloc>(create: (_) => ThemeBloc()),
-    BlocProvider<AudioBloc>(create: (_) => AudioBloc())
+    BlocProvider<AudioBloc>(create: (_) => AudioBloc()),
+    BlocProvider<NavbarBloc>(create: (_) => NavbarBloc())
   ], child: const MyApp()));
 }
 

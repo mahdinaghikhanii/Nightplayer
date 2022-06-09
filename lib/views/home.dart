@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nightplayer/module/extention.dart';
+import 'package:nightplayer/module/widgets.dart';
 
 import '../bloc/statebloc.dart';
 import '../module/constans.dart';
@@ -12,6 +13,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: const MBottomNavigation(),
       appBar: AppBar(
         backgroundColor: Constans.kdefultAppColor,
         automaticallyImplyLeading: false,
@@ -39,6 +41,20 @@ class Home extends StatelessWidget {
           ),
         ),
         centerTitle: false,
+      ),
+      body: Container(
+        padding:
+            const EdgeInsets.symmetric(horizontal: Constans.kdefualtAppPading),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 20,
+            ),
+            MSmallListTile(
+              text: "Recent played",
+            )
+          ],
+        ),
       ),
     );
   }
