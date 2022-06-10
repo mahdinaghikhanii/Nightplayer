@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nightplayer/module/extention.dart';
 import 'package:nightplayer/module/widgets.dart';
+import 'package:nightplayer/views/playorstopsong.dart';
 
 import '../bloc/statebloc.dart';
 import '../module/constans.dart';
@@ -61,7 +62,9 @@ class Home extends StatelessWidget {
               truckName: "Kaj",
               ontapIconButtonMore: () {},
               musiciansName: "Mehrad Hedden",
-              ontap: () {},
+              ontap: () {
+                context.nextPage(const PlayOrStopSong());
+              },
             ),
             MListTileForMusic(
               paddigTopSize: 20,

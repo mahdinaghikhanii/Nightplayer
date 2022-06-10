@@ -108,35 +108,39 @@ class MListTileForMusic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(top: paddigTopSize ?? 0),
-      child: SizedBox(
-        child: Row(
-          children: [
-            MCircleImage(
-              img: imgTruck,
-            ),
-            const SizedBox(width: 20),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  truckName,
-                  style: context.textTheme.subtitle1,
-                ),
-                const SizedBox(height: 15),
-                Text(musiciansName, style: context.textTheme.subtitle1),
-              ],
-            ),
-            const Spacer(),
-            IconButton(
-                onPressed: ontapIconButtonMore,
-                icon: Icon(
-                  Icons.more_horiz,
-                  size: 35,
-                  color: Constans.kwhite,
-                ))
-          ],
+    return InkWell(
+      borderRadius: BorderRadius.circular(20),
+      onTap: ontap,
+      child: Padding(
+        padding: EdgeInsets.only(top: paddigTopSize ?? 0),
+        child: SizedBox(
+          child: Row(
+            children: [
+              MCircleImage(
+                img: imgTruck,
+              ),
+              const SizedBox(width: 20),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    truckName,
+                    style: context.textTheme.subtitle1,
+                  ),
+                  const SizedBox(height: 15),
+                  Text(musiciansName, style: context.textTheme.subtitle1),
+                ],
+              ),
+              const Spacer(),
+              IconButton(
+                  onPressed: ontapIconButtonMore,
+                  icon: Icon(
+                    Icons.more_horiz,
+                    size: 35,
+                    color: Constans.kwhite,
+                  ))
+            ],
+          ),
         ),
       ),
     );
