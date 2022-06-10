@@ -53,25 +53,18 @@ class MBottomNavigation extends StatelessWidget {
       // onTap: (val) => _menu.setValue(val),
       // dotIndicatorColor: Colors.black,
       items: [
-        /// Home
         DotNavigationBarItem(
           icon: const Icon(Icons.home),
           selectedColor: Colors.purple,
         ),
-
-        /// Likes
         DotNavigationBarItem(
           icon: const Icon(Icons.favorite_border),
           selectedColor: Colors.pink,
         ),
-
-        /// Search
         DotNavigationBarItem(
           icon: const Icon(Icons.search),
           selectedColor: Colors.orange,
         ),
-
-        /// Profile
         DotNavigationBarItem(
           icon: const Icon(Icons.person),
           selectedColor: Colors.teal,

@@ -13,7 +13,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: const MBottomNavigation(),
+      // bottomNavigationBar: const MBottomNavigation(),
       appBar: AppBar(
         backgroundColor: Constans.kdefultAppColor,
         automaticallyImplyLeading: false,
@@ -51,8 +51,12 @@ class Home extends StatelessWidget {
               height: 20,
             ),
             MSmallListTile(
-              text: "Recent played",
-            )
+              text: "Song",
+            ),
+            ListTile(
+                leading: CircleAvatar(
+              child: Image.asset('asset/img/mah.jpg'),
+            ))
           ],
         ),
       ),
