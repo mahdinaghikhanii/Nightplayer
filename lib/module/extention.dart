@@ -5,4 +5,8 @@ extension ContextExtension on BuildContext {
   void nextPage(Widget child) {
     Navigator.push(this, MaterialPageRoute(builder: (context) => child));
   }
+
+  void back() {
+    Navigator.pop(this);
+  }
 }

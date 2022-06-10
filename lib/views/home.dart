@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nightplayer/module/extention.dart';
-import 'package:nightplayer/module/widgets.dart';
-import 'package:nightplayer/views/playorstopsong.dart';
 
 import '../bloc/statebloc.dart';
 import '../module/constans.dart';
+import '../module/extention.dart';
+import '../module/widgets.dart';
+import 'playorstopsong.dart';
 
 class Home extends StatelessWidget {
   final StateBloc stateBloc;

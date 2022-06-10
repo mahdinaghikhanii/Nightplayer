@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nightplayer/bloc/navbarbloc.dart';
 
 import 'bloc/audiobloc.dart';
+import 'bloc/navbarbloc.dart';
 import 'bloc/statebloc.dart';
 import 'bloc/themebloc.dart';
 import 'module/theme.dart';
