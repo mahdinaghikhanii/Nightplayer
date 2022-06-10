@@ -7,15 +7,16 @@ import 'extention.dart';
 class MSmallListTile extends StatelessWidget {
   final String? text;
   final IconData? icon;
-  final Function()? ontap;
+  final Function()? ontapIconButtonMore;
 
-  const MSmallListTile({Key? key, this.icon, this.text, this.ontap})
+  const MSmallListTile(
+      {Key? key, this.icon, this.text, this.ontapIconButtonMore})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: ontap,
+      onTap: ontapIconButtonMore,
       child: Row(
         children: [
           Text(
@@ -51,6 +52,7 @@ class MCircleImage extends StatelessWidget {
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(25)),
       child: Image.asset(
         img,
+        fit: BoxFit.fill,
       ),
     );
   }
@@ -63,7 +65,7 @@ class MBottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return DotNavigationBar(
       //   currentIndex: _menu.value,
-      // onTap: (val) => _menu.setValue(val),
+      // ontapIconButtonMore: (val) => _menu.setValue(val),
       // dotIndicatorColor: Colors.black,
       items: [
         DotNavigationBarItem(
@@ -89,14 +91,16 @@ class MBottomNavigation extends StatelessWidget {
 
 class MListTileForMusic extends StatelessWidget {
   final String truckName;
+  final VoidCallback ontap;
   final String musiciansName;
   final String imgTruck;
   final double? paddigTopSize;
-  final Function() ontap;
+  final Function() ontapIconButtonMore;
   const MListTileForMusic(
       {Key? key,
       required this.musiciansName,
       required this.ontap,
+      required this.ontapIconButtonMore,
       required this.truckName,
       this.paddigTopSize,
       required this.imgTruck})
@@ -109,7 +113,9 @@ class MListTileForMusic extends StatelessWidget {
       child: SizedBox(
         child: Row(
           children: [
-            MCircleImage(img: imgTruck),
+            MCircleImage(
+              img: imgTruck,
+            ),
             const SizedBox(width: 20),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,7 +130,7 @@ class MListTileForMusic extends StatelessWidget {
             ),
             const Spacer(),
             IconButton(
-                onPressed: () {},
+                onPressed: ontapIconButtonMore,
                 icon: Icon(
                   Icons.more_horiz,
                   size: 35,
