@@ -47,16 +47,42 @@ class Home extends StatelessWidget {
             const EdgeInsets.symmetric(horizontal: Constans.kdefualtAppPading),
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            MSmallListTile(
+            const MSmallListTile(
               text: "Song",
             ),
-            ListTile(
-                leading: CircleAvatar(
-              child: Image.asset('asset/img/mah.jpg'),
-            ))
+            const SizedBox(
+              height: 20,
+            ),
+            MListTileForMusic(
+              imgTruck: "assets/img/kaj.jpg",
+              truckName: "Kaj",
+              ontap: () {},
+              musiciansName: "Mehrad Hedden",
+            ),
+            MListTileForMusic(
+              paddigTopSize: 20,
+              imgTruck: "assets/img/call.jpg",
+              truckName: "Call of My name",
+              ontap: () {},
+              musiciansName: "The Weekend",
+            ),
+            MListTileForMusic(
+              paddigTopSize: 20,
+              imgTruck: "assets/img/kaj.jpg",
+              truckName: "Kaj",
+              ontap: () {},
+              musiciansName: "Mehrad Hedden",
+            ),
+            MListTileForMusic(
+              paddigTopSize: 20,
+              imgTruck: "assets/img/kaj.jpg",
+              truckName: "Kaj",
+              ontap: () {},
+              musiciansName: "Mehrad Hedden",
+            )
           ],
         ),
       ),

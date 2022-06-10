@@ -1,5 +1,6 @@
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:nightplayer/module/constans.dart';
 
 import 'extention.dart';
 
@@ -30,16 +31,28 @@ class MSmallListTile extends StatelessWidget {
 }
 
 class MCircleImage extends StatelessWidget {
-  const MCircleImage({Key? key}) : super(key: key);
+  final String img;
+  final double? withs;
+  final double? heights;
+
+  const MCircleImage({
+    Key? key,
+    this.heights,
+    this.withs,
+    required this.img,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        width: 120,
-        height: 40,
-        child: Column(
-          children: [CircleAvatar()],
-        ));
+    return Container(
+      width: 90,
+      height: 90,
+      clipBehavior: Clip.hardEdge,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(25)),
+      child: Image.asset(
+        img,
+      ),
+    );
   }
 }
 
@@ -70,6 +83,56 @@ class MBottomNavigation extends StatelessWidget {
           selectedColor: Colors.teal,
         ),
       ],
+    );
+  }
+}
+
+class MListTileForMusic extends StatelessWidget {
+  final String truckName;
+  final String musiciansName;
+  final String imgTruck;
+  final double? paddigTopSize;
+  final Function() ontap;
+  const MListTileForMusic(
+      {Key? key,
+      required this.musiciansName,
+      required this.ontap,
+      required this.truckName,
+      this.paddigTopSize,
+      required this.imgTruck})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(top: paddigTopSize ?? 0),
+      child: SizedBox(
+        child: Row(
+          children: [
+            MCircleImage(img: imgTruck),
+            const SizedBox(width: 20),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  truckName,
+                  style: context.textTheme.subtitle1,
+                ),
+                const SizedBox(height: 15),
+                Text(musiciansName, style: context.textTheme.subtitle1),
+              ],
+            ),
+            const Spacer(),
+            IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.more_horiz,
+                  size: 35,
+                  color: Constans.kwhite,
+                ))
+          ],
+        ),
+      ),
     );
   }
 }
