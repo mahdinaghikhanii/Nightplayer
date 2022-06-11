@@ -1,7 +1,7 @@
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:nightplayer/module/constans.dart';
 
+import 'constans.dart';
 import 'extention.dart';
 
 class MSmallListTile extends StatelessWidget {
@@ -141,6 +141,33 @@ class MListTileForMusic extends StatelessWidget {
                   ))
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class MButtonForSong extends StatelessWidget {
+  final IconData icon;
+  final bool boxColor;
+  final Color? colorIcon;
+  const MButtonForSong(
+      {Key? key, required this.icon, this.boxColor = false, this.colorIcon})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 70,
+      height: 70,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: boxColor ? Colors.white.withAlpha(30) : null),
+      child: Center(
+        child: Icon(
+          icon,
+          color: colorIcon ?? Colors.white,
+          size: 40,
         ),
       ),
     );
