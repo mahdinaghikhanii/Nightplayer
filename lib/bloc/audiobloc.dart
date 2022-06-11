@@ -1,8 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nightplayer/bloc/statebloc.dart';
+
+import 'statebloc.dart';
 
 class AudioBloc extends Cubit<StateBloc> {
-  AudioBloc() : super(Initial());
+  AudioBloc() : super(Initial()) {}
 
   nextAudio() async {}
 

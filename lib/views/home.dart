@@ -1,15 +1,28 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 import '../bloc/statebloc.dart';
 import '../module/constans.dart';
 import '../module/extention.dart';
 import '../module/widgets.dart';
-import 'playorstopsong.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   final StateBloc stateBloc;
   const Home({Key? key, required this.stateBloc}) : super(key: key);
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final OnAudioQuery _audioQuery = OnAudioQuery();
+  @override
+  void initState() {
+    super.initState();
+    requesstStoragePermission();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,45 +67,93 @@ class Home extends StatelessWidget {
             const MSmallListTile(
               text: "All Song",
             ),
-            const SizedBox(
-              height: 20,
-            ),
-            MListTileForMusic(
-              imgTruck: "assets/img/kaj.jpg",
-              truckName: "Kaj",
-              ontapIconButtonMore: () {},
-              musiciansName: "Mehrad Hedden",
-              ontap: () {
-                context.nextPage(const PlayOrStopSong());
-              },
-            ),
-            MListTileForMusic(
-              paddigTopSize: 20,
-              imgTruck: "assets/img/call.jpg",
-              truckName: "Call of My name",
-              ontapIconButtonMore: () {},
-              musiciansName: "The Weekend",
-              ontap: () {},
-            ),
-            MListTileForMusic(
-              paddigTopSize: 20,
-              imgTruck: "assets/img/lin.jpg",
-              truckName: "ROADS UNTRAVELED",
-              ontapIconButtonMore: () {},
-              musiciansName: "Linking park",
-              ontap: () {},
-            ),
-            MListTileForMusic(
-              paddigTopSize: 20,
-              imgTruck: "assets/img/snuf.jpg",
-              truckName: "Snuf",
-              ontapIconButtonMore: () {},
-              musiciansName: "Slipnut",
-              ontap: () {},
-            )
+            Expanded(
+                child: FutureBuilder<List<SongModel>>(
+                    future: _audioQuery.querySongs(
+                        sortType: null,
+                        orderType: OrderType.ASC_OR_SMALLER,
+                        uriType: UriType.EXTERNAL,
+                        ignoreCase: true),
+                    builder: (context, iteam) {
+                      if (iteam.data == null) {
+                        return const Center(
+                            child: CupertinoActivityIndicator());
+                      }
+                      if (iteam.data!.isEmpty) {
+                        return Center(
+                            child: Text(
+                          'No song found',
+                          style: context.textTheme.subtitle1,
+                        ));
+                      }
+                      return ListView.builder(
+                          itemCount: iteam.data!.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              margin:
+                                  const EdgeInsets.only(top: 10, bottom: 10),
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(20),
+                                onTap: () {},
+                                child: Padding(
+                                  padding: const EdgeInsets.only(top: 0),
+                                  child: SizedBox(
+                                    child: Row(
+                                      children: [
+                                        QueryArtworkWidget(
+                                            artworkWidth: 65,
+                                            artworkHeight: 65,
+                                            id: iteam.data![index].id,
+                                            type: ArtworkType.AUDIO),
+                                        const SizedBox(width: 20),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              iteam.data![index].title.length >
+                                                      10
+                                                  ? '${iteam.data![index].title.substring(0, 13)}..'
+                                                  : iteam.data![index].title,
+                                              style: context
+                                                  .textTheme.subtitle1!
+                                                  .copyWith(fontSize: 16),
+                                              maxLines: 1,
+                                            ),
+                                            const SizedBox(height: 10),
+                                            Text(iteam.data![index].displayName,
+                                                style: context
+                                                    .textTheme.subtitle1),
+                                          ],
+                                        ),
+                                        const Spacer(),
+                                        IconButton(
+                                            onPressed: (() {}),
+                                            icon: Icon(
+                                              Icons.more_horiz,
+                                              size: 35,
+                                              color: Constans.kwhite,
+                                            ))
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
+                          });
+                    }))
           ],
         ),
       ),
     );
+  }
+
+  void requesstStoragePermission() async {
+    if (!kIsWeb) {
+      bool permissionStatus = await _audioQuery.permissionsStatus();
+      if (!permissionStatus) {
+        await _audioQuery.permissionsRequest();
+      }
+    }
   }
 }
