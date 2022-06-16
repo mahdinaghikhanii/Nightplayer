@@ -1,7 +1,8 @@
-class AudioPlayerModel {
-  String name;
-  String addres;
-  bool playing;
-  AudioPlayerModel(
-      {required this.addres, required this.name, required this.playing});
+class ProgressBarState {
+  ProgressBarState(
+      {required this.buffered, required this.current, required this.total});
+
+  final Duration current;
+  final Duration buffered;
+  final Duration total;
 }

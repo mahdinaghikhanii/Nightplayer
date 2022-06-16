@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 import '../module/extention.dart';
 import '../module/widgets.dart';
 
 class PlayOrStopSong extends StatelessWidget {
-  const PlayOrStopSong({Key? key}) : super(key: key);
+  final SongModel songModel;
+  const PlayOrStopSong({Key? key, required this.songModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +32,16 @@ class PlayOrStopSong extends StatelessWidget {
                     left: 30,
                     right: 30,
                   ),
-                  clipBehavior: Clip.hardEdge,
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(40)),
-                  child: Image.asset('assets/img/kaj.jpg')),
+                  child: QueryArtworkWidget(
+                      nullArtworkWidget: Image.asset(
+                        'assets/icon/song248.png',
+                        fit: BoxFit.fill,
+                      ),
+                      artworkBorder: BorderRadius.circular(10),
+                      artworkWidth: double.infinity,
+                      //  artworkHeight: 65,
+                      id: songModel.id,
+                      type: ArtworkType.AUDIO)),
             ),
             const SizedBox(
               height: 20,
@@ -57,10 +65,14 @@ class PlayOrStopSong extends StatelessWidget {
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
-                            "Kaj",
-                            style: context.textTheme.subtitle1!
-                                .copyWith(fontSize: 26),
+                          SizedBox(
+                            width: 200,
+                            height: 24,
+                            child: Text(
+                              songModel.title,
+                              style: context.textTheme.subtitle1!
+                                  .copyWith(fontSize: 22),
+                            ),
                           ),
                           const Spacer(),
                           Container(
@@ -83,9 +95,9 @@ class PlayOrStopSong extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 30, right: 30),
                       child: Text(
-                        "Mehrad Hidden",
+                        songModel.artist.toString(),
                         style: context.textTheme.subtitle1!.copyWith(
-                            fontSize: 20, fontWeight: FontWeight.normal),
+                            fontSize: 18, fontWeight: FontWeight.normal),
                       ),
                     ),
                     const SizedBox(height: 25),
