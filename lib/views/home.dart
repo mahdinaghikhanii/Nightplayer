@@ -13,7 +13,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final OnAudioQuery _audioQuery = OnAudioQuery();
+    final OnAudioQuery audioQuery = OnAudioQuery();
     return Scaffold(
       // bottomNavigationBar: const MBottomNavigation(),
       appBar: AppBar(
@@ -57,7 +57,8 @@ class Home extends StatelessWidget {
             ),
             Expanded(
                 child: FutureBuilder<List<SongModel>>(
-                    future: _audioQuery.querySongs(
+                    future: audioQuery.querySongs(
+                      sortType: null,
                       orderType: OrderType.ASC_OR_SMALLER,
                       uriType: UriType.EXTERNAL,
                       ignoreCase: true,
@@ -67,6 +68,7 @@ class Home extends StatelessWidget {
                         return const Center(
                             child: CupertinoActivityIndicator());
                       }
+
                       if (iteam.data!.isEmpty) {
                         return Center(
                             child: Text(
@@ -89,14 +91,16 @@ class Home extends StatelessWidget {
                                     child: Row(
                                       children: [
                                         QueryArtworkWidget(
-                                            nullArtworkWidget:
-                                                const MCircleImage(
-                                              img: 'assets/img/kaj.jpg',
+                                            nullArtworkWidget: Image.asset(
+                                              'assets/icon/song248.png',
+                                              width: 70,
+                                              height: 70,
+                                              fit: BoxFit.fill,
                                             ),
                                             artworkBorder:
                                                 BorderRadius.circular(10),
                                             artworkWidth: 65,
-                                            artworkHeight: 75,
+                                            artworkHeight: 65,
                                             artworkRepeat: ImageRepeat.noRepeat,
                                             id: iteam.data![index].id,
                                             type: ArtworkType.AUDIO),
@@ -116,7 +120,9 @@ class Home extends StatelessWidget {
                                               maxLines: 1,
                                             ),
                                             const SizedBox(height: 10),
-                                            Text(iteam.data![index].displayName,
+                                            Text(
+                                                iteam.data![index].artist ??
+                                                    "No Artist",
                                                 style: context
                                                     .textTheme.subtitle1),
                                           ],
