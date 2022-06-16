@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:nightplayer/module/theme.dart';
+
+import '../module/theme.dart';
 
 @immutable
 abstract class StateBloc {}

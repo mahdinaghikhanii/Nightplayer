@@ -80,6 +80,8 @@ class Home extends StatelessWidget {
                           itemCount: iteam.data!.length,
                           itemBuilder: (context, index) {
                             return Container(
+                              width: double.infinity,
+                              height: 68,
                               margin:
                                   const EdgeInsets.only(top: 10, bottom: 10),
                               child: InkWell(
@@ -87,44 +89,59 @@ class Home extends StatelessWidget {
                                 onTap: () {},
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 0),
-                                  child: SizedBox(
+                                  child: Expanded(
                                     child: Row(
                                       children: [
                                         QueryArtworkWidget(
                                             nullArtworkWidget: Image.asset(
                                               'assets/icon/song248.png',
-                                              width: 70,
-                                              height: 70,
+                                              width: 65,
+                                              height: 65,
                                               fit: BoxFit.fill,
                                             ),
                                             artworkBorder:
                                                 BorderRadius.circular(10),
                                             artworkWidth: 65,
                                             artworkHeight: 65,
-                                            artworkRepeat: ImageRepeat.noRepeat,
                                             id: iteam.data![index].id,
                                             type: ArtworkType.AUDIO),
                                         const SizedBox(width: 20),
                                         Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: [
-                                            Text(
-                                              iteam.data![index].title.length >
-                                                      10
-                                                  ? '${iteam.data![index].title.substring(0, 13)}..'
-                                                  : iteam.data![index].title,
-                                              style: context
-                                                  .textTheme.subtitle1!
-                                                  .copyWith(fontSize: 16),
-                                              maxLines: 1,
+                                            const SizedBox(height: 10),
+                                            Expanded(
+                                              child: SizedBox(
+                                                width: 180,
+                                                height: 24,
+                                                child: Text(
+                                                  iteam.data![index].title,
+                                                  overflow: TextOverflow.fade,
+                                                  style: context
+                                                      .textTheme.subtitle1!
+                                                      .copyWith(fontSize: 16),
+                                                  maxLines: 1,
+                                                ),
+                                              ),
                                             ),
                                             const SizedBox(height: 10),
-                                            Text(
-                                                iteam.data![index].artist ??
-                                                    "No Artist",
-                                                style: context
-                                                    .textTheme.subtitle1),
+                                            Expanded(
+                                              child: SizedBox(
+                                                width: 180,
+                                                height: 24,
+                                                child: Text(
+                                                    maxLines: 1,
+                                                    softWrap: false,
+                                                    overflow: TextOverflow.clip,
+                                                    iteam.data![index].artist ??
+                                                        "No Artist",
+                                                    style: context
+                                                        .textTheme.subtitle1),
+                                              ),
+                                            ),
                                           ],
                                         ),
                                         const Spacer(),
