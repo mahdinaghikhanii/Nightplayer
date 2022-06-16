@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 
-import '../module/constans.dart';
 import '../module/extention.dart';
 import '../module/widgets.dart';
 
@@ -92,17 +90,8 @@ class PlayOrStopSong extends StatelessWidget {
                     ),
                     const SizedBox(height: 25),
                     Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: LinearPercentIndicator(
-                          width: MediaQuery.of(context).size.width - 42,
-                          animation: true,
-                          lineHeight: 15.0,
-                          barRadius: const Radius.circular(8),
-                          animationDuration: 1000,
-                          percent: 0.5,
-                          backgroundColor: Constans.kwhite.withAlpha(30),
-                          progressColor: Colors.purple),
-                    ),
+                        padding: const EdgeInsets.only(left: 20),
+                        child: Container()),
                     const SizedBox(height: 20),
                     Padding(
                       padding: const EdgeInsets.only(left: 30, right: 30),
