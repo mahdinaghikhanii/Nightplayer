@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
@@ -8,24 +7,13 @@ import '../module/constans.dart';
 import '../module/extention.dart';
 import '../module/widgets.dart';
 
-class Home extends StatefulWidget {
+class Home extends StatelessWidget {
   final StateBloc stateBloc;
   const Home({Key? key, required this.stateBloc}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  final OnAudioQuery _audioQuery = OnAudioQuery();
-  @override
-  void initState() {
-    super.initState();
-    requesstStoragePermission();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final OnAudioQuery _audioQuery = OnAudioQuery();
     return Scaffold(
       // bottomNavigationBar: const MBottomNavigation(),
       appBar: AppBar(
@@ -70,10 +58,10 @@ class _HomeState extends State<Home> {
             Expanded(
                 child: FutureBuilder<List<SongModel>>(
                     future: _audioQuery.querySongs(
-                        sortType: null,
-                        orderType: OrderType.ASC_OR_SMALLER,
-                        uriType: UriType.EXTERNAL,
-                        ignoreCase: true),
+                      orderType: OrderType.ASC_OR_SMALLER,
+                      uriType: UriType.EXTERNAL,
+                      ignoreCase: true,
+                    ),
                     builder: (context, iteam) {
                       if (iteam.data == null) {
                         return const Center(
@@ -101,8 +89,15 @@ class _HomeState extends State<Home> {
                                     child: Row(
                                       children: [
                                         QueryArtworkWidget(
+                                            nullArtworkWidget:
+                                                const MCircleImage(
+                                              img: 'assets/img/kaj.jpg',
+                                            ),
+                                            artworkBorder:
+                                                BorderRadius.circular(10),
                                             artworkWidth: 65,
-                                            artworkHeight: 65,
+                                            artworkHeight: 75,
+                                            artworkRepeat: ImageRepeat.noRepeat,
                                             id: iteam.data![index].id,
                                             type: ArtworkType.AUDIO),
                                         const SizedBox(width: 20),
@@ -146,14 +141,5 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
-  }
-
-  void requesstStoragePermission() async {
-    if (!kIsWeb) {
-      bool permissionStatus = await _audioQuery.permissionsStatus();
-      if (!permissionStatus) {
-        await _audioQuery.permissionsRequest();
-      }
-    }
   }
 }

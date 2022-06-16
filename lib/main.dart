@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 import 'bloc/audiobloc.dart';
 import 'bloc/navbarbloc.dart';
@@ -9,6 +10,7 @@ import 'module/theme.dart';
 import 'views/home.dart';
 
 void main() {
+  OnAudioQuery();
   runApp(MultiBlocProvider(providers: [
     BlocProvider<ThemeBloc>(create: (_) => ThemeBloc()),
     BlocProvider<AudioBloc>(create: (_) => AudioBloc()),
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
             theme:
                 appthemdata[state is ThemeState ? state.theme : AppTheme.light],
             home: BlocBuilder<AudioBloc, StateBloc>(builder: (_, state) {
+              state is RequestStoragePermission;
               return Home(
                 stateBloc: state,
               );

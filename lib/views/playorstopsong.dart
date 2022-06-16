@@ -132,7 +132,7 @@ class PlayOrStopSong extends StatelessWidget {
                           MButtonForSong(
                             icon: Icons.arrow_back_ios,
                           ),
-                          const SizedBox(width: 20),
+                          SizedBox(width: 20),
                           MButtonForSong(
                             icon: Icons.play_arrow,
                             boxColor: true,

@@ -24,3 +24,5 @@ class Back extends StateBloc {}
 class Failed extends StateBloc {}
 
 class Done extends StateBloc {}
+
+class RequestStoragePermission extends StateBloc {}
