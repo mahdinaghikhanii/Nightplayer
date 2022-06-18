@@ -8,8 +8,6 @@ import '../module/extention.dart';
 import '../module/widgets.dart';
 import '../notification/notification_service.dart';
 import 'playorstopsong.dart';
-import 'package:timezone/timezone.dart' as tz;
-import 'package:timezone/data/latest.dart' as tz;
 
 class Home extends StatelessWidget {
   final StateBloc stateBloc;
