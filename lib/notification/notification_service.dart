@@ -2,7 +2,6 @@
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:timezone/timezone.dart' as tz;
-import 'package:timezone/data/latest.dart' as tz;
 
 class NotificationService {
   static final NotificationService _notificationService =
@@ -44,7 +43,8 @@ class NotificationService {
       body,
       tz.TZDateTime.now(tz.local).add(Duration(seconds: seconds)),
       const NotificationDetails(
-        android: AndroidNotificationDetails('main_channel', 'Main Channel',
+        android: AndroidNotificationDetails(
+            'main_channel', 'Main Channel', //"Main channel notifications",
             importance: Importance.max,
             priority: Priority.max,
             icon: '@drawable/ic_flutternotification'),

@@ -3,15 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 
-import 'statebloc.dart';
+import 'audio_state.dart';
 
-class AudioBloc extends Cubit<RequestStoragePermission> {
-  final OnAudioQuery _audioQuery = OnAudioQuery();
-  AudioBloc() : super(RequestStoragePermission()) {
-    tz.initializeTimeZones();
+class AudioCubit extends Cubit<AudioState> {
+  AudioCubit() : super(RequestStoragePermission()) {
     requestStoragePermission();
-    // tz.setLocalLocation(tz.getLocation());
   }
+  final OnAudioQuery _audioQuery = OnAudioQuery();
 
   nextAudio() async {}
 
@@ -29,6 +27,12 @@ class AudioBloc extends Cubit<RequestStoragePermission> {
       if (!permissionStatus) {
         await _audioQuery.permissionsRequest();
       }
+    }
+  }
+
+  tzTime() {
+    if (state is Notifications) {
+      print('mahdi');
     }
   }
 }

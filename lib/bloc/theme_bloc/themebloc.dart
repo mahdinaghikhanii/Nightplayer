@@ -1,12 +1,12 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nightplayer/bloc/statebloc.dart';
+import 'package:nightplayer/bloc/theme_bloc/theme_state.dart';
 import 'package:nightplayer/module/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ThemeBloc extends Cubit<ThemeState> {
-  ThemeBloc() : super(ThemeState(AppTheme.dark)) {
+class ThemeCubit extends Cubit<ThemeState> {
+  ThemeCubit() : super(ChangeThemeState(AppTheme.dark)) {
     loadTheme();
   }
 
@@ -14,11 +14,11 @@ class ThemeBloc extends Cubit<ThemeState> {
     SharedPreferences _prfs = await SharedPreferences.getInstance();
     String _str = _prfs.getString('theme') ?? '';
 
-    if (_str == 'dark') emit(ThemeState(AppTheme.dark));
+    if (_str == 'dark') emit(ChangeThemeState(AppTheme.dark));
   }
 
   void setTheme(AppTheme theme) async {
-    emit(ThemeState(theme));
+    emit(ChangeThemeState(theme));
 
     await SharedPreferences.getInstance().then((value) =>
         value.setString('theme', theme == AppTheme.dark ? 'dark' : 'light'));
