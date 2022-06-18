@@ -69,7 +69,15 @@ class NotificationService {
     return NotificationDetails(
         android: AndroidNotificationDetails(
             'channel id', 'channel name', // 'channel description',
-            importance: Importance.max));
+            importance: Importance.max,
+            styleInformation: BigPictureStyleInformation(
+                DrawableResourceAndroidBitmap("ic_flutternotification"),
+                largeIcon:
+                    DrawableResourceAndroidBitmap("ic_flutternotification"),
+                contentTitle: "Demo image",
+                summaryText: "this is a test",
+                htmlFormatContent: true,
+                htmlFormatContentTitle: true)));
   }
 
   Future showNotification1(
