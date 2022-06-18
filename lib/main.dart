@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nightplayer/notification/notification_service.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import 'bloc/audiobloc.dart';
@@ -10,6 +11,9 @@ import 'module/theme.dart';
 import 'views/home.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  NotificationService().initNotification();
+
   OnAudioQuery();
   runApp(MultiBlocProvider(providers: [
     BlocProvider<ThemeBloc>(create: (_) => ThemeBloc()),

@@ -1,12 +1,14 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:timezone/data/latest.dart' as tz;
 
 import 'statebloc.dart';
 
 class AudioBloc extends Cubit<RequestStoragePermission> {
   final OnAudioQuery _audioQuery = OnAudioQuery();
   AudioBloc() : super(RequestStoragePermission()) {
+    tz.initializeTimeZones();
     requestStoragePermission();
   }
 

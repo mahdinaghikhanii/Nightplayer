@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nightplayer/views/playorstopsong.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../bloc/statebloc.dart';
 import '../module/constans.dart';
 import '../module/extention.dart';
 import '../module/widgets.dart';
+import '../notification/notification_service.dart';
+import 'playorstopsong.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
 
 class Home extends StatelessWidget {
   final StateBloc stateBloc;
@@ -29,7 +32,10 @@ class Home extends StatelessWidget {
             padding: const EdgeInsets.symmetric(
                 horizontal: Constans.kdefualtAppPading),
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  NotificationService()
+                      .showNotification(1, "salam", "omadam", 1);
+                },
                 icon: const Icon(
                   CupertinoIcons.search,
                   size: 26,
@@ -95,71 +101,69 @@ class Home extends StatelessWidget {
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.only(top: 0),
-                                  child: Expanded(
-                                    child: Row(
-                                      children: [
-                                        QueryArtworkWidget(
-                                            nullArtworkWidget: Image.asset(
-                                              'assets/icon/song248.png',
-                                              width: 65,
-                                              height: 65,
-                                              fit: BoxFit.fill,
+                                  child: Row(
+                                    children: [
+                                      QueryArtworkWidget(
+                                          nullArtworkWidget: Image.asset(
+                                            'assets/icon/song248.png',
+                                            width: 65,
+                                            height: 65,
+                                            fit: BoxFit.fill,
+                                          ),
+                                          artworkBorder:
+                                              BorderRadius.circular(10),
+                                          artworkWidth: 65,
+                                          artworkHeight: 65,
+                                          id: iteam.data![index].id,
+                                          type: ArtworkType.AUDIO),
+                                      const SizedBox(width: 20),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          const SizedBox(height: 10),
+                                          Expanded(
+                                            child: SizedBox(
+                                              width: 180,
+                                              height: 24,
+                                              child: Text(
+                                                iteam.data![index].title,
+                                                overflow: TextOverflow.fade,
+                                                style: context
+                                                    .textTheme.subtitle1!
+                                                    .copyWith(fontSize: 16),
+                                                maxLines: 1,
+                                              ),
                                             ),
-                                            artworkBorder:
-                                                BorderRadius.circular(10),
-                                            artworkWidth: 65,
-                                            artworkHeight: 65,
-                                            id: iteam.data![index].id,
-                                            type: ArtworkType.AUDIO),
-                                        const SizedBox(width: 20),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            const SizedBox(height: 10),
-                                            Expanded(
-                                              child: SizedBox(
-                                                width: 180,
-                                                height: 24,
-                                                child: Text(
-                                                  iteam.data![index].title,
-                                                  overflow: TextOverflow.fade,
-                                                  style: context
-                                                      .textTheme.subtitle1!
-                                                      .copyWith(fontSize: 16),
+                                          ),
+                                          const SizedBox(height: 10),
+                                          Expanded(
+                                            child: SizedBox(
+                                              width: 180,
+                                              height: 24,
+                                              child: Text(
                                                   maxLines: 1,
-                                                ),
-                                              ),
+                                                  softWrap: false,
+                                                  overflow: TextOverflow.clip,
+                                                  iteam.data![index].artist ??
+                                                      "No Artist",
+                                                  style: context
+                                                      .textTheme.subtitle1),
                                             ),
-                                            const SizedBox(height: 10),
-                                            Expanded(
-                                              child: SizedBox(
-                                                width: 180,
-                                                height: 24,
-                                                child: Text(
-                                                    maxLines: 1,
-                                                    softWrap: false,
-                                                    overflow: TextOverflow.clip,
-                                                    iteam.data![index].artist ??
-                                                        "No Artist",
-                                                    style: context
-                                                        .textTheme.subtitle1),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        const Spacer(),
-                                        IconButton(
-                                            onPressed: (() {}),
-                                            icon: Icon(
-                                              Icons.more_horiz,
-                                              size: 35,
-                                              color: Constans.kwhite,
-                                            ))
-                                      ],
-                                    ),
+                                          ),
+                                        ],
+                                      ),
+                                      const Spacer(),
+                                      IconButton(
+                                          onPressed: (() {}),
+                                          icon: Icon(
+                                            Icons.more_horiz,
+                                            size: 35,
+                                            color: Constans.kwhite,
+                                          ))
+                                    ],
                                   ),
                                 ),
                               ),
