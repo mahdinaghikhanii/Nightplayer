@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../bloc/audio_bloc/audio_state.dart';
@@ -49,128 +50,132 @@ class Home extends StatelessWidget {
         ),
         centerTitle: false,
       ),
-      body: Center(
-        child: Container(
-          padding: const EdgeInsets.symmetric(
-              horizontal: Constans.kdefualtAppPading),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              const MSmallListTile(
-                text: "All Song",
-              ),
-              Expanded(
-                  child: FutureBuilder<List<SongModel>>(
-                      future: audioQuery.querySongs(
-                        sortType: null,
-                        orderType: OrderType.ASC_OR_SMALLER,
-                        uriType: UriType.EXTERNAL,
-                        ignoreCase: true,
-                      ),
-                      builder: (context, iteam) {
-                        if (iteam.data == null) {
-                          return const Center(
-                              child: CupertinoActivityIndicator());
-                        }
+      body: BlocBuilder(
+        builder: (BuildContext context, state) {
+          return Container(
+            padding: const EdgeInsets.symmetric(
+                horizontal: Constans.kdefualtAppPading),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 20,
+                ),
+                const MSmallListTile(
+                  text: "All Song",
+                ),
+                Expanded(
+                    child: FutureBuilder<List<SongModel>>(
+                        future: audioQuery.querySongs(
+                          sortType: null,
+                          orderType: OrderType.ASC_OR_SMALLER,
+                          uriType: UriType.EXTERNAL,
+                          ignoreCase: true,
+                        ),
+                        builder: (context, iteam) {
+                          if (iteam.data == null) {
+                            return const Center(
+                                child: CupertinoActivityIndicator());
+                          }
 
-                        if (iteam.data!.isEmpty) {
-                          return Center(
-                              child: Text(
-                            'No song found',
-                            style: context.textTheme.subtitle1,
-                          ));
-                        }
+                          if (iteam.data!.isEmpty) {
+                            return Center(
+                                child: Text(
+                              'No song found',
+                              style: context.textTheme.subtitle1,
+                            ));
+                          }
 
-                        return ListView.builder(
-                            itemCount: iteam.data!.length,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                width: double.infinity,
-                                height: 68,
-                                margin:
-                                    const EdgeInsets.only(top: 10, bottom: 10),
-                                child: InkWell(
-                                  borderRadius: BorderRadius.circular(20),
-                                  onTap: () async {
-                                    context.nextPage(PlayOrStopSong(
-                                        songModel: iteam.data![index]));
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(top: 0),
-                                    child: Row(
-                                      children: [
-                                        QueryArtworkWidget(
-                                            nullArtworkWidget: Image.asset(
-                                              'assets/icon/song248.png',
-                                              width: 65,
-                                              height: 65,
-                                              fit: BoxFit.fill,
-                                            ),
-                                            artworkBorder:
-                                                BorderRadius.circular(10),
-                                            artworkWidth: 65,
-                                            artworkHeight: 65,
-                                            id: iteam.data![index].id,
-                                            type: ArtworkType.AUDIO),
-                                        const SizedBox(width: 20),
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            const SizedBox(height: 10),
-                                            Expanded(
-                                              child: SizedBox(
-                                                width: 180,
-                                                height: 24,
-                                                child: Text(
-                                                  iteam.data![index].title,
-                                                  overflow: TextOverflow.fade,
-                                                  style: context
-                                                      .textTheme.subtitle1!
-                                                      .copyWith(fontSize: 16),
-                                                  maxLines: 1,
+                          return ListView.builder(
+                              itemCount: iteam.data!.length,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  width: double.infinity,
+                                  height: 68,
+                                  margin: const EdgeInsets.only(
+                                      top: 10, bottom: 10),
+                                  child: InkWell(
+                                    borderRadius: BorderRadius.circular(20),
+                                    onTap: () async {
+                                      context.nextPage(PlayOrStopSong(
+                                          songModel: iteam.data![index]));
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 0),
+                                      child: Row(
+                                        children: [
+                                          QueryArtworkWidget(
+                                              nullArtworkWidget: Image.asset(
+                                                'assets/icon/song248.png',
+                                                width: 65,
+                                                height: 65,
+                                                fit: BoxFit.fill,
+                                              ),
+                                              artworkBorder:
+                                                  BorderRadius.circular(10),
+                                              artworkWidth: 65,
+                                              artworkHeight: 65,
+                                              id: iteam.data![index].id,
+                                              type: ArtworkType.AUDIO),
+                                          const SizedBox(width: 20),
+                                          Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              const SizedBox(height: 10),
+                                              Expanded(
+                                                child: SizedBox(
+                                                  width: 180,
+                                                  height: 24,
+                                                  child: Text(
+                                                    iteam.data![index].title,
+                                                    overflow: TextOverflow.fade,
+                                                    style: context
+                                                        .textTheme.subtitle1!
+                                                        .copyWith(fontSize: 16),
+                                                    maxLines: 1,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            const SizedBox(height: 10),
-                                            Expanded(
-                                              child: SizedBox(
-                                                width: 180,
-                                                height: 24,
-                                                child: Text(
-                                                    maxLines: 1,
-                                                    softWrap: false,
-                                                    overflow: TextOverflow.clip,
-                                                    iteam.data![index].artist ??
-                                                        "No Artist",
-                                                    style: context
-                                                        .textTheme.subtitle1),
+                                              const SizedBox(height: 10),
+                                              Expanded(
+                                                child: SizedBox(
+                                                  width: 180,
+                                                  height: 24,
+                                                  child: Text(
+                                                      maxLines: 1,
+                                                      softWrap: false,
+                                                      overflow:
+                                                          TextOverflow.clip,
+                                                      iteam.data![index]
+                                                              .artist ??
+                                                          "No Artist",
+                                                      style: context
+                                                          .textTheme.subtitle1),
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        const Spacer(),
-                                        IconButton(
-                                            onPressed: (() {}),
-                                            icon: Icon(
-                                              Icons.more_horiz,
-                                              size: 35,
-                                              color: Constans.kwhite,
-                                            ))
-                                      ],
+                                            ],
+                                          ),
+                                          const Spacer(),
+                                          IconButton(
+                                              onPressed: (() {}),
+                                              icon: Icon(
+                                                Icons.more_horiz,
+                                                size: 35,
+                                                color: Constans.kwhite,
+                                              ))
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                              );
-                            });
-                      }))
-            ],
-          ),
-        ),
+                                );
+                              });
+                        }))
+              ],
+            ),
+          );
+        },
       ),
     );
   }
