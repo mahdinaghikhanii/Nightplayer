@@ -5,14 +5,13 @@ import 'package:on_audio_query/on_audio_query.dart';
 import 'bloc/audio_bloc/audio_cubit.dart';
 import 'bloc/audio_bloc/audio_state.dart';
 import 'bloc/theme_bloc/theme_state.dart';
-import 'bloc/theme_bloc/themebloc.dart';
+import 'bloc/theme_bloc/theme_cubit.dart';
 import 'module/theme.dart';
-import 'notification/notification_service.dart';
+
 import 'views/home.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  NotificationService().initNotification();
 
   OnAudioQuery();
   runApp(MultiBlocProvider(providers: [

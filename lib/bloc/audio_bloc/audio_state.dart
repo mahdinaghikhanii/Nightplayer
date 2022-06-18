@@ -15,10 +15,13 @@ class Next extends AudioState {}
 
 class Back extends AudioState {}
 
-class Failed extends AudioState {}
+class Failed extends AudioState {
+  final Exception exception;
+  Failed(this.exception);
+}
 
 class Done extends AudioState {}
 
-class Notifications extends AudioState {}
+class ShowNotifications extends AudioState {}
 
 class RequestStoragePermission extends AudioState {}

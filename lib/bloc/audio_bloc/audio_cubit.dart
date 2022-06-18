@@ -20,7 +20,6 @@ class AudioCubit extends Cubit<AudioState> {
   playAudio() async {}
 
   void requestStoragePermission() async {
-    emit((RequestStoragePermission()));
     //only if the platform is not web, coz web have no permissions
     if (!kIsWeb) {
       bool permissionStatus = await _audioQuery.permissionsStatus();
@@ -28,11 +27,16 @@ class AudioCubit extends Cubit<AudioState> {
         await _audioQuery.permissionsRequest();
       }
     }
+    emit((RequestStoragePermission()));
   }
 
-  tzTime() {
-    if (state is Notifications) {
-      print('mahdi');
+  //only for showing lucall_norification
+  //android and ios
+  void showMusicNotification() async {
+    tz.initializeTimeZones();
+    emit(Loading());
+    try {} catch (e) {
+      emit(Failed(e as Exception));
     }
   }
 }

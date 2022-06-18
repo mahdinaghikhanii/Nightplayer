@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:nightplayer/bloc/audio_bloc/audio_cubit.dart';
 
 extension ContextExtension on BuildContext {
   TextTheme get textTheme => Theme.of(this).textTheme;
@@ -9,4 +12,6 @@ extension ContextExtension on BuildContext {
   void back() {
     Navigator.pop(this);
   }
+
+  AudioCubit get audioCuibt => read<AudioCubit>();
 }
