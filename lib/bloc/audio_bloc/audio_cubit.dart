@@ -37,10 +37,7 @@ class AudioCubit extends Cubit<AudioState> {
     tz.initializeTimeZones();
     emit(Loading());
     try {
-      NotificationService()
-          .showNotification1(title: "Kaj", body: "Mehrad Hidden", payload: "1");
-      /*  NotificationService().showNotification(
-          1, 'Salam', "this is a test in flutter_local_notifiaction", 1);*/
+      NotificationService().notify();
     } catch (e) {
       emit(Failed(e as Exception));
     }

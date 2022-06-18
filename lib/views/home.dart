@@ -6,7 +6,6 @@ import '../bloc/audio_bloc/audio_state.dart';
 import '../module/constans.dart';
 import '../module/extention.dart';
 import '../module/widgets.dart';
-
 import 'playorstopsong.dart';
 
 class Home extends StatelessWidget {
@@ -34,7 +33,7 @@ class Home extends StatelessWidget {
                   context.audioCuibt.showMusicNotification();
                 },
                 icon: const Icon(
-                  CupertinoIcons.search,
+                  CupertinoIcons.heart,
                   size: 26,
                 )),
           )
