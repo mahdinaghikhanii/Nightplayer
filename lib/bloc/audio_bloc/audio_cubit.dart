@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
 
+import '../../notification/notification_service.dart';
 import 'audio_state.dart';
 
 class AudioCubit extends Cubit<AudioState> {
@@ -35,7 +36,12 @@ class AudioCubit extends Cubit<AudioState> {
   void showMusicNotification() async {
     tz.initializeTimeZones();
     emit(Loading());
-    try {} catch (e) {
+    try {
+      NotificationService()
+          .showNotification1(title: "Kaj", body: "Mehrad Hidden", payload: "1");
+      /*  NotificationService().showNotification(
+          1, 'Salam', "this is a test in flutter_local_notifiaction", 1);*/
+    } catch (e) {
       emit(Failed(e as Exception));
     }
   }
