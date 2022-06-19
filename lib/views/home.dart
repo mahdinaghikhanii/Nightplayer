@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nightplayer/views/search.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../bloc/audio_bloc/audio_state.dart';
@@ -29,9 +30,15 @@ class Home extends StatelessWidget {
             padding: const EdgeInsets.symmetric(
                 horizontal: Constans.kdefualtAppPading),
             child: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  showSearch(
+                    context: context,
+                    delegate: Search(),
+                    query: "any query",
+                  );
+                },
                 icon: const Icon(
-                  CupertinoIcons.heart,
+                  CupertinoIcons.search,
                   size: 26,
                 )),
           )

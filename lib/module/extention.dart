@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nightplayer/views/search.dart';
 
 import '../bloc/audio_bloc/audio_cubit.dart';
 
