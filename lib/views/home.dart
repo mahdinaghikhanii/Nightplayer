@@ -29,9 +29,7 @@ class Home extends StatelessWidget {
             padding: const EdgeInsets.symmetric(
                 horizontal: Constans.kdefualtAppPading),
             child: IconButton(
-                onPressed: () {
-                  context.audioCuibt.showMusicNotification();
-                },
+                onPressed: () {},
                 icon: const Icon(
                   CupertinoIcons.heart,
                   size: 26,
@@ -92,6 +90,11 @@ class Home extends StatelessWidget {
                               child: InkWell(
                                 borderRadius: BorderRadius.circular(20),
                                 onTap: () async {
+                                  context.audioCuibt.showMusicNotification(
+                                    'assets/icon/song248.png',
+                                    iteam.data![index].title,
+                                    iteam.data![index].artist ?? "No Artist",
+                                  );
                                   context.nextPage(PlayOrStopSong(
                                       songModel: iteam.data![index]));
                                 },
