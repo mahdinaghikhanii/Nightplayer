@@ -13,6 +13,7 @@ class Search extends SearchDelegate<String> {
           query = '';
         },
         icon: const Icon(Icons.clear));
+    return null;
   }
 
   @override
@@ -21,7 +22,7 @@ class Search extends SearchDelegate<String> {
       onPressed: () {
         context.back();
       },
-      icon: Icon(Icons.arrow_back),
+      icon: const Icon(Icons.arrow_back),
     );
   }
 

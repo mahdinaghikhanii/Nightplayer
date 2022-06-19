@@ -24,9 +24,9 @@ class NotificationService {
         ]);
     AwesomeNotifications().actionStream.listen((action) {
       if (action.buttonKeyPressed == "open") {
-        print("Open button is pressed");
+        //print("Open button is pressed");
       } else if (action.buttonKeyPressed == "delete") {
-        print("Delete button is pressed.");
+        //print("Delete button is pressed.");
       }
     });
   }
