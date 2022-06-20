@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nightplayer/views/search.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../bloc/audio_bloc/audio_state.dart';
@@ -31,11 +30,13 @@ class Home extends StatelessWidget {
                 horizontal: Constans.kdefualtAppPading),
             child: IconButton(
                 onPressed: () {
-                  showSearch(
+                  context.audioCuibt.showMusicNotification(
+                      'assets/icon/song248.png', 'Kaj', "Mehrad ");
+                  /*  showSearch(
                     context: context,
                     delegate: Search(),
                     query: "any query",
-                  );
+                  );*/
                 },
                 icon: const Icon(
                   CupertinoIcons.search,

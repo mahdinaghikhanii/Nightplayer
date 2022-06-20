@@ -26,7 +26,24 @@ void main() {
             channelShowBadge: true,
             enableVibration: true,
             enableLights: true,
-            ledColor: Colors.white)
+            ledColor: Colors.white),
+        NotificationChannel(
+            channelGroupKey: 'media_player_tests',
+            //  icon: 'resource://drawable/res_media_icon',
+
+            channelKey: 'media_player',
+            channelName: 'Media player controller',
+            channelDescription: 'Media player controller',
+            defaultPrivacy: NotificationPrivacy.Public,
+            enableVibration: false,
+            enableLights: false,
+            playSound: false,
+            locked: true),
+      ],
+      channelGroups: [
+        NotificationChannelGroup(
+            channelGroupkey: 'privacy_tests',
+            channelGroupName: 'Privacy tests'),
       ]);
   //NotificationService().initNotification();
 

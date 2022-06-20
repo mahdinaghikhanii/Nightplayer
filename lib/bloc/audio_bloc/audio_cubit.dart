@@ -43,4 +43,15 @@ class AudioCubit extends Cubit<AudioState> {
       emit(Failed(e as Exception));
     }
   }
+
+  void dispose() {}
+
+  void notifiaictoSong() async {
+    try {
+      NotificationService().notificarionPlay();
+    } catch (e) {
+      emit(Failed(e as Exception));
+      print(e);
+    }
+  }
 }
