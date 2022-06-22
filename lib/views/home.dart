@@ -30,8 +30,7 @@ class Home extends StatelessWidget {
                 horizontal: Constans.kdefualtAppPading),
             child: IconButton(
                 onPressed: () {
-                  context.audioCuibt.showMusicNotification(
-                      'assets/icon/song248.png', 'Kaj', "Mehrad ");
+                  context.audioCuibt.notifiaictoSong();
                   /*  showSearch(
                     context: context,
                     delegate: Search(),

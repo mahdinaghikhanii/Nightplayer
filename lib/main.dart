@@ -29,8 +29,7 @@ void main() {
             ledColor: Colors.white),
         NotificationChannel(
             channelGroupKey: 'media_player_tests',
-            //  icon: 'resource://drawable/res_media_icon',
-
+            icon: null,
             channelKey: 'media_player',
             channelName: 'Media player controller',
             channelDescription: 'Media player controller',
@@ -42,8 +41,7 @@ void main() {
       ],
       channelGroups: [
         NotificationChannelGroup(
-            channelGroupkey: 'privacy_tests',
-            channelGroupName: 'Privacy tests'),
+            channelGroupkey: 'media_player', channelGroupName: 'media_player'),
       ]);
   //NotificationService().initNotification();
 

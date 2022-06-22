@@ -48,10 +48,11 @@ class AudioCubit extends Cubit<AudioState> {
 
   void notifiaictoSong() async {
     try {
-      NotificationService().notificarionPlay();
+      NotificationService().notify(
+          "asset://assets/ing/call.jpg", "The weekend", "Call of my name");
     } catch (e) {
       emit(Failed(e as Exception));
-      print(e);
+      //print(e);
     }
   }
 }
