@@ -12,6 +12,7 @@ import 'views/home.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
   AwesomeNotifications().initialize(
       // set the icon to null if you want to use the default app icon
       null,
@@ -21,27 +22,17 @@ void main() {
             channelKey: 'basic_channel',
             channelName: 'nightplayer',
             channelDescription: 'Notification channel for basic tests',
-            defaultColor: Colors.black,
+            defaultColor: Colors.white,
             playSound: true,
             channelShowBadge: true,
             enableVibration: true,
             enableLights: true,
             ledColor: Colors.white),
-        NotificationChannel(
-            channelGroupKey: 'media_player_tests',
-            icon: null,
-            channelKey: 'media_player',
-            channelName: 'Media player controller',
-            channelDescription: 'Media player controller',
-            defaultPrivacy: NotificationPrivacy.Public,
-            enableVibration: false,
-            enableLights: false,
-            playSound: false,
-            locked: true),
       ],
       channelGroups: [
         NotificationChannelGroup(
-            channelGroupkey: 'media_player', channelGroupName: 'media_player'),
+            channelGroupkey: 'basic_channel_group',
+            channelGroupName: 'nightplayer'),
       ]);
   //NotificationService().initNotification();
 

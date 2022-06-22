@@ -34,25 +34,15 @@ class AudioCubit extends Cubit<AudioState> {
   //only for showing lucall_norification
   //android and ios
   void showMusicNotification(
-      String imageSong, String artist, String nameSong) async {
+      String imageSong, String artist, String nameSong, int id) async {
     tz.initializeTimeZones();
     emit(Loading());
     try {
-      NotificationService().notify(imageSong, artist, nameSong);
+      NotificationService().notify(imageSong, artist, nameSong, id);
     } catch (e) {
       emit(Failed(e as Exception));
     }
   }
 
   void dispose() {}
-
-  void notifiaictoSong() async {
-    try {
-      NotificationService().notify(
-          "asset://assets/ing/call.jpg", "The weekend", "Call of my name");
-    } catch (e) {
-      emit(Failed(e as Exception));
-      //print(e);
-    }
-  }
 }

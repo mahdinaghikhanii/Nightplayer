@@ -1,36 +1,53 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:flutter/material.dart';
 
 class NotificationService {
-  notify(String imageSong, String artist, String nameSong) async {
+  notify(String imageSong, String artist, String nameSong, int id) async {
     // String timezom = await AwesomeNotifications().getLocalTimeZoneIdentifier();
     await AwesomeNotifications().createNotification(
         content: NotificationContent(
-            bigPicture: 'asset://assets/img/call.jpg',
-            id: 1,
+            id: id,
             groupKey: 'basic_channel_group',
             channelKey: 'basic_channel',
-            notificationLayout: NotificationLayout.BigPicture,
+            notificationLayout: NotificationLayout.MediaPlayer,
+            roundedLargeIcon: true,
+            roundedBigPicture: false,
+            hideLargeIconOnExpand: false,
+            largeIcon: 'asset://assets/icon/song96.png',
             title: artist,
+            criticalAlert: false,
             body: nameSong),
         actionButtons: [
           NotificationActionButton(
-            key: "next",
-            label: 'next',
-          ),
+              enabled: true,
+              key: 'DISMISS',
+              label: 'Next',
+              autoDismissible: true,
+              showInCompactView: true,
+              color: Colors.white,
+              buttonType: ActionButtonType.Default,
+              isDangerousOption: true),
           NotificationActionButton(
-            key: "delete",
-            label: "Delete File",
-          ),
+              enabled: true,
+              key: 'back',
+              label: 'Back',
+              autoDismissible: true,
+              showInCompactView: true,
+              color: Colors.white,
+              buttonType: ActionButtonType.Default,
+              isDangerousOption: true),
           NotificationActionButton(
-            key: "back",
-            label: "back",
+            label: 'pause',
+            enabled: true,
+            buttonType: ActionButtonType.Default,
+            key: 'pause',
           )
         ]);
     AwesomeNotifications().actionStream.listen((action) {
-      if (action.buttonKeyPressed == "next") {
-        //  print("Open button is pressed");
-      } else if (action.buttonKeyPressed == "") {
-        // print("Delete button is pressed.");
+      if (action.buttonKeyPressed == "DISMISS") {
+        print("Open button is pressed");
+      } else if (action.buttonKeyPressed == "d") {
+        print("Delete button is pressed.");
       }
     });
   }

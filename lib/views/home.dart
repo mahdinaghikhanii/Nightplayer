@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nightplayer/views/search.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../bloc/audio_bloc/audio_state.dart';
@@ -30,12 +31,11 @@ class Home extends StatelessWidget {
                 horizontal: Constans.kdefualtAppPading),
             child: IconButton(
                 onPressed: () {
-                  context.audioCuibt.notifiaictoSong();
-                  /*  showSearch(
+                  showSearch(
                     context: context,
                     delegate: Search(),
                     query: "any query",
-                  );*/
+                  );
                 },
                 icon: const Icon(
                   CupertinoIcons.search,
@@ -98,10 +98,11 @@ class Home extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20),
                                 onTap: () async {
                                   context.audioCuibt.showMusicNotification(
-                                    'assets/icon/song248.png',
-                                    iteam.data![index].title,
-                                    iteam.data![index].artist ?? "No Artist",
-                                  );
+                                      iteam.data![index].id.toString(),
+                                      // 'assets/icon/song248.png',
+                                      iteam.data![index].title,
+                                      iteam.data![index].artist ?? "No Artist",
+                                      index);
                                   context.nextPage(PlayOrStopSong(
                                       songModel: iteam.data![index]));
                                 },
