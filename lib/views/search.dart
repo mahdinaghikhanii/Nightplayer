@@ -1,7 +1,11 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:nightplayer/module/extention.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 class Search extends SearchDelegate<String> {
+  var listSearch = [];
   @override
   List<Widget>? buildActions(BuildContext context) => [
         IconButton(
@@ -51,5 +55,21 @@ class Search extends SearchDelegate<String> {
           );
         });
     ;
+  }
+
+  someName() async {
+    buildSuggestionsSuccess() async {
+      final OnAudioQuery _audioQuery = OnAudioQuery();
+      // DEFAULT:
+      // GenreSortType.NAME,
+      // OrderType.ASC_OR_SMALLER
+
+      /*listSearch = query.isEmpty
+        ? []
+        : something.where(((element) => element.startsWith(query))).toList();
+     
+
+    //return ListView.builder(itemBuilder: )*/
+    }
   }
 }

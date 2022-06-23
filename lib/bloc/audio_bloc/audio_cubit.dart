@@ -45,16 +45,4 @@ class AudioCubit extends Cubit<AudioState> {
   }
 
   void dispose() {}
-
-  void searchSongs() async {
-    var listSearch = [];
-    final OnAudioQuery _audioQuery = OnAudioQuery();
-    List something = await _audioQuery.queryAlbums();
-
-    listSearch = query.isEmpty
-        ? []
-        : something.where(((element) => element.startsWith(query))).toList();
-
-    //return ListView.builder(itemBuilder: )
-  }
 }
