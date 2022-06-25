@@ -60,94 +60,96 @@ class PlayOrStopSong extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(35),
                         topRight: Radius.circular(35))),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 20, left: 30, right: 30),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 200,
-                            height: 24,
-                            child: Text(
-                              songModel.title,
-                              style: context.textTheme.subtitle1!
-                                  .copyWith(fontSize: 22),
-                            ),
-                          ),
-                          const Spacer(),
-                          Container(
-                            width: 65,
-                            height: 65,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.white.withAlpha(30)),
-                            child: const Center(
-                              child: Icon(
-                                Icons.favorite,
-                                color: Colors.red,
-                                size: 40,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 20, left: 30, right: 30),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 200,
+                              height: 24,
+                              child: Text(
+                                songModel.title,
+                                style: context.textTheme.subtitle1!
+                                    .copyWith(fontSize: 22),
                               ),
                             ),
-                          ),
-                        ],
+                            const Spacer(),
+                            Container(
+                              width: 65,
+                              height: 65,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.white.withAlpha(30)),
+                              child: const Center(
+                                child: Icon(
+                                  Icons.favorite,
+                                  color: Colors.red,
+                                  size: 40,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30, right: 30),
-                      child: Text(
-                        songModel.artist.toString(),
-                        style: context.textTheme.subtitle1!.copyWith(
-                            fontSize: 18, fontWeight: FontWeight.normal),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 30, right: 30),
+                        child: Text(
+                          songModel.artist.toString(),
+                          style: context.textTheme.subtitle1!.copyWith(
+                              fontSize: 18, fontWeight: FontWeight.normal),
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 25),
-                    Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Container()),
-                    const SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30, right: 30),
-                      child: Row(
-                        children: [
-                          Text(
-                            "2:13",
-                            style: context.textTheme.subtitle1,
-                          ),
-                          const Spacer(),
-                          Text(
-                            "4:10",
-                            style: context.textTheme.subtitle1,
-                          ),
-                        ],
+                      const SizedBox(height: 25),
+                      Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Container()),
+                      const SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 30, right: 30),
+                        child: Row(
+                          children: [
+                            Text(
+                              "2:13",
+                              style: context.textTheme.subtitle1,
+                            ),
+                            const Spacer(),
+                            Text(
+                              "4:10",
+                              style: context.textTheme.subtitle1,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 30,
-                        right: 30,
+                      const SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 30,
+                          right: 30,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            MButtonForSong(
+                              icon: Icons.arrow_back_ios,
+                            ),
+                            SizedBox(width: 20),
+                            MButtonForSong(
+                              icon: Icons.play_arrow,
+                              boxColor: true,
+                            ),
+                            SizedBox(width: 20),
+                            MButtonForSong(icon: Icons.arrow_forward_ios)
+                          ],
+                        ),
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          MButtonForSong(
-                            icon: Icons.arrow_back_ios,
-                          ),
-                          SizedBox(width: 20),
-                          MButtonForSong(
-                            icon: Icons.play_arrow,
-                            boxColor: true,
-                          ),
-                          SizedBox(width: 20),
-                          MButtonForSong(icon: Icons.arrow_forward_ios)
-                        ],
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

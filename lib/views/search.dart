@@ -48,7 +48,6 @@ class Search extends SearchDelegate<String> {
   @override
   Widget buildSuggestions(BuildContext context) {
     context.audioCuibt.searchInListforFindArtist(query);
-
     return ListView.builder(
         itemCount: context.audioCuibt.allsongmodelList.length,
         shrinkWrap: true,
