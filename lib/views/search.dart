@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:nightplayer/module/extention.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+
+import '../module/extention.dart';
+import 'playorstopsong.dart';
 
 class Search extends SearchDelegate<String> {
   var listSearch = [];
+
+  List<dynamic> something = [];
   @override
   List<Widget>? buildActions(BuildContext context) => [
         IconButton(
             onPressed: () {
               query = '';
+              print(something);
             },
             icon: const Icon(
               Icons.clear,
@@ -44,29 +49,27 @@ class Search extends SearchDelegate<String> {
   @override
   Widget buildSuggestions(BuildContext context) {
     return ListView.builder(
-        itemCount: listSearch.length,
+        itemCount: something.length,
         itemBuilder: (context, index) {
           return GestureDetector(
+            onTap: () =>
+                context.nextPage(PlayOrStopSong(songModel: listSearch[index])),
             child: ListTile(
-              title: listSearch[index],
+              textColor: Colors.white,
+              tileColor: Colors.black,
+              title: something[index],
             ),
           );
         });
   }
 
-  someName() async {
-    buildSuggestionsSuccess() async {
-      final OnAudioQuery _audioQuery = OnAudioQuery();
-
-      // GenreSortType.NAME,
-      // OrderType.ASC_OR_SMALLER
-
-      /*listSearch = query.isEmpty
-        ? []
-        : something.where(((element) => element.startsWith(query))).toList();
-     
-
-    //return ListView.builder(itemBuilder: )*/
-    }
+  buildSuggestionsSuccess() async {
+    //  List<dynamic> something
+    final OnAudioQuery _audioQuery = OnAudioQuery();
+    something = await _audioQuery.queryWithFilters(
+      query,
+      WithFiltersType.AUDIOS,
+      args: AudiosArgs.ARTIST,
+    );
   }
 }
