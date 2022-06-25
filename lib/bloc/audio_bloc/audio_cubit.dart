@@ -11,6 +11,8 @@ class AudioCubit extends Cubit<AudioState> {
   }
   final OnAudioQuery _audioQuery = OnAudioQuery();
 
+  List<SongModel> allsongmodelList = [];
+
   nextAudio() async {}
 
   stopAudio() async {}
@@ -28,6 +30,19 @@ class AudioCubit extends Cubit<AudioState> {
       }
     }
     emit((RequestStoragePermission()));
+  }
+
+  void loadListSongForSearching(String query) async {
+    try {
+      List<dynamic> allSongsList = await _audioQuery.queryWithFilters(
+        query,
+        WithFiltersType.AUDIOS,
+        args: AudiosArgs.TITLE,
+      );
+      allsongmodelList = allSongsList.toSongModel();
+    } catch (e) {
+      emit(Failed(e as Exception));
+    }
   }
 
   //only for showing lucall_norification

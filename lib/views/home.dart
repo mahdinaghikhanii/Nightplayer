@@ -34,7 +34,7 @@ class Home extends StatelessWidget {
                   showSearch(
                     context: context,
                     delegate: Search(),
-                    query: "any query",
+                    query: "",
                   );
                 },
                 icon: const Icon(

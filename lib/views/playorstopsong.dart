@@ -6,6 +6,7 @@ import '../module/widgets.dart';
 
 class PlayOrStopSong extends StatelessWidget {
   final SongModel songModel;
+
   const PlayOrStopSong({Key? key, required this.songModel}) : super(key: key);
 
   @override
