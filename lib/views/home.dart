@@ -110,19 +110,22 @@ class Home extends StatelessWidget {
                                   padding: const EdgeInsets.only(top: 0),
                                   child: Row(
                                     children: [
-                                      QueryArtworkWidget(
-                                          nullArtworkWidget: Image.asset(
-                                            'assets/icon/song248.png',
-                                            width: 65,
-                                            height: 65,
-                                            fit: BoxFit.fill,
-                                          ),
-                                          artworkBorder:
-                                              BorderRadius.circular(10),
-                                          artworkWidth: 65,
-                                          artworkHeight: 65,
-                                          id: iteam.data![index].id,
-                                          type: ArtworkType.AUDIO),
+                                      Hero(
+                                        tag: iteam.data![index].id,
+                                        child: QueryArtworkWidget(
+                                            nullArtworkWidget: Image.asset(
+                                              'assets/icon/song248.png',
+                                              width: 65,
+                                              height: 65,
+                                              fit: BoxFit.fill,
+                                            ),
+                                            artworkBorder:
+                                                BorderRadius.circular(10),
+                                            artworkWidth: 65,
+                                            artworkHeight: 65,
+                                            id: iteam.data![index].id,
+                                            type: ArtworkType.AUDIO),
+                                      ),
                                       const SizedBox(width: 20),
                                       Column(
                                         crossAxisAlignment:
