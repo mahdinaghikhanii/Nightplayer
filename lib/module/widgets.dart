@@ -193,12 +193,16 @@ class MNotFound extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        Image.asset(
+          'assets/img/notfound.png',
+          width: 250,
+        ),
         Text(
           'No song found',
-          style: context.textTheme.subtitle1,
+          style: context.textTheme.subtitle1!.copyWith(fontSize: 24),
         ),
-        Image.asset('assets/img/notfound.png')
       ],
     ));
   }
