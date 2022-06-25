@@ -24,7 +24,7 @@ class NotificationService {
               label: 'Next',
               autoDismissible: true,
               showInCompactView: true,
-              color: Colors.white,
+              color: Colors.red,
               buttonType: ActionButtonType.Default,
               isDangerousOption: true),
           NotificationActionButton(
