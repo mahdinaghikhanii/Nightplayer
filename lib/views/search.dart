@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:nightplayer/module/constans.dart';
-import 'package:nightplayer/module/widgets.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
+import '../module/constans.dart';
 import '../module/extention.dart';
+import '../module/widgets.dart';
 import 'playorstopsong.dart';
 
 class Search extends SearchDelegate<String> {
   @override
   ThemeData appBarTheme(BuildContext context) {
-    return Theme.of(context)
-        .copyWith(hintColor: Constans.kwhite, textTheme: TextTheme());
+    return Theme.of(context).copyWith(
+      hintColor: Constans.kwhite,
+    );
   }
 
   @override
