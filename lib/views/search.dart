@@ -47,7 +47,7 @@ class Search extends SearchDelegate<String> {
   // baraye respone serach
   @override
   Widget buildSuggestions(BuildContext context) {
-    context.audioCuibt.loadListSongForSearching(query);
+    context.audioCuibt.searchInListforFindArtist(query);
 
     return ListView.builder(
         itemCount: context.audioCuibt.allsongmodelList.length,

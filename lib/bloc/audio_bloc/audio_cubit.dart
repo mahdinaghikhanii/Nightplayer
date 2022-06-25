@@ -32,7 +32,7 @@ class AudioCubit extends Cubit<AudioState> {
     emit((RequestStoragePermission()));
   }
 
-  void loadListSongForSearching(String query) async {
+  void searchInListforFindArtist(String query) async {
     try {
       List<dynamic> allSongsList = await _audioQuery.queryWithFilters(
         query,
