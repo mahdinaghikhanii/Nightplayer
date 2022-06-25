@@ -11,6 +11,7 @@ class AudioCubit extends Cubit<AudioState> {
   }
   final OnAudioQuery _audioQuery = OnAudioQuery();
 
+  //list for adding all song here
   List<SongModel> allsongmodelList = [];
 
   nextAudio() async {}
@@ -32,6 +33,7 @@ class AudioCubit extends Cubit<AudioState> {
     emit((RequestStoragePermission()));
   }
 
+  // using for search artist name and find your song
   void searchInListforFindArtist(String query) async {
     try {
       List<dynamic> allSongsList = await _audioQuery.queryWithFilters(
@@ -56,6 +58,4 @@ class AudioCubit extends Cubit<AudioState> {
       emit(Failed(e as Exception));
     }
   }
-
-  void dispose() {}
 }
