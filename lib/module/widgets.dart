@@ -192,9 +192,14 @@ class MNotFound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Text(
-      'No song found',
-      style: context.textTheme.subtitle1,
+        child: Column(
+      children: [
+        Text(
+          'No song found',
+          style: context.textTheme.subtitle1,
+        ),
+        Image.asset('assets/img/notfound.png')
+      ],
     ));
   }
 }
