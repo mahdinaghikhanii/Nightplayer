@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:nightplayer/module/extention.dart';
 import 'package:on_audio_query/on_audio_query.dart';
@@ -54,13 +52,12 @@ class Search extends SearchDelegate<String> {
             ),
           );
         });
-    ;
   }
 
   someName() async {
     buildSuggestionsSuccess() async {
       final OnAudioQuery _audioQuery = OnAudioQuery();
-      // DEFAULT:
+
       // GenreSortType.NAME,
       // OrderType.ASC_OR_SMALLER
 
