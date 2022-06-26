@@ -1,13 +1,13 @@
-import 'package:dot_navigation_bar/dot_navigation_bar.dart';
+import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nightplayer/bloc/btnnavigation_bloc/btmnavigation_cubit.dart';
-import 'package:nightplayer/bloc/btnnavigation_bloc/btmnavigation_state.dart';
-import 'package:nightplayer/module/navbar_items.dart';
 
+import '../bloc/btnnavigation_bloc/btmnavigation_cubit.dart';
+import '../bloc/btnnavigation_bloc/btmnavigation_state.dart';
 import 'constans.dart';
 import 'extention.dart';
+import 'navbar_items.dart';
 
 class MSmallListTile extends StatelessWidget {
   final String? text;
@@ -70,7 +70,26 @@ class MBottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BtmNavigationCubit, BtmNavigationState>(
       builder: (BuildContext context, state) {
-        return DotNavigationBar(
+        return CustomNavigationBar(
+          iconSize: 30.0,
+          selectedColor: Colors.white,
+          strokeColor: const Color(0x30040307),
+          unSelectedColor: const Color(0xffacacac),
+          backgroundColor: Constans.kdefultAppColor,
+          items: [
+            CustomNavigationBarItem(
+              icon: const Icon(Icons.home),
+            ),
+            CustomNavigationBarItem(
+              icon: const Icon(Icons.library_music),
+            ),
+            CustomNavigationBarItem(
+              icon: const Icon(Icons.favorite),
+            ),
+            CustomNavigationBarItem(
+              icon: const Icon(Icons.settings),
+            ),
+          ],
           currentIndex: state.index,
           onTap: (index) {
             if (index == 0) {
@@ -87,25 +106,6 @@ class MBottomNavigation extends StatelessWidget {
                   .getNavbarItem(NavbarItem.settings);
             }
           },
-          dotIndicatorColor: Colors.black,
-          items: [
-            DotNavigationBarItem(
-              icon: const Icon(Icons.home),
-              selectedColor: Colors.purple,
-            ),
-            DotNavigationBarItem(
-              icon: const Icon(Icons.favorite_border),
-              selectedColor: Colors.pink,
-            ),
-            DotNavigationBarItem(
-              icon: const Icon(Icons.search),
-              selectedColor: Colors.orange,
-            ),
-            DotNavigationBarItem(
-              icon: const Icon(Icons.person),
-              selectedColor: Colors.teal,
-            ),
-          ],
         );
       },
     );

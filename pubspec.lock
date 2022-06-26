@@ -85,13 +85,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
-  dot_navigation_bar:
+  custom_navigation_bar:
     dependency: "direct main"
     description:
-      name: dot_navigation_bar
+      name: custom_navigation_bar
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.1+4"
+    version: "0.8.2"
   equatable:
     dependency: "direct main"
     description:
