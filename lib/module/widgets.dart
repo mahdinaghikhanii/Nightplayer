@@ -1,6 +1,10 @@
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nightplayer/bloc/btnnavigation_bloc/btmnavigation_cubit.dart';
+import 'package:nightplayer/bloc/btnnavigation_bloc/btmnavigation_state.dart';
+import 'package:nightplayer/module/navbar_items.dart';
 
 import 'constans.dart';
 import 'extention.dart';
@@ -64,28 +68,46 @@ class MBottomNavigation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DotNavigationBar(
-      //   currentIndex: _menu.value,
-      // ontapIconButtonMore: (val) => _menu.setValue(val),
-      // dotIndicatorColor: Colors.black,
-      items: [
-        DotNavigationBarItem(
-          icon: const Icon(Icons.home),
-          selectedColor: Colors.purple,
-        ),
-        DotNavigationBarItem(
-          icon: const Icon(Icons.favorite_border),
-          selectedColor: Colors.pink,
-        ),
-        DotNavigationBarItem(
-          icon: const Icon(Icons.search),
-          selectedColor: Colors.orange,
-        ),
-        DotNavigationBarItem(
-          icon: const Icon(Icons.person),
-          selectedColor: Colors.teal,
-        ),
-      ],
+    return BlocBuilder<BtmNavigationCubit, BtmNavigationState>(
+      builder: (BuildContext context, state) {
+        return DotNavigationBar(
+          currentIndex: state.index,
+          onTap: (index) {
+            if (index == 0) {
+              BlocProvider.of<BtmNavigationCubit>(context)
+                  .getNavbarItem(NavbarItem.allsong);
+            } else if (index == 1) {
+              BlocProvider.of<BtmNavigationCubit>(context)
+                  .getNavbarItem(NavbarItem.album);
+            } else if (index == 2) {
+              BlocProvider.of<BtmNavigationCubit>(context)
+                  .getNavbarItem(NavbarItem.favorite);
+            } else if (index == 3) {
+              BlocProvider.of<BtmNavigationCubit>(context)
+                  .getNavbarItem(NavbarItem.settings);
+            }
+          },
+          dotIndicatorColor: Colors.black,
+          items: [
+            DotNavigationBarItem(
+              icon: const Icon(Icons.home),
+              selectedColor: Colors.purple,
+            ),
+            DotNavigationBarItem(
+              icon: const Icon(Icons.favorite_border),
+              selectedColor: Colors.pink,
+            ),
+            DotNavigationBarItem(
+              icon: const Icon(Icons.search),
+              selectedColor: Colors.orange,
+            ),
+            DotNavigationBarItem(
+              icon: const Icon(Icons.person),
+              selectedColor: Colors.teal,
+            ),
+          ],
+        );
+      },
     );
   }
 }

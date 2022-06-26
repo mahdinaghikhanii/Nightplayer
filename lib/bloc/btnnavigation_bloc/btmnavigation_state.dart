@@ -1,19 +1,12 @@
-import 'package:flutter/foundation.dart';
+import 'package:equatable/equatable.dart';
 import 'package:nightplayer/module/navbar_items.dart';
 
-@immutable
-abstract class BtmNavigationState {}
+class BtmNavigationState extends Equatable {
+  final NavbarItem navbarItem;
+  final int index;
 
-class Wating extends BtmNavigationState {}
+  const BtmNavigationState(this.navbarItem, this.index);
 
-class DefaultScreens extends BtmNavigationState {
-  NavbarItem navbarItem;
-  int index;
-  DefaultScreens(this.navbarItem, this.index);
+  @override
+  List<Object> get props => [navbarItem, index];
 }
-
-class FirstScreans extends BtmNavigationState {}
-
-class Second extends BtmNavigationState {}
-
-class ThirdPage extends BtmNavigationState {}

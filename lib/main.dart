@@ -1,6 +1,7 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nightplayer/bloc/btnnavigation_bloc/btmnavigation_cubit.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import 'bloc/audio_bloc/audio_cubit.dart';
@@ -40,6 +41,7 @@ void main() {
   runApp(MultiBlocProvider(providers: [
     BlocProvider<ThemeCubit>(create: (_) => ThemeCubit()),
     BlocProvider<AudioCubit>(create: (_) => AudioCubit()),
+    BlocProvider<BtmNavigationCubit>(create: (_) => BtmNavigationCubit())
   ], child: const MyApp()));
 }
 
