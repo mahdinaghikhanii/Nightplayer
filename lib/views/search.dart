@@ -10,8 +10,9 @@ class Search extends SearchDelegate<String> {
   @override
   ThemeData appBarTheme(BuildContext context) {
     return Theme.of(context).copyWith(
-      hintColor: Constans.kwhite,
-    );
+        hintColor: Constans.kwhite,
+        textTheme: const TextTheme(
+            headline6: TextStyle(color: Colors.white, fontSize: 18)));
   }
 
   @override
