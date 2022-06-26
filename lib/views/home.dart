@@ -1,17 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nightplayer/bloc/btnnavigation_bloc/btmnavigation_cubit.dart';
-import 'package:nightplayer/bloc/btnnavigation_bloc/btmnavigation_state.dart';
-import 'package:nightplayer/module/navbar_items.dart';
-import 'package:nightplayer/views/allsong.dart';
-import 'package:on_audio_query/on_audio_query.dart';
 
 import '../bloc/audio_bloc/audio_state.dart';
+import '../bloc/btnnavigation_bloc/btmnavigation_cubit.dart';
+import '../bloc/btnnavigation_bloc/btmnavigation_state.dart';
 import '../module/constans.dart';
 import '../module/extention.dart';
+import '../module/navbar_items.dart';
 import '../module/widgets.dart';
-import 'playorstopsong.dart';
+import 'allsong.dart';
 import 'search.dart';
 
 class Home extends StatelessWidget {
