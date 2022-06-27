@@ -2,8 +2,6 @@ import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nightplayer/views/playorstopsong.dart';
-import 'package:on_audio_query/on_audio_query.dart';
 
 import '../bloc/btnnavigation_bloc/btmnavigation_cubit.dart';
 import '../bloc/btnnavigation_bloc/btmnavigation_state.dart';
@@ -239,10 +237,10 @@ class MNotFound extends StatelessWidget {
   }
 }
 
-class CricleButton extends StatelessWidget {
+class MCricleButton extends StatelessWidget {
   final double? sizeWith;
   final double? sizeHeight;
-  const CricleButton({Key? key, this.sizeHeight, this.sizeWith})
+  const MCricleButton({Key? key, this.sizeHeight, this.sizeWith})
       : super(key: key);
 
   @override
@@ -281,7 +279,11 @@ class MiniPlayerInBottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: double.infinity,
+        clipBehavior: Clip.hardEdge,
         decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(Constans.kdefualtBorderRadios),
+              topRight: Radius.circular(Constans.kdefualtBorderRadios)),
           color: Colors.grey,
         ),
         height: 70,
@@ -301,7 +303,7 @@ class MiniPlayerInBottomNavigation extends StatelessWidget {
                 ),
               ),
               textColor: Colors.white,
-              trailing: const CricleButton(),
+              trailing: const MCricleButton(),
               title: const Text("Kaj")),
         ));
   }
