@@ -2,6 +2,8 @@ import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nightplayer/views/playorstopsong.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 import '../bloc/btnnavigation_bloc/btmnavigation_cubit.dart';
 import '../bloc/btnnavigation_bloc/btmnavigation_state.dart';
@@ -227,5 +229,39 @@ class MNotFound extends StatelessWidget {
         ),
       ],
     ));
+  }
+}
+
+class MiniPlayerInBottomNavigation extends StatelessWidget {
+  final SongModel songModel;
+  const MiniPlayerInBottomNavigation({Key? key, required this.songModel})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        margin: const EdgeInsets.only(bottom: 56),
+        width: double.infinity,
+        height: 60,
+        color: Colors.red,
+        child: GestureDetector(
+          onTap: () => context.nextPage(PlayOrStopSong(songModel: songModel)),
+          child: ListTile(
+              subtitle: Text(songModel.title),
+              leading: QueryArtworkWidget(
+                  nullArtworkWidget: Image.asset(
+                    'assets/icon/song248.png',
+                    width: 65,
+                    height: 65,
+                    fit: BoxFit.fill,
+                  ),
+                  artworkBorder: BorderRadius.circular(10),
+                  artworkWidth: 45,
+                  artworkHeight: 45,
+                  id: songModel.id,
+                  type: ArtworkType.AUDIO),
+              textColor: Colors.white,
+              title: Text(songModel.artist.toString())),
+        ));
   }
 }

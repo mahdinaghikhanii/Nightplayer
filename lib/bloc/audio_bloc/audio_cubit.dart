@@ -14,6 +14,8 @@ class AudioCubit extends Cubit<AudioState> {
   //list for adding all song here
   List<SongModel> allsongmodelList = [];
 
+  bool songIsPlaying = false;
+
   nextAudio() async {}
 
   stopAudio() async {}
@@ -52,6 +54,7 @@ class AudioCubit extends Cubit<AudioState> {
   void showMusicNotification(
       String imageSong, String artist, String nameSong, int id) async {
     emit(Loading());
+    songIsPlaying = true;
     try {
       NotificationService().notify(imageSong, artist, nameSong, id);
     } catch (e) {
