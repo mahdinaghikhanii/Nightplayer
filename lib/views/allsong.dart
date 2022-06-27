@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nightplayer/bloc/audio_bloc/audio_cubit.dart';
+import 'package:nightplayer/bloc/audio_bloc/audio_state.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../module/constans.dart';
@@ -84,11 +87,12 @@ class AllSong extends StatelessWidget {
                             borderRadius: BorderRadius.circular(20),
                             onTap: () async {
                               context.audioCuibt.showMusicNotification(
-                                  iteam.data![index].id.toString(),
-                                  // 'assets/icon/song248.png',
-                                  iteam.data![index].title,
-                                  iteam.data![index].artist ?? "No Artist",
-                                  index);
+                                iteam.data![index].id.toString(),
+                                // 'assets/icon/song248.png',
+                                iteam.data![index].title,
+                                iteam.data![index].artist ?? "No Artist",
+                                index,
+                              );
                               context.nextPage(PlayOrStopSong(
                                   songModel: iteam.data![index]));
                             },
@@ -125,7 +129,7 @@ class AllSong extends StatelessWidget {
                                         height: 24,
                                         child: Text(
                                           iteam.data![index].title,
-                                          overflow: TextOverflow.fade,
+                                          overflow: TextOverflow.ellipsis,
                                           style: context.textTheme.subtitle1!
                                               .copyWith(fontSize: 16),
                                           maxLines: 1,

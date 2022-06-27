@@ -1,5 +1,8 @@
+import 'dart:js';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nightplayer/module/widgets.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../notification/notification_service.dart';
@@ -49,16 +52,30 @@ class AudioCubit extends Cubit<AudioState> {
     }
   }
 
+  List<SongModel> mysong = [];
   //only for showing lucall_norification
   //android and ios
   void showMusicNotification(
-      String imageSong, String artist, String nameSong, int id) async {
+    String imageSong,
+    String artist,
+    String nameSong,
+    int id,
+  ) async {
     emit(Loading());
+
     songIsPlaying = true;
     try {
       NotificationService().notify(imageSong, artist, nameSong, id);
     } catch (e) {
       emit(Failed(e as Exception));
     }
+  }
+
+  void show(SongModel songModel) async {
+    try {
+      MiniPlayerInBottomNavigation(
+        songModel: songModel,
+      );
+    } catch (e) {}
   }
 }
