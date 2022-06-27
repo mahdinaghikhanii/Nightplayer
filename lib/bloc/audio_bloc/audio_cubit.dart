@@ -1,8 +1,5 @@
-import 'dart:js';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nightplayer/module/widgets.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../notification/notification_service.dart';
@@ -69,13 +66,5 @@ class AudioCubit extends Cubit<AudioState> {
     } catch (e) {
       emit(Failed(e as Exception));
     }
-  }
-
-  void show(SongModel songModel) async {
-    try {
-      MiniPlayerInBottomNavigation(
-        songModel: songModel,
-      );
-    } catch (e) {}
   }
 }

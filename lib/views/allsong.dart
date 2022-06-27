@@ -1,8 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nightplayer/bloc/audio_bloc/audio_cubit.dart';
-import 'package:nightplayer/bloc/audio_bloc/audio_state.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../module/constans.dart';
@@ -109,8 +106,8 @@ class AllSong extends StatelessWidget {
                                           height: 60,
                                           fit: BoxFit.fill,
                                         ),
-                                        artworkBorder:
-                                            BorderRadius.circular(10),
+                                        artworkBorder: BorderRadius.circular(
+                                            Constans.kdefualtBorderRadios),
                                         artworkWidth: 60,
                                         artworkHeight: 60,
                                         id: iteam.data![index].id,

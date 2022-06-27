@@ -72,42 +72,49 @@ class MBottomNavigation extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BtmNavigationCubit, BtmNavigationState>(
       builder: (BuildContext context, state) {
-        return CustomNavigationBar(
-          iconSize: 30.0,
-          selectedColor: Colors.white,
-          strokeColor: const Color(0x30040307),
-          unSelectedColor: const Color(0xffacacac),
-          backgroundColor: Constans.kdefultAppColor,
-          items: [
-            CustomNavigationBarItem(
-              icon: const Icon(Icons.home),
-            ),
-            CustomNavigationBarItem(
-              icon: const Icon(Icons.library_music),
-            ),
-            CustomNavigationBarItem(
-              icon: const Icon(Icons.favorite),
-            ),
-            CustomNavigationBarItem(
-              icon: const Icon(Icons.settings),
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            const MiniPlayerInBottomNavigation(),
+            CustomNavigationBar(
+              iconSize: 30.0,
+              selectedColor: Colors.white,
+              strokeColor: const Color(0x30040307),
+              unSelectedColor: const Color(0xffacacac),
+              backgroundColor: Constans.kdefultAppColor,
+              items: [
+                CustomNavigationBarItem(
+                  icon: const Icon(Icons.home),
+                ),
+                CustomNavigationBarItem(
+                  icon: const Icon(Icons.library_music),
+                ),
+                CustomNavigationBarItem(
+                  icon: const Icon(Icons.favorite),
+                ),
+                CustomNavigationBarItem(
+                  icon: const Icon(Icons.settings),
+                ),
+              ],
+              currentIndex: state.index,
+              onTap: (index) {
+                if (index == 0) {
+                  BlocProvider.of<BtmNavigationCubit>(context)
+                      .getNavbarItem(NavbarItem.allsong);
+                } else if (index == 1) {
+                  BlocProvider.of<BtmNavigationCubit>(context)
+                      .getNavbarItem(NavbarItem.album);
+                } else if (index == 2) {
+                  BlocProvider.of<BtmNavigationCubit>(context)
+                      .getNavbarItem(NavbarItem.favorite);
+                } else if (index == 3) {
+                  BlocProvider.of<BtmNavigationCubit>(context)
+                      .getNavbarItem(NavbarItem.settings);
+                }
+              },
             ),
           ],
-          currentIndex: state.index,
-          onTap: (index) {
-            if (index == 0) {
-              BlocProvider.of<BtmNavigationCubit>(context)
-                  .getNavbarItem(NavbarItem.allsong);
-            } else if (index == 1) {
-              BlocProvider.of<BtmNavigationCubit>(context)
-                  .getNavbarItem(NavbarItem.album);
-            } else if (index == 2) {
-              BlocProvider.of<BtmNavigationCubit>(context)
-                  .getNavbarItem(NavbarItem.favorite);
-            } else if (index == 3) {
-              BlocProvider.of<BtmNavigationCubit>(context)
-                  .getNavbarItem(NavbarItem.settings);
-            }
-          },
         );
       },
     );
@@ -232,36 +239,70 @@ class MNotFound extends StatelessWidget {
   }
 }
 
-class MiniPlayerInBottomNavigation extends StatelessWidget {
-  final SongModel songModel;
-  const MiniPlayerInBottomNavigation({Key? key, required this.songModel})
+class CricleButton extends StatelessWidget {
+  final double? sizeWith;
+  final double? sizeHeight;
+  const CricleButton({Key? key, this.sizeHeight, this.sizeWith})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.only(bottom: 56),
+      width: sizeWith ?? 40,
+      height: sizeHeight ?? 40,
+      decoration: BoxDecoration(boxShadow: const [
+        BoxShadow(
+          color: Colors.white,
+          offset: Offset(
+            0.0,
+            0.0,
+          ),
+          blurRadius: 2.0,
+          spreadRadius: 1.0,
+        ), //BoxShadow
+        BoxShadow(
+          color: Colors.white,
+          offset: Offset(0.0, 0.0),
+          blurRadius: 2.0,
+          spreadRadius: 1.0,
+        ),
+      ], shape: BoxShape.circle, color: Constans.kdefultAppColor),
+      child: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.play_arrow, color: Colors.white)),
+    );
+  }
+}
+
+class MiniPlayerInBottomNavigation extends StatelessWidget {
+  const MiniPlayerInBottomNavigation({Key? key, l}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
         width: double.infinity,
-        height: 60,
-        color: Colors.red,
+        decoration: const BoxDecoration(
+          color: Colors.grey,
+        ),
+        height: 70,
         child: GestureDetector(
-          onTap: () => context.nextPage(PlayOrStopSong(songModel: songModel)),
+          //  onTap: () => context.nextPage(PlayOrStopSong(songModel: songModel)),
           child: ListTile(
-              subtitle: Text(songModel.title),
-              leading: QueryArtworkWidget(
-                  nullArtworkWidget: Image.asset(
-                    'assets/icon/song248.png',
-                    width: 65,
-                    height: 65,
-                    fit: BoxFit.fill,
-                  ),
-                  artworkBorder: BorderRadius.circular(10),
-                  artworkWidth: 45,
-                  artworkHeight: 45,
-                  id: songModel.id,
-                  type: ArtworkType.AUDIO),
+              subtitle: const Text("Mehrad Hidden"),
+              leading: Container(
+                clipBehavior: Clip.hardEdge,
+                decoration: BoxDecoration(
+                    borderRadius:
+                        BorderRadius.circular(Constans.kdefualtBorderRadios)),
+                child: Image.asset(
+                  'assets/img/kaj.jpg',
+                  width: 50,
+                  height: 50,
+                ),
+              ),
               textColor: Colors.white,
-              title: Text(songModel.artist.toString())),
+              trailing: const CricleButton(),
+              title: const Text("Kaj")),
         ));
   }
 }
