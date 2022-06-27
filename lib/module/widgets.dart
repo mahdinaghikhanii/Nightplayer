@@ -74,7 +74,7 @@ class MBottomNavigation extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            const MiniPlayerInBottomNavigation(),
+            const MMiniPlayer(),
             CustomNavigationBar(
               iconSize: 30.0,
               selectedColor: Colors.white,
@@ -272,8 +272,8 @@ class MCricleButton extends StatelessWidget {
   }
 }
 
-class MiniPlayerInBottomNavigation extends StatelessWidget {
-  const MiniPlayerInBottomNavigation({Key? key, l}) : super(key: key);
+class MMiniPlayer extends StatelessWidget {
+  const MMiniPlayer({Key? key, l}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -25,7 +25,7 @@ void main() {
             channelDescription: 'Notification channel for basic tests',
             defaultColor: Colors.white,
             playSound: true,
-            channelShowBadge: true,
+            channelShowBadge: false,
             enableVibration: true,
             enableLights: true,
             ledColor: Colors.white),
@@ -33,9 +33,10 @@ void main() {
       channelGroups: [
         NotificationChannelGroup(
             channelGroupkey: 'basic_channel_group',
-            channelGroupName: 'nightplayer'),
-      ]);
-  //NotificationService().initNotification();
+            channelGroupName: 'basic_channel'),
+      ],
+      debug: true);
+  //zNotificationService().initNotification();
 
   OnAudioQuery();
   runApp(MultiBlocProvider(providers: [
