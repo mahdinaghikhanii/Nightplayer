@@ -45,6 +45,7 @@ dependencies:
   rxdart: ^0.27.4
   equatable: ^2.0.3
   awesome_notifications: ^0.6.19
+  animate_do: ^2.1.0
 
 
 
