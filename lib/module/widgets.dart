@@ -214,8 +214,21 @@ class MWating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: CupertinoActivityIndicator(),
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const CupertinoActivityIndicator(
+            color: Colors.white,
+            radius: 18,
+          ),
+          const SizedBox(height: 20),
+          Text(
+            'Pls wait',
+            style: context.textTheme.bodyText1!.copyWith(color: Colors.white),
+          ),
+        ],
+      ),
     );
   }
 }

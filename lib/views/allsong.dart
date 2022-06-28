@@ -60,7 +60,7 @@ class AllSong extends StatelessWidget {
                 ),
                 builder: (context, iteam) {
                   if (iteam.data == null) {
-                    return const Center(child: CupertinoActivityIndicator());
+                    return const Center(child: MWating());
                   }
 
                   if (iteam.data!.isEmpty) {
