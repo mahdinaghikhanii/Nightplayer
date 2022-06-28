@@ -26,4 +26,6 @@ class ShowNotifications extends AudioState {}
 
 class ShowMiniPLayer extends AudioState {}
 
+class AnimationMiniPLayer extends AudioState {}
+
 class RequestStoragePermission extends AudioState {}

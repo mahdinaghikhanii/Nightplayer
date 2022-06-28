@@ -87,6 +87,7 @@ class AllSong extends StatelessWidget {
                                 iteam.data![index].artist ?? "No Artist",
                                 index,
                               );
+
                               /*     context.nextPage(PlayOrStopSong(
                                   songModel: iteam.data![index]));*/
 

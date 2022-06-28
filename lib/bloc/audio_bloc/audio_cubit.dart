@@ -14,15 +14,13 @@ class AudioCubit extends Cubit<AudioState> {
   //list for adding all song here
   List<SongModel> allsongmodelList = [];
 
+  // this list just for giving choice user song
   List<SongModel> song = [];
 
   addData(SongModel songModel) {
     try {
-      if (song.length > 1) {
-        // song.removeRange(1, 4);
-      } else {
-        song.add(songModel);
-      }
+      song.clear();
+      song.add(songModel);
     } catch (e) {
       emit(Failed(e as Exception));
     }

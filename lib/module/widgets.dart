@@ -3,6 +3,7 @@ import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 import '../bloc/audio_bloc/audio_cubit.dart';
 import '../bloc/audio_bloc/audio_state.dart';
@@ -276,13 +277,14 @@ class MCricleButton extends StatelessWidget {
 }
 
 class MMiniPlayer extends StatelessWidget {
-  const MMiniPlayer({Key? key}) : super(key: key);
+  final SongModel? songModel;
+  const MMiniPlayer({Key? key, this.songModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     //SongModel songModel = context.audioCuibt.song[0];
     return BlocBuilder<AudioCubit, AudioState>(
-      builder: (BuildContext context, state) {
+      builder: (context, state) {
         return state is ShowMiniPLayer
             ? FadeInRight(
                 child: Container(
@@ -300,21 +302,31 @@ class MMiniPlayer extends StatelessWidget {
                     child: GestureDetector(
                       //  onTap: () => context.nextPage(PlayOrStopSong(songModel: songModel)),
                       child: ListTile(
-                          subtitle: const Text("Mehrad Hidden"),
+                          subtitle:
+                              Text(context.audioCuibt.song[0].title.toString()),
                           leading: Container(
                             clipBehavior: Clip.hardEdge,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(
                                     Constans.kdefualtBorderRadios)),
-                            child: Image.asset(
-                              'assets/img/kaj.jpg',
-                              width: 50,
-                              height: 50,
-                            ),
+                            child: QueryArtworkWidget(
+                                nullArtworkWidget: Image.asset(
+                                  'assets/icon/song248.png',
+                                  width: 60,
+                                  height: 60,
+                                  fit: BoxFit.fill,
+                                ),
+                                artworkBorder: BorderRadius.circular(
+                                    Constans.kdefualtBorderRadios),
+                                artworkWidth: 60,
+                                artworkHeight: 60,
+                                id: context.audioCuibt.song[0].id,
+                                type: ArtworkType.AUDIO),
                           ),
                           textColor: Colors.white,
                           trailing: const MCricleButton(),
-                          title: const Text("Kaj")),
+                          title: Text(
+                              context.audioCuibt.song[0].artist.toString())),
                     )),
               )
             : Container();
