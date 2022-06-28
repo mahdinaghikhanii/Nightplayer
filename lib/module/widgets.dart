@@ -340,12 +340,10 @@ class MMiniPlayer extends StatelessWidget {
                       ),
                       textColor: Colors.white,
                       trailing: const MCricleButton(),
-                      title: Flexible(
-                        child: Text(
-                          context.audioCuibt.song[0].artist.toString(),
-                          style: context.textTheme.subtitle1!.copyWith(
-                              fontSize: 15, fontWeight: FontWeight.bold),
-                        ),
+                      title: Text(
+                        context.audioCuibt.song[0].artist.toString(),
+                        style: context.textTheme.subtitle1!.copyWith(
+                            fontSize: 15, fontWeight: FontWeight.bold),
                       )),
                 )),
           ));
