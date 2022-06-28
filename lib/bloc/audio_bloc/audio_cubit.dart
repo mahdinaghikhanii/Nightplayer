@@ -14,7 +14,19 @@ class AudioCubit extends Cubit<AudioState> {
   //list for adding all song here
   List<SongModel> allsongmodelList = [];
 
-  bool songIsPlaying = false;
+  List<SongModel> song = [];
+
+  addData(SongModel songModel) {
+    try {
+      if (song.length > 1) {
+        // song.removeRange(1, 4);
+      } else {
+        song.add(songModel);
+      }
+    } catch (e) {
+      emit(Failed(e as Exception));
+    }
+  }
 
   nextAudio() async {}
 
@@ -49,7 +61,6 @@ class AudioCubit extends Cubit<AudioState> {
     }
   }
 
-  List<SongModel> mysong = [];
   //only for showing lucall_norification
   //android and ios
   void showMusicNotification(
@@ -59,8 +70,8 @@ class AudioCubit extends Cubit<AudioState> {
     int id,
   ) async {
     emit(Loading());
+    emit(ShowMiniPLayer());
 
-    songIsPlaying = true;
     try {
       NotificationService().notify(imageSong, artist, nameSong, id);
     } catch (e) {

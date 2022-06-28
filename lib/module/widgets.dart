@@ -2,6 +2,9 @@ import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nightplayer/bloc/audio_bloc/audio_cubit.dart';
+import 'package:nightplayer/bloc/audio_bloc/audio_state.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 import '../bloc/btnnavigation_bloc/btmnavigation_cubit.dart';
 import '../bloc/btnnavigation_bloc/btmnavigation_state.dart';
@@ -273,38 +276,45 @@ class MCricleButton extends StatelessWidget {
 }
 
 class MMiniPlayer extends StatelessWidget {
-  const MMiniPlayer({Key? key, l}) : super(key: key);
+  const MMiniPlayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        width: double.infinity,
-        clipBehavior: Clip.hardEdge,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(Constans.kdefualtBorderRadios),
-              topRight: Radius.circular(Constans.kdefualtBorderRadios)),
-          color: Colors.grey,
-        ),
-        height: 70,
-        child: GestureDetector(
-          //  onTap: () => context.nextPage(PlayOrStopSong(songModel: songModel)),
-          child: ListTile(
-              subtitle: const Text("Mehrad Hidden"),
-              leading: Container(
+    //SongModel songModel = context.audioCuibt.song[0];
+    return BlocBuilder<AudioCubit, AudioState>(
+      builder: (BuildContext context, state) {
+        return state is ShowMiniPLayer
+            ? Container(
+                width: double.infinity,
                 clipBehavior: Clip.hardEdge,
-                decoration: BoxDecoration(
-                    borderRadius:
-                        BorderRadius.circular(Constans.kdefualtBorderRadios)),
-                child: Image.asset(
-                  'assets/img/kaj.jpg',
-                  width: 50,
-                  height: 50,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(Constans.kdefualtBorderRadios),
+                      topRight: Radius.circular(Constans.kdefualtBorderRadios)),
+                  color: Colors.grey,
                 ),
-              ),
-              textColor: Colors.white,
-              trailing: const MCricleButton(),
-              title: const Text("Kaj")),
-        ));
+                height: 70,
+                child: GestureDetector(
+                  //  onTap: () => context.nextPage(PlayOrStopSong(songModel: songModel)),
+                  child: ListTile(
+                      subtitle: const Text("Mehrad Hidden"),
+                      leading: Container(
+                        clipBehavior: Clip.hardEdge,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                                Constans.kdefualtBorderRadios)),
+                        child: Image.asset(
+                          'assets/img/kaj.jpg',
+                          width: 50,
+                          height: 50,
+                        ),
+                      ),
+                      textColor: Colors.white,
+                      trailing: const MCricleButton(),
+                      title: const Text("Kaj")),
+                ))
+            : Container();
+      },
+    );
   }
 }

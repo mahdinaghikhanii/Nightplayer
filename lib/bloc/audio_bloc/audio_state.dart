@@ -24,4 +24,6 @@ class Done extends AudioState {}
 
 class ShowNotifications extends AudioState {}
 
+class ShowMiniPLayer extends AudioState {}
+
 class RequestStoragePermission extends AudioState {}

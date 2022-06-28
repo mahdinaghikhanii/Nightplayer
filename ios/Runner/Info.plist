@@ -4,6 +4,7 @@
 <dict>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>..Add a reason..</string>
+	
 
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

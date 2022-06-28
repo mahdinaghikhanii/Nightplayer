@@ -5,13 +5,10 @@ import 'package:on_audio_query/on_audio_query.dart';
 import '../module/constans.dart';
 import '../module/extention.dart';
 import '../module/widgets.dart';
-import 'playorstopsong.dart';
 import 'search.dart';
 
 class AllSong extends StatelessWidget {
-  const AllSong({
-    Key? key,
-  }) : super(key: key);
+  const AllSong({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -90,8 +87,10 @@ class AllSong extends StatelessWidget {
                                 iteam.data![index].artist ?? "No Artist",
                                 index,
                               );
-                              context.nextPage(PlayOrStopSong(
-                                  songModel: iteam.data![index]));
+                              /*     context.nextPage(PlayOrStopSong(
+                                  songModel: iteam.data![index]));*/
+
+                              context.audioCuibt.addData(iteam.data![index]);
                             },
                             child: Row(
                               children: [
