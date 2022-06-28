@@ -69,6 +69,7 @@ class AudioCubit extends Cubit<AudioState> {
   ) async {
     emit(Loading());
     emit(ShowMiniPLayer());
+    //emit(AnimationMiniPLayer());
 
     try {
       NotificationService().notify(imageSong, artist, nameSong, id);

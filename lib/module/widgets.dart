@@ -3,6 +3,7 @@ import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nightplayer/views/playorstopsong.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../bloc/audio_bloc/audio_cubit.dart';
@@ -282,54 +283,62 @@ class MMiniPlayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //SongModel songModel = context.audioCuibt.song[0];
     return BlocBuilder<AudioCubit, AudioState>(
       builder: (context, state) {
-        return state is ShowMiniPLayer
-            ? FadeInRight(
-                child: Container(
-                    width: double.infinity,
-                    clipBehavior: Clip.hardEdge,
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                          topLeft:
-                              Radius.circular(Constans.kdefualtBorderRadios),
-                          topRight:
-                              Radius.circular(Constans.kdefualtBorderRadios)),
-                      color: Colors.grey,
-                    ),
-                    height: 70,
-                    child: GestureDetector(
-                      //  onTap: () => context.nextPage(PlayOrStopSong(songModel: songModel)),
-                      child: ListTile(
-                          subtitle:
-                              Text(context.audioCuibt.song[0].title.toString()),
-                          leading: Container(
-                            clipBehavior: Clip.hardEdge,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(
-                                    Constans.kdefualtBorderRadios)),
-                            child: QueryArtworkWidget(
-                                nullArtworkWidget: Image.asset(
-                                  'assets/icon/song248.png',
-                                  width: 60,
-                                  height: 60,
-                                  fit: BoxFit.fill,
-                                ),
-                                artworkBorder: BorderRadius.circular(
-                                    Constans.kdefualtBorderRadios),
-                                artworkWidth: 60,
-                                artworkHeight: 60,
-                                id: context.audioCuibt.song[0].id,
-                                type: ArtworkType.AUDIO),
-                          ),
-                          textColor: Colors.white,
-                          trailing: const MCricleButton(),
-                          title: Text(
-                              context.audioCuibt.song[0].artist.toString())),
-                    )),
-              )
-            : Container();
+        if (state is ShowMiniPLayer) {
+          return FadeInRight(
+              child: GestureDetector(
+            onTap: () => context.nextPage(
+                PlayOrStopSong(songModel: context.audioCuibt.song[0])),
+            child: Container(
+                width: double.infinity,
+                clipBehavior: Clip.hardEdge,
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(Constans.kdefualtBorderRadios),
+                      topRight: Radius.circular(Constans.kdefualtBorderRadios)),
+                  color: Colors.grey,
+                ),
+                height: 70,
+                child: GestureDetector(
+                  child: ListTile(
+                      subtitle: Text(
+                          context.audioCuibt.song[0].title.toString(),
+                          style: context.textTheme.bodyText1!
+                              .copyWith(fontSize: 12, color: Colors.white)),
+                      leading: Container(
+                        clipBehavior: Clip.hardEdge,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                                Constans.kdefualtBorderRadios)),
+                        child: QueryArtworkWidget(
+                            nullArtworkWidget: Image.asset(
+                              'assets/icon/song248.png',
+                              width: 60,
+                              height: 60,
+                              fit: BoxFit.fill,
+                            ),
+                            artworkBorder: BorderRadius.circular(
+                                Constans.kdefualtBorderRadios),
+                            artworkWidth: 60,
+                            artworkHeight: 60,
+                            id: context.audioCuibt.song[0].id,
+                            type: ArtworkType.AUDIO),
+                      ),
+                      textColor: Colors.white,
+                      trailing: const MCricleButton(),
+                      title: Flexible(
+                        child: Text(
+                          context.audioCuibt.song[0].artist.toString(),
+                          style: context.textTheme.subtitle1!.copyWith(
+                              fontSize: 15, fontWeight: FontWeight.bold),
+                        ),
+                      )),
+                )),
+          ));
+        } else {
+          return Container();
+        }
       },
     );
   }
