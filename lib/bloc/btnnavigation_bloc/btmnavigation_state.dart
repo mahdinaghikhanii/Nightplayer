@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:nightplayer/module/enum.dart';
+
+import '../../module/enum.dart';
 
 class BtmNavigationState extends Equatable {
   final NavbarItem navbarItem;

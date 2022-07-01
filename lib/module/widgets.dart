@@ -3,16 +3,18 @@ import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nightplayer/views/playorstopsong.dart';
+import 'package:nightplayer/bloc/buildchip_bloc/buildchip_cubit.dart';
+import 'package:nightplayer/bloc/buildchip_bloc/buildchip_state.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../bloc/audio_bloc/audio_cubit.dart';
 import '../bloc/audio_bloc/audio_state.dart';
 import '../bloc/btnnavigation_bloc/btmnavigation_cubit.dart';
 import '../bloc/btnnavigation_bloc/btmnavigation_state.dart';
+import '../views/playorstopsong.dart';
 import 'constans.dart';
-import 'extention.dart';
 import 'enum.dart';
+import 'extention.dart';
 
 class MSmallListTile extends StatelessWidget {
   final String? text;
@@ -360,29 +362,43 @@ class MBuildChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List _choice = ["Artists", "Album", "PlayList"];
-    return Padding(
-      padding: const EdgeInsets.only(top: 20),
-      child: ListView.builder(
-        shrinkWrap: true,
-        itemCount: _choice.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            padding: const EdgeInsets.only(right: 5, left: 5),
-            child: ChoiceChip(
-              backgroundColor: Constans.kdefultAppColor.withOpacity(0.1),
-              label: Text(
-                _choice[index],
-                style: context.textTheme.subtitle1,
-              ),
-              selectedColor: Colors.red,
-              selected: _choice[1],
-              onSelected: (value) {},
-            ),
-          );
-        },
-      ),
+    List choice = ["Artists", "Album", "PlayList"];
+    return BlocBuilder<BuildChipCubit, BuildChipState>(
+      builder: (context, state) {
+        return Padding(
+          padding: const EdgeInsets.only(top: 20),
+          child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: choice.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (BuildContext context, int index) {
+              return Container(
+                padding: const EdgeInsets.only(right: 5, left: 5),
+                child: ChoiceChip(
+                    backgroundColor: Constans.kdefultAppColor.withOpacity(0.8),
+                    label: Text(
+                      choice[index],
+                      style: context.textTheme.subtitle1,
+                    ),
+                    selectedColor: Colors.grey,
+                    selected: state.index == index,
+                    onSelected: (select) {
+                      if (index == 0) {
+                        BlocProvider.of<BuildChipCubit>(context)
+                            .getBuildChipIteam(BuildChip.artist);
+                      } else if (index == 1) {
+                        BlocProvider.of<BuildChipCubit>(context)
+                            .getBuildChipIteam(BuildChip.album);
+                      } else if (index == 2) {
+                        BlocProvider.of<BuildChipCubit>(context)
+                            .getBuildChipIteam(BuildChip.playlist);
+                      }
+                    }),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 }

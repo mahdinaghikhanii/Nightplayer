@@ -30,6 +30,13 @@ class Album extends StatelessWidget {
       ),
       body: Column(
         children: [
+          Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: Constans.kdefualtAppPading,
+              ),
+              width: double.infinity,
+              height: 50,
+              child: const MBuildChip()),
           Expanded(
               child: FutureBuilder<List<ArtistModel>>(
                   future: audioQuery.queryArtists(
