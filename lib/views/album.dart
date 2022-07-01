@@ -7,11 +7,11 @@ import '../module/extention.dart';
 import '../module/widgets.dart';
 
 class Album extends StatelessWidget {
-  const Album({Key? key}) : super(key: key);
+  final ScrollController albumContoroller;
+  const Album({Key? key, required this.albumContoroller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    ScrollController _rrectController = ScrollController();
     final OnAudioQuery audioQuery = OnAudioQuery();
     return Scaffold(
       appBar: AppBar(
@@ -51,8 +51,10 @@ class Album extends StatelessWidget {
                       return const MWating();
                     }
                     return DraggableScrollbar.rrect(
-                      controller: _rrectController,
+                      controller: albumContoroller,
                       child: GridView.builder(
+                          controller: albumContoroller,
+                          itemCount: iteamAlbum.data!.length,
                           padding: const EdgeInsets.symmetric(
                               horizontal: Constans.kdefualtAppPading),
                           gridDelegate:

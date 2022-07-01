@@ -11,10 +11,17 @@ import 'allsong.dart';
 import 'favorite.dart';
 import 'settings.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   final AudioState stateaudio;
   const Home({Key? key, required this.stateaudio}) : super(key: key);
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  ScrollController albumContoroller = ScrollController();
+  ScrollController allsongContoroller = ScrollController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,9 +30,9 @@ class Home extends StatelessWidget {
         body: BlocBuilder<BtmNavigationCubit, BtmNavigationState>(
             builder: ((context, state) {
           if (state.navbarItem == NavbarItem.allsong) {
-            return const AllSong();
+            return AllSong(allSongContoroller: allsongContoroller);
           } else if (state.navbarItem == NavbarItem.album) {
-            return const Album();
+            return Album(albumContoroller: albumContoroller);
           } else if (state.navbarItem == NavbarItem.favorite) {
             return const Favorite();
           } else if (state.navbarItem == NavbarItem.settings) {
