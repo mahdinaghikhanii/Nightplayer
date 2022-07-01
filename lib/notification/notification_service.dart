@@ -49,11 +49,11 @@ class NotificationService {
     AwesomeNotifications().actionStream.listen((action) {
       if (action.buttonKeyPressed == "next") {
         action.color = Colors.white;
-        print("Open button is pressed");
+        //  print("Open button is pressed");
       } else if (action.buttonKeyPressed == "pasuse") {
-        print("Delete button is pressed.");
+        // print("Delete button is pressed.");
       } else if (action.buttonKeyPressed == "back") {
-        print("Delete button is pressed.");
+        // print("Delete button is pressed.");
       }
     });
   }

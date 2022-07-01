@@ -6,39 +6,65 @@ import '../module/extention.dart';
 
 class DetailAlbum extends StatelessWidget {
   final AlbumModel albumModel;
-  const DetailAlbum({Key? key, required this.albumModel}) : super(key: key);
+  final List<AlbumModel>? listl;
+
+  const DetailAlbum({Key? key, required this.albumModel, this.listl})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          actions: [
-            Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: Constans.kdefualtAppPading,
-                ),
-                child: IconButton(
-                  onPressed: (() => context.back()),
-                  iconSize: Constans.kdefualtSizeIcon,
-                  icon: const Icon(Icons.more_vert),
-                ))
-          ],
-          elevation: 0,
-          automaticallyImplyLeading: false,
+        body: CustomScrollView(
+      slivers: [
+        SliverAppBar(
           leading: Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: Constans.kdefualtAppPading,
-            ),
+                horizontal: Constans.kdefualtAppPading),
             child: IconButton(
                 onPressed: (() => context.back()),
                 icon: const Icon(
                   Icons.arrow_back_ios,
                   size: Constans.kdefualtSizeIcon,
                 )),
-          )),
-      body: Column(
-        children: [],
-      ),
-    );
+          ),
+          automaticallyImplyLeading: false,
+          flexibleSpace: FlexibleSpaceBar(
+              expandedTitleScale: 1,
+              background: QueryArtworkWidget(
+                  artworkBorder: BorderRadius.circular(0),
+                  id: albumModel.id,
+                  type: ArtworkType.ALBUM),
+              centerTitle: false,
+              title: Text(albumModel.album.toString())),
+          pinned: true,
+          expandedHeight: 350,
+        ),
+        SliverList(
+            delegate: SliverChildBuilderDelegate((context, index) {
+          return Column(
+            children: [
+              ListTile(
+                  contentPadding: const EdgeInsets.symmetric(
+                      vertical: 5, horizontal: Constans.kdefualtAppPading),
+                  subtitle: Text(albumModel.album.toString()),
+                  leading: QueryArtworkWidget(
+                      nullArtworkWidget: Image.asset(
+                        'assets/img/null.jpg',
+                        width: 65,
+                        height: 65,
+                        fit: BoxFit.fill,
+                      ),
+                      artworkBorder: BorderRadius.circular(10),
+                      artworkWidth: 60,
+                      artworkHeight: 60,
+                      id: albumModel.id,
+                      type: ArtworkType.ALBUM),
+                  textColor: Colors.white,
+                  title: Text(albumModel.artist.toString())),
+            ],
+          );
+        }, childCount: albumModel.numOfSongs))
+      ],
+    ));
   }
 }

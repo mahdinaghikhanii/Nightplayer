@@ -37,7 +37,7 @@ class Album extends StatelessWidget {
                     sortType: AlbumSortType.ALBUM,
                     orderType: OrderType.ASC_OR_SMALLER,
                     uriType: UriType.EXTERNAL,
-                    ignoreCase: true,
+                    ignoreCase: false,
                   ),
                   builder: (context, iteamAlbum) {
                     if (iteamAlbum.data == null) {
@@ -48,13 +48,14 @@ class Album extends StatelessWidget {
                             horizontal: Constans.kdefualtAppPading),
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
-                                mainAxisExtent: 180,
+                                mainAxisExtent: 170,
                                 mainAxisSpacing: 10,
                                 crossAxisCount: 2),
                         itemBuilder: (context, index) {
-                          return GestureDetector(
+                          return InkWell(
                             onTap: () => context.nextPage(DetailAlbum(
-                                albumModel: iteamAlbum.data![index])),
+                              albumModel: iteamAlbum.data![index],
+                            )),
                             child: Column(
                               children: [
                                 QueryArtworkWidget(
