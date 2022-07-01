@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:nightplayer/module/widgets.dart';
+import 'package:nightplayer/views/detail_album.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../module/constans.dart';
 import '../module/extention.dart';
+import '../module/widgets.dart';
 
 class Album extends StatelessWidget {
   const Album({Key? key}) : super(key: key);
@@ -52,6 +53,8 @@ class Album extends StatelessWidget {
                                 crossAxisCount: 2),
                         itemBuilder: (context, index) {
                           return GestureDetector(
+                            onTap: () => context.nextPage(DetailAlbum(
+                                albumModel: iteamAlbum.data![index])),
                             child: Column(
                               children: [
                                 QueryArtworkWidget(
