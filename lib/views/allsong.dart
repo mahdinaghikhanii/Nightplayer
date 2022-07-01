@@ -98,12 +98,17 @@ class AllSong extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 5),
                                   child: QueryArtworkWidget(
-                                      nullArtworkWidget: Image.asset(
-                                        'assets/icon/song248.png',
-                                        width: 60,
-                                        height: 60,
-                                        fit: BoxFit.fill,
-                                      ),
+                                      nullArtworkWidget: Container(
+                                          clipBehavior: Clip.hardEdge,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(Constans
+                                                      .kdefualtAppPading)),
+                                          child: Image.asset(
+                                              'assets/img/null.jpg',
+                                              width: 60,
+                                              height: 60,
+                                              fit: BoxFit.cover)),
                                       artworkBorder: BorderRadius.circular(
                                           Constans.kdefualtBorderRadios),
                                       artworkWidth: 60,

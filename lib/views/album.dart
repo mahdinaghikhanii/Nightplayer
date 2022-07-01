@@ -59,11 +59,16 @@ class Album extends StatelessWidget {
                             child: Column(
                               children: [
                                 QueryArtworkWidget(
-                                    nullArtworkWidget: Image.asset(
-                                      'assets/icon/song248.png',
-                                      width: 120,
-                                      height: 120,
-                                      fit: BoxFit.fill,
+                                    nullArtworkWidget: Container(
+                                      clipBehavior: Clip.hardEdge,
+                                      decoration: const BoxDecoration(
+                                          shape: BoxShape.circle),
+                                      child: Image.asset(
+                                        'assets/img/null.jpg',
+                                        width: 100,
+                                        height: 100,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                     artworkWidth: 100,
                                     artworkHeight: 100,
