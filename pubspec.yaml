@@ -41,6 +41,7 @@ dependencies:
   audio_video_progress_bar: ^0.10.0
   flutter_bloc: ^8.0.1
   custom_navigation_bar: ^0.8.2
+  draggable_scrollbar: ^0.1.0
   just_audio: ^0.9.24
   rxdart: ^0.27.4
   equatable: ^2.0.3
