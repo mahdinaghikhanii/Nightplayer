@@ -51,35 +51,37 @@ class Album extends StatelessWidget {
                                 mainAxisSpacing: 10,
                                 crossAxisCount: 2),
                         itemBuilder: (context, index) {
-                          return Column(
-                            children: [
-                              QueryArtworkWidget(
-                                  nullArtworkWidget: Image.asset(
-                                    'assets/icon/song248.png',
-                                    width: 120,
-                                    height: 120,
-                                    fit: BoxFit.fill,
-                                  ),
-                                  artworkWidth: 100,
-                                  artworkHeight: 100,
-                                  id: iteamAlbum.data![index].id,
-                                  type: ArtworkType.ALBUM),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                iteamAlbum.data![index].album,
-                                textAlign: TextAlign.center,
-                                style: context.textTheme.subtitle1,
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                              Text(
-                                iteamAlbum.data![index].artist.toString(),
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.center,
-                                style: context.textTheme.subtitle1,
-                              )
-                            ],
+                          return GestureDetector(
+                            child: Column(
+                              children: [
+                                QueryArtworkWidget(
+                                    nullArtworkWidget: Image.asset(
+                                      'assets/icon/song248.png',
+                                      width: 120,
+                                      height: 120,
+                                      fit: BoxFit.fill,
+                                    ),
+                                    artworkWidth: 100,
+                                    artworkHeight: 100,
+                                    id: iteamAlbum.data![index].id,
+                                    type: ArtworkType.ALBUM),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  iteamAlbum.data![index].album,
+                                  textAlign: TextAlign.center,
+                                  style: context.textTheme.subtitle1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                                Text(
+                                  iteamAlbum.data![index].artist.toString(),
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.center,
+                                  style: context.textTheme.subtitle1,
+                                )
+                              ],
+                            ),
                           );
                         });
                   })),
