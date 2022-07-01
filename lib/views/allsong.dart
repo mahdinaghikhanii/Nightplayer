@@ -97,22 +97,19 @@ class AllSong extends StatelessWidget {
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(left: 5),
-                                  child: Hero(
-                                    tag: iteam.data![index].id,
-                                    child: QueryArtworkWidget(
-                                        nullArtworkWidget: Image.asset(
-                                          'assets/icon/song248.png',
-                                          width: 60,
-                                          height: 60,
-                                          fit: BoxFit.fill,
-                                        ),
-                                        artworkBorder: BorderRadius.circular(
-                                            Constans.kdefualtBorderRadios),
-                                        artworkWidth: 60,
-                                        artworkHeight: 60,
-                                        id: iteam.data![index].id,
-                                        type: ArtworkType.AUDIO),
-                                  ),
+                                  child: QueryArtworkWidget(
+                                      nullArtworkWidget: Image.asset(
+                                        'assets/icon/song248.png',
+                                        width: 60,
+                                        height: 60,
+                                        fit: BoxFit.fill,
+                                      ),
+                                      artworkBorder: BorderRadius.circular(
+                                          Constans.kdefualtBorderRadios),
+                                      artworkWidth: 60,
+                                      artworkHeight: 60,
+                                      id: iteam.data![index].id,
+                                      type: ArtworkType.AUDIO),
                                 ),
                                 const SizedBox(width: 15),
                                 Column(

@@ -33,19 +33,16 @@ class PlayOrStopSong extends StatelessWidget {
                     left: 30,
                     right: 30,
                   ),
-                  child: Hero(
-                    tag: songModel.id,
-                    child: QueryArtworkWidget(
-                        nullArtworkWidget: Image.asset(
-                          'assets/icon/song248.png',
-                          fit: BoxFit.fill,
-                        ),
-                        artworkBorder: BorderRadius.circular(10),
-                        artworkWidth: double.infinity,
-                        //  artworkHeight: 65,
-                        id: songModel.id,
-                        type: ArtworkType.AUDIO),
-                  )),
+                  child: QueryArtworkWidget(
+                      nullArtworkWidget: Image.asset(
+                        'assets/icon/song248.png',
+                        fit: BoxFit.fill,
+                      ),
+                      artworkBorder: BorderRadius.circular(10),
+                      artworkWidth: double.infinity,
+                      //  artworkHeight: 65,
+                      id: songModel.id,
+                      type: ArtworkType.AUDIO)),
             ),
             const SizedBox(
               height: 20,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nightplayer/module/widgets.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 import '../module/constans.dart';
 import '../module/extention.dart';
@@ -8,6 +10,7 @@ class Album extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final OnAudioQuery audioQuery = OnAudioQuery();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Constans.kdefultAppColor,
@@ -24,6 +27,63 @@ class Album extends StatelessWidget {
           ),
         ),
         centerTitle: false,
+      ),
+      body: Column(
+        children: [
+          Expanded(
+              child: FutureBuilder<List<AlbumModel>>(
+                  future: audioQuery.queryAlbums(
+                    sortType: AlbumSortType.ALBUM,
+                    orderType: OrderType.ASC_OR_SMALLER,
+                    uriType: UriType.EXTERNAL,
+                    ignoreCase: true,
+                  ),
+                  builder: (context, iteamAlbum) {
+                    if (iteamAlbum.data == null) {
+                      return const MWating();
+                    }
+                    return GridView.builder(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: Constans.kdefualtAppPading),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                mainAxisExtent: 180,
+                                mainAxisSpacing: 10,
+                                crossAxisCount: 2),
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              QueryArtworkWidget(
+                                  nullArtworkWidget: Image.asset(
+                                    'assets/icon/song248.png',
+                                    width: 120,
+                                    height: 120,
+                                    fit: BoxFit.fill,
+                                  ),
+                                  artworkWidth: 100,
+                                  artworkHeight: 100,
+                                  id: iteamAlbum.data![index].id,
+                                  type: ArtworkType.ALBUM),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                iteamAlbum.data![index].album,
+                                textAlign: TextAlign.center,
+                                style: context.textTheme.subtitle1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text(
+                                iteamAlbum.data![index].artist.toString(),
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
+                                style: context.textTheme.subtitle1,
+                              )
+                            ],
+                          );
+                        });
+                  })),
+        ],
       ),
     );
   }
