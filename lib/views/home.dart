@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/audio_bloc/audio_state.dart';
 import '../bloc/btnnavigation_bloc/btmnavigation_cubit.dart';
 import '../bloc/btnnavigation_bloc/btmnavigation_state.dart';
-import '../module/navbar_items.dart';
+import '../module/enum.dart';
 import '../module/widgets.dart';
 import 'album.dart';
 import 'allsong.dart';

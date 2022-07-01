@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:nightplayer/views/detail_album.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../module/constans.dart';
@@ -23,7 +22,7 @@ class Album extends StatelessWidget {
           padding: const EdgeInsets.symmetric(
               horizontal: Constans.kdefualtAppPading),
           child: Text(
-            'Album',
+            'Artists',
             style: context.textTheme.subtitle1!.copyWith(fontSize: 22),
           ),
         ),
@@ -32,9 +31,9 @@ class Album extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-              child: FutureBuilder<List<AlbumModel>>(
-                  future: audioQuery.queryAlbums(
-                    sortType: AlbumSortType.ALBUM,
+              child: FutureBuilder<List<ArtistModel>>(
+                  future: audioQuery.queryArtists(
+                    // sortType: AlbumSortType.ARTIST,
                     orderType: OrderType.ASC_OR_SMALLER,
                     uriType: UriType.EXTERNAL,
                     ignoreCase: false,
@@ -53,10 +52,10 @@ class Album extends StatelessWidget {
                                 crossAxisCount: 2),
                         itemBuilder: (context, index) {
                           return InkWell(
-                            onTap: () => context.nextPage(DetailAlbum(
-                              albumModel: iteamAlbum.data![index],
-                            )),
+                            borderRadius: BorderRadius.circular(
+                                Constans.kdefualtBorderRadios),
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 QueryArtworkWidget(
                                     nullArtworkWidget: Container(
@@ -65,30 +64,25 @@ class Album extends StatelessWidget {
                                           shape: BoxShape.circle),
                                       child: Image.asset(
                                         'assets/img/null.jpg',
-                                        width: 100,
-                                        height: 100,
+                                        width: 130,
+                                        height: 130,
                                         fit: BoxFit.cover,
                                       ),
                                     ),
-                                    artworkWidth: 100,
-                                    artworkHeight: 100,
+                                    artworkBorder: BorderRadius.circular(100),
+                                    artworkWidth: 130,
+                                    artworkHeight: 130,
                                     id: iteamAlbum.data![index].id,
-                                    type: ArtworkType.ALBUM),
+                                    type: ArtworkType.ARTIST),
                                 const SizedBox(
                                   height: 10,
                                 ),
                                 Text(
-                                  iteamAlbum.data![index].album,
+                                  iteamAlbum.data![index].artist,
                                   textAlign: TextAlign.center,
-                                  style: context.textTheme.subtitle1,
+                                  style: context.textTheme.subtitle1!,
                                   overflow: TextOverflow.ellipsis,
                                 ),
-                                Text(
-                                  iteamAlbum.data![index].artist.toString(),
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.center,
-                                  style: context.textTheme.subtitle1,
-                                )
                               ],
                             ),
                           );

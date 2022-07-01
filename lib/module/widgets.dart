@@ -12,7 +12,7 @@ import '../bloc/btnnavigation_bloc/btmnavigation_cubit.dart';
 import '../bloc/btnnavigation_bloc/btmnavigation_state.dart';
 import 'constans.dart';
 import 'extention.dart';
-import 'navbar_items.dart';
+import 'enum.dart';
 
 class MSmallListTile extends StatelessWidget {
   final String? text;
@@ -351,6 +351,38 @@ class MMiniPlayer extends StatelessWidget {
           return Container();
         }
       },
+    );
+  }
+}
+
+class MBuildChip extends StatelessWidget {
+  const MBuildChip({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    List _choice = ["Artists", "Album", "PlayList"];
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemCount: _choice.length,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (BuildContext context, int index) {
+          return Container(
+            padding: const EdgeInsets.only(right: 5, left: 5),
+            child: ChoiceChip(
+              backgroundColor: Constans.kdefultAppColor.withOpacity(0.1),
+              label: Text(
+                _choice[index],
+                style: context.textTheme.subtitle1,
+              ),
+              selectedColor: Colors.red,
+              selected: _choice[1],
+              onSelected: (value) {},
+            ),
+          );
+        },
+      ),
     );
   }
 }

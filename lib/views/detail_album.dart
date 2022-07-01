@@ -41,27 +41,30 @@ class DetailAlbum extends StatelessWidget {
         ),
         SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
-          return Column(
-            children: [
-              ListTile(
-                  contentPadding: const EdgeInsets.symmetric(
-                      vertical: 5, horizontal: Constans.kdefualtAppPading),
-                  subtitle: Text(albumModel.album.toString()),
-                  leading: QueryArtworkWidget(
-                      nullArtworkWidget: Image.asset(
-                        'assets/img/null.jpg',
-                        width: 65,
-                        height: 65,
-                        fit: BoxFit.fill,
-                      ),
-                      artworkBorder: BorderRadius.circular(10),
-                      artworkWidth: 60,
-                      artworkHeight: 60,
-                      id: albumModel.id,
-                      type: ArtworkType.ALBUM),
-                  textColor: Colors.white,
-                  title: Text(albumModel.artist.toString())),
-            ],
+          return GestureDetector(
+            //      onTap: () => context.nextPage(PlayOrStopSong(songModel: albumModel[index],)),
+            child: Column(
+              children: [
+                ListTile(
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 5, horizontal: Constans.kdefualtAppPading),
+                    subtitle: Text(albumModel.album.toString()),
+                    leading: QueryArtworkWidget(
+                        nullArtworkWidget: Image.asset(
+                          'assets/img/null.jpg',
+                          width: 65,
+                          height: 65,
+                          fit: BoxFit.fill,
+                        ),
+                        artworkBorder: BorderRadius.circular(10),
+                        artworkWidth: 60,
+                        artworkHeight: 60,
+                        id: albumModel.id,
+                        type: ArtworkType.ALBUM),
+                    textColor: Colors.white,
+                    title: Text(albumModel.artist.toString())),
+              ],
+            ),
           );
         }, childCount: albumModel.numOfSongs))
       ],
