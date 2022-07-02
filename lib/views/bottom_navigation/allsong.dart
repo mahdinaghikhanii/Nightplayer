@@ -3,10 +3,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
-import '../module/constans.dart';
-import '../module/extention.dart';
-import '../module/widgets.dart';
-import 'search.dart';
+import '../../module/constans.dart';
+import '../../module/extention.dart';
+import '../../module/widgets.dart';
+import '../search.dart';
 
 class AllSong extends StatelessWidget {
   final ScrollController allSongContoroller;

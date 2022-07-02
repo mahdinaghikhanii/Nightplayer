@@ -6,11 +6,11 @@ import '../bloc/btnnavigation_bloc/btmnavigation_cubit.dart';
 import '../bloc/btnnavigation_bloc/btmnavigation_state.dart';
 import '../module/enum.dart';
 import '../module/widgets.dart';
-
-import 'album_view/handler_buildchip.dart';
-import 'allsong.dart';
-import 'favorite.dart';
-import 'settings.dart';
+import 'bottom_navigation/handler_buildchip.dart';
+import 'bottom_navigation/allsong.dart';
+import 'bottom_navigation/favorite.dart';
+import 'bottom_navigation/settings.dart';
+import 'bottom_navigation/settings.dart';
 
 class Home extends StatefulWidget {
   final AudioState stateaudio;

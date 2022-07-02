@@ -5,9 +5,9 @@ import '../../bloc/buildchip_bloc/buildchip_cubit.dart';
 import '../../bloc/buildchip_bloc/buildchip_state.dart';
 import '../../module/enum.dart';
 import '../../module/widgets.dart';
-import 'album.dart';
-import 'artist.dart';
-import 'playlist.dart';
+import '../album_view/album.dart';
+import '../album_view/artist.dart';
+import '../album_view/playlist.dart';
 
 class HandlerBuildChip extends StatelessWidget {
   final ScrollController albumContoroller;
