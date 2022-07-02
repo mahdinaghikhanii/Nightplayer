@@ -303,8 +303,8 @@ class MMiniPlayer extends StatelessWidget {
         if (state is ShowMiniPLayer) {
           return FadeInRight(
               child: GestureDetector(
-            onTap: () => context.nextPage(
-                PlayOrStopSong(songModel: context.audioCuibt.song[0])),
+            onTap: () => context.nextPage(PlayOrStopSong(
+                songModel: context.audioCuibt.selectedSongforPLay[0])),
             child: Container(
                 width: double.infinity,
                 clipBehavior: Clip.hardEdge,
@@ -318,7 +318,8 @@ class MMiniPlayer extends StatelessWidget {
                 child: GestureDetector(
                   child: ListTile(
                       subtitle: Text(
-                          context.audioCuibt.song[0].title.toString(),
+                          context.audioCuibt.selectedSongforPLay[0].title
+                              .toString(),
                           style: context.textTheme.bodyText1!
                               .copyWith(fontSize: 12, color: Colors.white)),
                       leading: Container(
@@ -337,13 +338,14 @@ class MMiniPlayer extends StatelessWidget {
                                 Constans.kdefualtBorderRadios),
                             artworkWidth: 60,
                             artworkHeight: 60,
-                            id: context.audioCuibt.song[0].id,
+                            id: context.audioCuibt.selectedSongforPLay[0].id,
                             type: ArtworkType.AUDIO),
                       ),
                       textColor: Colors.white,
                       trailing: const MCricleButton(),
                       title: Text(
-                        context.audioCuibt.song[0].artist.toString(),
+                        context.audioCuibt.selectedSongforPLay[0].artist
+                            .toString(),
                         style: context.textTheme.subtitle1!.copyWith(
                             fontSize: 15, fontWeight: FontWeight.bold),
                       )),

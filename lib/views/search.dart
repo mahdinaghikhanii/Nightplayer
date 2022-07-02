@@ -48,15 +48,15 @@ class Search extends SearchDelegate<String> {
     return query == ''
         ? const MNotFound()
         : ListView.builder(
-            itemCount: context.audioCuibt.allsongmodelList.length,
+            itemCount: context.audioCuibt.allSongforSearch.length,
             shrinkWrap: true,
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () => context.nextPage(PlayOrStopSong(
-                    songModel: context.audioCuibt.allsongmodelList[index])),
+                    songModel: context.audioCuibt.allSongforSearch[index])),
                 child: ListTile(
                     subtitle:
-                        Text(context.audioCuibt.allsongmodelList[index].title),
+                        Text(context.audioCuibt.allSongforSearch[index].title),
                     leading: QueryArtworkWidget(
                         nullArtworkWidget: Container(
                           decoration: BoxDecoration(
@@ -73,11 +73,11 @@ class Search extends SearchDelegate<String> {
                             Constans.kdefualtBorderRadios),
                         artworkWidth: 45,
                         artworkHeight: 45,
-                        id: context.audioCuibt.allsongmodelList[index].id,
+                        id: context.audioCuibt.allSongforSearch[index].id,
                         type: ArtworkType.AUDIO),
                     textColor: Colors.white,
                     title: Text(context
-                        .audioCuibt.allsongmodelList[index].artist
+                        .audioCuibt.allSongforSearch[index].artist
                         .toString())),
               );
             });

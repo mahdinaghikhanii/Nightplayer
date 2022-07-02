@@ -12,15 +12,15 @@ class AudioCubit extends Cubit<AudioState> {
   final OnAudioQuery _audioQuery = OnAudioQuery();
 
   //list for adding all song here
-  List<SongModel> allsongmodelList = [];
+  List<SongModel> allSongforSearch = [];
 
   // this list just for giving choice user song
-  List<SongModel> song = [];
+  List<SongModel> selectedSongforPLay = [];
 
   addData(SongModel songModel) {
     try {
-      song.clear();
-      song.add(songModel);
+      selectedSongforPLay.clear();
+      selectedSongforPLay.add(songModel);
     } catch (e) {
       emit(Failed(e as Exception));
     }
@@ -53,7 +53,7 @@ class AudioCubit extends Cubit<AudioState> {
         WithFiltersType.AUDIOS,
         args: AudiosArgs.TITLE,
       );
-      allsongmodelList = allSongsList.toSongModel();
+      allSongforSearch = allSongsList.toSongModel();
     } catch (e) {
       emit(Failed(e as Exception));
     }
