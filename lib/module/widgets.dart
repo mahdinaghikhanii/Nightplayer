@@ -236,7 +236,11 @@ class MWating extends StatelessWidget {
 }
 
 class MNotFound extends StatelessWidget {
-  const MNotFound({Key? key}) : super(key: key);
+  final String? text;
+  final double? fontsize;
+  final double? imgSize;
+  const MNotFound({Key? key, this.text, this.fontsize, this.imgSize})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -246,11 +250,12 @@ class MNotFound extends StatelessWidget {
       children: [
         Image.asset(
           'assets/img/notfound.png',
-          width: 250,
+          width: imgSize ?? 250,
         ),
         Text(
-          'No song found',
-          style: context.textTheme.subtitle1!.copyWith(fontSize: 24),
+          text ?? 'No song found',
+          style:
+              context.textTheme.subtitle1!.copyWith(fontSize: fontsize ?? 24),
         ),
       ],
     ));

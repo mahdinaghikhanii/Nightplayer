@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../bloc/buildchip_bloc/buildchip_cubit.dart';
 import '../../bloc/buildchip_bloc/buildchip_state.dart';
@@ -16,6 +17,7 @@ class HandlerBuildChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    OnAudioQuery onAudioQuery = OnAudioQuery();
     return BlocBuilder<BuildChipCubit, BuildChipState>(
         builder: (BuildContext context, state) {
       return Scaffold(
@@ -48,7 +50,9 @@ class HandlerBuildChip extends StatelessWidget {
                 : state.buildChip == BuildChip.album
                     ? const Album()
                     : state.buildChip == BuildChip.playlist
-                        ? const PlayList()
+                        ? PlayList(
+                            audioQuery: onAudioQuery,
+                          )
                         : Container()
           ],
         ),
