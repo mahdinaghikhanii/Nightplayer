@@ -58,13 +58,19 @@ class Search extends SearchDelegate<String> {
                     subtitle:
                         Text(context.audioCuibt.allsongmodelList[index].title),
                     leading: QueryArtworkWidget(
-                        nullArtworkWidget: Image.asset(
-                          'assets/icon/song248.png',
-                          width: 65,
-                          height: 65,
-                          fit: BoxFit.fill,
+                        nullArtworkWidget: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                  Constans.kdefualtBorderRadios)),
+                          child: Image.asset(
+                            'assets/img/null.jpg',
+                            width: 45,
+                            height: 45,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                        artworkBorder: BorderRadius.circular(10),
+                        artworkBorder: BorderRadius.circular(
+                            Constans.kdefualtBorderRadios),
                         artworkWidth: 45,
                         artworkHeight: 45,
                         id: context.audioCuibt.allsongmodelList[index].id,

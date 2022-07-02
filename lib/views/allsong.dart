@@ -58,7 +58,6 @@ class AllSong extends StatelessWidget {
               height: double.infinity,
               child: FutureBuilder<List<SongModel>>(
                   future: audioQuery.querySongs(
-                    sortType: null,
                     orderType: OrderType.ASC_OR_SMALLER,
                     uriType: UriType.EXTERNAL,
                     ignoreCase: true,
@@ -90,15 +89,10 @@ class AllSong extends StatelessWidget {
                                 onTap: () async {
                                   context.audioCuibt.showMusicNotification(
                                     iteam.data![index].id.toString(),
-                                    // 'assets/icon/song248.png',
                                     iteam.data![index].title,
                                     iteam.data![index].artist ?? "No Artist",
                                     index,
                                   );
-
-                                  /*     context.nextPage(PlayOrStopSong(
-                                      songModel: iteam.data![index]));*/
-
                                   context.audioCuibt
                                       .addData(iteam.data![index]);
                                 },
