@@ -6,7 +6,8 @@ import '../bloc/btnnavigation_bloc/btmnavigation_cubit.dart';
 import '../bloc/btnnavigation_bloc/btmnavigation_state.dart';
 import '../module/enum.dart';
 import '../module/widgets.dart';
-import 'album.dart';
+
+import 'album_view/handler_buildchip.dart';
 import 'allsong.dart';
 import 'favorite.dart';
 import 'settings.dart';
@@ -33,7 +34,7 @@ class _HomeState extends State<Home> {
           if (state.navbarItem == NavbarItem.allsong) {
             return AllSong(allSongContoroller: allsongContoroller);
           } else if (state.navbarItem == NavbarItem.album) {
-            return Album(albumContoroller: albumContoroller);
+            return HandlerBuildChip(albumContoroller: albumContoroller);
           } else if (state.navbarItem == NavbarItem.favorite) {
             return const Favorite();
           } else if (state.navbarItem == NavbarItem.settings) {
