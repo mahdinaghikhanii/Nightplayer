@@ -3,14 +3,14 @@ import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nightplayer/bloc/buildchip_bloc/buildchip_cubit.dart';
-import 'package:nightplayer/bloc/buildchip_bloc/buildchip_state.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../bloc/audio_bloc/audio_cubit.dart';
 import '../bloc/audio_bloc/audio_state.dart';
 import '../bloc/btnnavigation_bloc/btmnavigation_cubit.dart';
 import '../bloc/btnnavigation_bloc/btmnavigation_state.dart';
+import '../bloc/buildchip_bloc/buildchip_cubit.dart';
+import '../bloc/buildchip_bloc/buildchip_state.dart';
 import '../views/playorstopsong.dart';
 import 'constans.dart';
 import 'enum.dart';

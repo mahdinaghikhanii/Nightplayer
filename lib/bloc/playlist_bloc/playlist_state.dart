@@ -5,6 +5,11 @@ abstract class PlayListState {}
 
 class CreatePlayList extends PlayListState {}
 
+class FailCreatePlayList extends PlayListState {
+  final Exception exception;
+  FailCreatePlayList(this.exception);
+}
+
 class DeletePlayList extends PlayListState {}
 
 class GetPlayList extends PlayListState {}
