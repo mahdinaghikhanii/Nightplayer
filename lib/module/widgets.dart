@@ -409,3 +409,63 @@ class MBuildChip extends StatelessWidget {
     );
   }
 }
+
+class MEdit extends StatelessWidget {
+  final String hint;
+  final Function(String)? onChange;
+  final bool autoFocus;
+  final bool notempty;
+
+  final TextEditingController? controller;
+  final bool password;
+
+  const MEdit(
+      {required this.hint,
+      required this.autoFocus,
+      required this.password,
+      this.notempty = false,
+      this.controller,
+      this.onChange,
+      Key? key})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(
+          left: Constans.kdefualtAppPading, right: Constans.kdefualtAppPading),
+      child: TextFormField(
+          controller: controller,
+          onChanged: onChange,
+          validator: (val) {
+            if ((val ?? '').isEmpty && notempty) {
+              return "cannot be empty";
+            }
+            return null;
+          },
+          decoration: InputDecoration(
+              focusedBorder: OutlineInputBorder(
+                  borderRadius:
+                      BorderRadius.circular(Constans.kdefualtBorderRadios),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                    width: 2.0,
+                  )),
+              enabledBorder: OutlineInputBorder(
+                  borderRadius:
+                      BorderRadius.circular(Constans.kdefualtBorderRadios),
+                  borderSide: const BorderSide(
+                    color: Colors.grey,
+                    width: 2.0,
+                  )),
+              fillColor: Colors.red,
+              hoverColor: Colors.red,
+              suffixIconColor: Colors.red,
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10), gapPadding: 10),
+              labelText: hint,
+              labelStyle: TextStyle(color: Colors.grey.shade400, fontSize: 16)),
+          obscureText: password),
+    );
+  }
+}

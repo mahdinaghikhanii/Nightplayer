@@ -1,11 +1,10 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nightplayer/module/constans.dart';
-import 'package:nightplayer/module/extention.dart';
-import 'package:nightplayer/module/widgets.dart';
+import 'package:nightplayer/views/dialog/create_playlist.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+
+import '../../module/constans.dart';
+import '../../module/extention.dart';
+import '../../module/widgets.dart';
 
 class PlayList extends StatelessWidget {
   final OnAudioQuery audioQuery;
@@ -30,16 +29,23 @@ class PlayList extends StatelessWidget {
                 imgSize: 200,
               ),
               const SizedBox(height: 20),
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius:
-                        BorderRadius.circular(Constans.kdefualtBorderRadios)),
-                width: 200,
-                height: 40,
-                child: Center(
-                    child: Text("Create yor playlist now !",
-                        style: context.textTheme.subtitle1)),
+              InkWell(
+                onTap: () => showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return const DlialogCreatePlayList();
+                    }),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius:
+                          BorderRadius.circular(Constans.kdefualtBorderRadios)),
+                  width: 200,
+                  height: 40,
+                  child: Center(
+                      child: Text("Create yor playlist now !",
+                          style: context.textTheme.subtitle1)),
+                ),
               )
             ],
           );
