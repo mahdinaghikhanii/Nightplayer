@@ -50,6 +50,8 @@ class Search extends SearchDelegate<String> {
         : ListView.builder(
             itemCount: context.audioCuibt.allSongforSearch.length,
             shrinkWrap: true,
+            physics: const ScrollPhysics(),
+            itemExtent: 60,
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: () => context.nextPage(PlayOrStopSong(

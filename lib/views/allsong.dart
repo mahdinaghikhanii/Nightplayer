@@ -76,6 +76,8 @@ class AllSong extends StatelessWidget {
                       child: ListView.builder(
                           physics: const ScrollPhysics(),
                           itemCount: iteam.data!.length,
+                          itemExtent: 70,
+                          primary: false,
                           controller: allSongContoroller,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {

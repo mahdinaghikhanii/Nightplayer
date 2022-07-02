@@ -22,6 +22,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   ScrollController albumContoroller = ScrollController();
   ScrollController allsongContoroller = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
