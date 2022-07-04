@@ -48,7 +48,7 @@ class HandlerBuildChip extends StatelessWidget {
                     albumContoroller: albumContoroller,
                   )
                 : state.buildChip == BuildChip.album
-                    ? const Album()
+                    ? Album(audioQuery: onAudioQuery)
                     : state.buildChip == BuildChip.playlist
                         ? PlayList(
                             audioQuery: onAudioQuery,
