@@ -12,10 +12,9 @@ class PlayList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Expanded(
-          child: Center(
-              child: FutureBuilder<List<PlaylistModel>>(
+    return Expanded(
+      child: Center(
+          child: FutureBuilder<List<PlaylistModel>>(
         future: audioQuery.queryPlaylists(),
         builder: (context, playlistIteam) {
           if (playlistIteam.data == null) {
@@ -61,7 +60,7 @@ class PlayList extends StatelessWidget {
                 );
               });
         },
-      ))),
+      )),
     );
   }
 }

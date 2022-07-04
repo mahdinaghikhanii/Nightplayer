@@ -1,13 +1,13 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nightplayer/bloc/btnnavigation_bloc/btmnavigation_cubit.dart';
-import 'package:nightplayer/bloc/buildchip_bloc/buildchip_cubit.dart';
-import 'package:nightplayer/bloc/playlist_bloc/playlist_cubit.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import 'bloc/audio_bloc/audio_cubit.dart';
 import 'bloc/audio_bloc/audio_state.dart';
+import 'bloc/btnnavigation_bloc/btmnavigation_cubit.dart';
+import 'bloc/buildchip_bloc/buildchip_cubit.dart';
+import 'bloc/playlist_bloc/playlist_cubit.dart';
 import 'bloc/theme_bloc/theme_state.dart';
 import 'bloc/theme_bloc/themebloc.dart';
 import 'module/theme.dart';
