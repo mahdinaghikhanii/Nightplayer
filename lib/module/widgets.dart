@@ -506,20 +506,14 @@ class MListTileForBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        ontap;
-        context.back();
-      },
-      child: ListTile(
-          leading: Icon(
-            icon,
-            color: iconColor,
-          ),
-          title: Text(text, style: textStyle ?? context.textTheme.subtitle1),
-          onTap: () {}
-          //trailing: Icon(icon));
-          ),
+    return ListTile(
+      leading: Icon(
+        icon,
+        color: iconColor,
+      ),
+      title: Text(text, style: textStyle ?? context.textTheme.subtitle1),
+      onTap: ontap,
+      //trailing: Icon(icon));
     );
   }
 }

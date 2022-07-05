@@ -95,10 +95,12 @@ class PlayList extends StatelessWidget {
                         const Spacer(),
                         MIconButton(
                             icon: Icons.more_vert,
-                            ontap: () => showBottomSheet(
-                                context: context,
-                                builder: (context) =>
-                                    const PlayListBottomSheet()))
+                            ontap: () => showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) => PlayListBottomSheet(
+                                    playlistModel: playlistIteam.data![index],
+                                  ),
+                                ))
                       ])
                     ],
                   ),
