@@ -467,11 +467,59 @@ class MEdit extends StatelessWidget {
   }
 }
 
-class MListTileForAlbum extends StatelessWidget {
-  const MListTileForAlbum({Key? key}) : super(key: key);
+class MIconButton extends StatelessWidget {
+  final IconData icon;
+  final double? size;
+  final Function()? ontap;
+  final Color? color;
+  const MIconButton(
+      {Key? key, required this.icon, this.ontap, this.size, this.color})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return InkWell(
+      onTap: ontap,
+      child: Icon(
+        icon,
+        size: size ?? Constans.kdefualtSizeIcon,
+        color: color ?? Colors.white,
+      ),
+    );
+  }
+}
+
+class MListTileForBottomSheet extends StatelessWidget {
+  final String text;
+  final Color? iconColor;
+  final IconData? icon;
+  final Function() ontap;
+  final TextStyle? textStyle;
+  const MListTileForBottomSheet(
+      {Key? key,
+      required this.text,
+      this.icon,
+      this.iconColor,
+      this.textStyle,
+      required this.ontap})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        ontap;
+        context.back();
+      },
+      child: ListTile(
+          leading: Icon(
+            icon,
+            color: iconColor,
+          ),
+          title: Text(text, style: textStyle ?? context.textTheme.subtitle1),
+          onTap: () {}
+          //trailing: Icon(icon));
+          ),
+    );
   }
 }

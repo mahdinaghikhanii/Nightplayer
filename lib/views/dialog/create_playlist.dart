@@ -58,6 +58,8 @@ class DlialogCreatePlayList extends StatelessWidget {
                             state is CreatePlayList;
                             return context.playListCubit.createPlayList(
                                 _namePlayListContoroller.text.toString(),
+                                _namePlayListContoroller.text.toString(),
+                                _namePlayListContoroller.text.toString(),
                                 context);
                           },
                           child: Text("Skip",

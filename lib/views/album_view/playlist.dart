@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nightplayer/views/bottom_sheet/playlist_bottomsheet.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../module/constans.dart';
@@ -50,12 +51,56 @@ class PlayList extends StatelessWidget {
               ],
             );
           }
-          return ListView.builder(
+          return GridView.builder(
               itemCount: playlistIteam.data!.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  child: Text(
-                    playlistIteam.data![index].playlist,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  mainAxisExtent: 210, mainAxisSpacing: 5, crossAxisCount: 2),
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: Constans.kdefualtAppPading),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 180,
+                        height: 150,
+                        decoration: BoxDecoration(
+                            color: Colors.grey.withAlpha(30),
+                            borderRadius: BorderRadius.circular(
+                                Constans.kdefualtBorderRadios)),
+                        child: const Center(
+                          child: Icon(
+                            Icons.favorite,
+                            size: 40,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Row(children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              playlistIteam.data![index].playlist,
+                              style: context.textTheme.subtitle1!
+                                  .copyWith(fontSize: 14),
+                            ),
+                            Text("nightplayer",
+                                style: context.textTheme.bodyText1!
+                                    .copyWith(color: Colors.grey, fontSize: 12))
+                          ],
+                        ),
+                        const Spacer(),
+                        MIconButton(
+                            icon: Icons.more_vert,
+                            ontap: () => showBottomSheet(
+                                context: context,
+                                builder: (context) =>
+                                    const PlayListBottomSheet()))
+                      ])
+                    ],
                   ),
                 );
               });
