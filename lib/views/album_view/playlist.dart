@@ -55,7 +55,7 @@ class PlayList extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 return Card(
                   child: Text(
-                    playlistIteam.data![index].playlist.toString(),
+                    playlistIteam.data![index].playlist,
                   ),
                 );
               });

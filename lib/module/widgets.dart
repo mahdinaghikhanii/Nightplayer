@@ -369,7 +369,7 @@ class MBuildChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List choice = ["Artists", "Album", "PlayList"];
+    List choice = ["Artists", "PlayList"];
     return BlocBuilder<BuildChipCubit, BuildChipState>(
       builder: (context, state) {
         return Padding(
@@ -395,11 +395,8 @@ class MBuildChip extends StatelessWidget {
                             .getBuildChipIteam(BuildChip.artist);
                       } else if (index == 1) {
                         BlocProvider.of<BuildChipCubit>(context)
-                            .getBuildChipIteam(BuildChip.album);
-                      } else if (index == 2) {
-                        BlocProvider.of<BuildChipCubit>(context)
                             .getBuildChipIteam(BuildChip.playlist);
-                      }
+                      } else if (index == 2) {}
                     }),
               );
             },
@@ -467,5 +464,14 @@ class MEdit extends StatelessWidget {
               labelStyle: TextStyle(color: Colors.grey.shade400, fontSize: 16)),
           obscureText: password),
     );
+  }
+}
+
+class MListTileForAlbum extends StatelessWidget {
+  const MListTileForAlbum({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
