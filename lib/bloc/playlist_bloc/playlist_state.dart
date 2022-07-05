@@ -12,6 +12,8 @@ class FailCreatePlayList extends PlayListState {
 
 class DeletePlayList extends PlayListState {}
 
+class EditPlayList extends PlayListState {}
+
 class GetPlayList extends PlayListState {}
 
 class LoadingPlayList extends PlayListState {}

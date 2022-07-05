@@ -16,7 +16,7 @@ class PlayListBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(30),
-      height: 260,
+      height: 300,
       decoration: BoxDecoration(
           color: Constans.kdefultAppColor,
           borderRadius: const BorderRadius.only(
@@ -54,6 +54,19 @@ class PlayListBottomSheet extends StatelessWidget {
                   builder: (context) => const DlialogCreatePlayList());
             },
           ),
+          MListTileForBottomSheet(
+            icon: Icons.edit,
+            iconColor: Colors.white,
+            text: "Edit playlist",
+            textStyle: context.textTheme.subtitle1,
+            ontap: () {
+              context.back();
+              showDialog(
+                  context: context,
+                  builder: (context) => DlialogCreatePlayList(
+                      index: 1, playlistId: playlistModel.id));
+            },
+          )
         ],
       ),
     );

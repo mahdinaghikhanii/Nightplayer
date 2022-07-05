@@ -10,15 +10,25 @@ class PlayListCubit extends Cubit<PlayListState> {
   PlayListCubit() : super(LoadingPlayList());
   final OnAudioQuery _audioQuery = OnAudioQuery();
 
-  void createPlayList(
-      String namePlayList, String desc, String auther, context) async {
+  void createPlayList(String namePlayList, context) async {
     emit(LoadingPlayList());
     try {
       await _audioQuery.createPlaylist(namePlayList.toString());
       Navigator.pop(context, true);
+
       emit(CreatePlayList());
     } catch (e) {
       log(e.toString());
+      FailCreatePlayList(e as Exception);
+    }
+  }
+
+  void editNamePlaylist(int playListId, String edit, context) async {
+    try {
+      emit(EditPlayList());
+      await _audioQuery.renamePlaylist(playListId, edit.toString());
+      Navigator.pop(context, true);
+    } catch (e) {
       FailCreatePlayList(e as Exception);
     }
   }
@@ -33,7 +43,7 @@ class PlayListCubit extends Cubit<PlayListState> {
     }
   }
 
-  void addSongPlayList(int idPlayList, int audioId) async {
+  addSongPlayList(int idPlayList, int audioId) async {
     try {
       await _audioQuery.addToPlaylist(idPlayList, audioId);
     } catch (e) {

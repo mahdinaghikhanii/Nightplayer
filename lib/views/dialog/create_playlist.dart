@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nightplayer/bloc/playlist_bloc/playlist_cubit.dart';
-import 'package:nightplayer/bloc/playlist_bloc/playlist_state.dart';
+import '../../bloc/playlist_bloc/playlist_cubit.dart';
+import '../../bloc/playlist_bloc/playlist_state.dart';
+import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../module/constans.dart';
 import '../../module/extention.dart';
@@ -10,7 +11,10 @@ import '../../module/widgets.dart';
 TextEditingController _namePlayListContoroller = TextEditingController();
 
 class DlialogCreatePlayList extends StatelessWidget {
-  const DlialogCreatePlayList({Key? key}) : super(key: key);
+  final int? index;
+  final int? playlistId;
+  const DlialogCreatePlayList({Key? key, this.index, this.playlistId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +29,10 @@ class DlialogCreatePlayList extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text("Give your playlist a name.",
+                  Text(
+                      index == 1
+                          ? "Edit your playlist name."
+                          : "Give your playlist a name.",
                       style: context.textTheme.subtitle1),
                   const MEdit(
                     hint: "",
@@ -55,12 +62,20 @@ class DlialogCreatePlayList extends StatelessWidget {
                           ),
                           onPressed: () {
                             //    print(_namePlayListContoroller.text);
-                            state is CreatePlayList;
-                            return context.playListCubit.createPlayList(
-                                _namePlayListContoroller.text.toString(),
-                                _namePlayListContoroller.text.toString(),
-                                _namePlayListContoroller.text.toString(),
-                                context);
+                            index == 1
+                                ? state is EditPlayList
+                                : state is CreatePlayList;
+
+                            if (index == 1) {
+                              return context.playListCubit.editNamePlaylist(
+                                  playlistId!,
+                                  _namePlayListContoroller.text,
+                                  context);
+                            } else {
+                              return context.playListCubit.createPlayList(
+                                  _namePlayListContoroller.text.toString(),
+                                  context);
+                            }
                           },
                           child: Text("Skip",
                               style: context.textTheme.button!
