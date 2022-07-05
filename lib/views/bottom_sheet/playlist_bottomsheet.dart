@@ -38,6 +38,7 @@ class PlayListBottomSheet extends StatelessWidget {
             text: "Delete playlist",
             textStyle: context.textTheme.subtitle1,
             ontap: () {
+              context.playListCubit.deletePlayList(playlistModel.id);
               context.back();
             },
           ),

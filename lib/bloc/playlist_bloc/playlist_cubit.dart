@@ -14,8 +14,8 @@ class PlayListCubit extends Cubit<PlayListState> {
       String namePlayList, String desc, String auther, context) async {
     emit(LoadingPlayList());
     try {
-      await _audioQuery.createPlaylist(namePlayList);
-      Navigator.pop(context);
+      await _audioQuery.createPlaylist(namePlayList.toString());
+      Navigator.pop(context, true);
       emit(CreatePlayList());
     } catch (e) {
       log(e.toString());
@@ -27,7 +27,6 @@ class PlayListCubit extends Cubit<PlayListState> {
     emit(LoadingPlayList());
     try {
       await _audioQuery.removePlaylist(idPlayList);
-      emit(deletePlayList(idPlayList));
     } catch (e) {
       print(e.toString());
       FailCreatePlayList(e as Exception);
