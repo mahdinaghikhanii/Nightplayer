@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../bloc/playlist_bloc/playlist_cubit.dart';
 import '../../bloc/playlist_bloc/playlist_state.dart';
-import 'package:on_audio_query/on_audio_query.dart';
-
 import '../../module/constans.dart';
 import '../../module/extention.dart';
 import '../../module/widgets.dart';

@@ -38,7 +38,7 @@ class PlayListCubit extends Cubit<PlayListState> {
     try {
       await _audioQuery.removePlaylist(idPlayList);
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
       FailCreatePlayList(e as Exception);
     }
   }
