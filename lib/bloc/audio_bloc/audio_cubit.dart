@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../notification/notification_service.dart';
@@ -9,7 +10,8 @@ class AudioCubit extends Cubit<AudioState> {
   AudioCubit() : super(RequestStoragePermission()) {
     requestStoragePermission();
   }
-  final OnAudioQuery _audioQuery = OnAudioQuery();
+  final _audioQuery = OnAudioQuery();
+  final player = AudioPlayer();
 
   //list for adding all song here
   List<SongModel> allSongforSearch = [];
@@ -28,11 +30,19 @@ class AudioCubit extends Cubit<AudioState> {
 
   nextAudio() async {}
 
-  stopAudio() async {}
+  pauseAudio() async {
+    await player.pause();
+  }
+
+  stopAudio() async {
+    await player.stop();
+  }
 
   backAudio() async {}
 
-  playAudio() async {}
+  playAudio(SongModel songModel, int index) async {
+    // await player.ite();
+  }
 
   void requestStoragePermission() async {
     //only if the platform is not web, coz web have no permissions

@@ -33,7 +33,7 @@ class PlayListCubit extends Cubit<PlayListState> {
     }
   }
 
-  deletePlayList(int idPlayList) async {
+  void deletePlayList(int idPlayList) async {
     emit(LoadingPlayList());
     try {
       await _audioQuery.removePlaylist(idPlayList);
