@@ -18,13 +18,14 @@ class OnBoard extends StatelessWidget {
           const FadeInImage(
             //      placeholder: AssetImage("assets/images/blackdot.png"),
             image: AssetImage("assets/img/onboardimg.jpg"),
+
             fit: BoxFit.cover,
             height: double.infinity,
             width: double.infinity,
             //if you use a larger image, you can set where in the image you like most
             //width alignment.centerRight, bottomCenter, topRight, etc...
             alignment: Alignment.center,
-            placeholder: AssetImage("assets/img/onboardimg.jpg"),
+            placeholder: AssetImage("assets/img/null.jpg"),
           ),
           Padding(
             padding: const EdgeInsets.all(Constans.kdefualtAppPading),
@@ -54,6 +55,10 @@ class OnBoard extends StatelessWidget {
                       ])),
                 ),
                 InkWell(
+                  borderRadius:
+                      BorderRadius.circular(Constans.kdefualtBorderRadios),
+                  splashColor: Colors.white,
+                  hoverColor: Colors.white,
                   onTap: () => context.nextPage(Home(stateaudio: stateaudio)),
                   child: Container(
                     width: 300,
