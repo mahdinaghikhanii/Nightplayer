@@ -40,9 +40,7 @@ class AudioCubit extends Cubit<AudioState> {
 
   backAudio() async {}
 
-  playAudio(SongModel songModel, int index) async {
-    // await player.ite();
-  }
+  playAudio(SongModel songModel, Duration time) async {}
 
   void requestStoragePermission() async {
     //only if the platform is not web, coz web have no permissions
