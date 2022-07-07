@@ -1,6 +1,7 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nightplayer/views/onboard.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import 'bloc/audio_bloc/audio_cubit.dart';
@@ -65,9 +66,8 @@ class MyApp extends StatelessWidget {
                 state is ChangeThemeState ? state.theme : AppTheme.light],
             home: BlocBuilder<AudioCubit, AudioState>(builder: (_, state) {
               state is RequestStoragePermission;
-              return Home(
-                stateaudio: state,
-              );
+              return OnBoard(stateaudio: state);
+              //       return Home(               stateaudio: state,             );
             }));
       },
     );
