@@ -28,7 +28,9 @@ class AudioCubit extends Cubit<AudioState> {
     }
   }
 
-  nextAudio() async {}
+  nextAudio() async {
+    await player.seekToNext();
+  }
 
   pauseAudio() async {
     await player.pause();
@@ -38,7 +40,9 @@ class AudioCubit extends Cubit<AudioState> {
     await player.stop();
   }
 
-  backAudio() async {}
+  backAudio() async {
+    await player.seekToPrevious();
+  }
 
   playAudio(SongModel songModel) async {
     emit(Play());

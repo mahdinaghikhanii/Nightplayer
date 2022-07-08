@@ -188,23 +188,31 @@ class MButtonForSong extends StatelessWidget {
   final IconData icon;
   final bool boxColor;
   final Color? colorIcon;
+  final Function()? ontap;
   const MButtonForSong(
-      {Key? key, required this.icon, this.boxColor = false, this.colorIcon})
+      {Key? key,
+      required this.icon,
+      this.ontap,
+      this.boxColor = false,
+      this.colorIcon})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 70,
-      height: 70,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: boxColor ? Colors.white.withAlpha(30) : null),
-      child: Center(
-        child: Icon(
-          icon,
-          color: colorIcon ?? Colors.white,
-          size: 40,
+    return InkWell(
+      onTap: ontap,
+      child: Container(
+        width: 70,
+        height: 70,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            color: boxColor ? Colors.white.withAlpha(30) : null),
+        child: Center(
+          child: Icon(
+            icon,
+            color: colorIcon ?? Colors.white,
+            size: 40,
+          ),
         ),
       ),
     );

@@ -131,17 +131,21 @@ class PlayOrStopSong extends StatelessWidget {
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             MButtonForSong(
+                              ontap: context.audioCuibt.backAudio(),
                               icon: Icons.arrow_back_ios,
                             ),
-                            SizedBox(width: 20),
-                            MButtonForSong(
+                            const SizedBox(width: 20),
+                            const MButtonForSong(
                               icon: Icons.play_arrow,
                               boxColor: true,
                             ),
-                            SizedBox(width: 20),
-                            MButtonForSong(icon: Icons.arrow_forward_ios)
+                            const SizedBox(width: 20),
+                            MButtonForSong(
+                              ontap: context.audioCuibt.nextAudio(),
+                              icon: Icons.arrow_forward_ios,
+                            )
                           ],
                         ),
                       ),
