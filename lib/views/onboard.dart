@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nightplayer/bloc/onboard_bloc/onboard_cubit.dart';
 import 'package:nightplayer/module/constans.dart';
 import 'package:nightplayer/module/extention.dart';
 import 'package:nightplayer/views/home.dart';
@@ -59,7 +61,10 @@ class OnBoard extends StatelessWidget {
                       BorderRadius.circular(Constans.kdefualtBorderRadios),
                   splashColor: Colors.white,
                   hoverColor: Colors.white,
-                  onTap: () => context.nextPage(Home(stateaudio: stateaudio)),
+                  onTap: () {
+                    context.nextPage(Home(stateaudio: stateaudio));
+                    context.read<OnBoardCubit>().saveUserSeeOnBoard();
+                  },
                   child: Container(
                     width: 300,
                     height: 70,
