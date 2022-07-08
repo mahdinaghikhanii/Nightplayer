@@ -32,11 +32,12 @@ class AudioCubit extends Cubit<AudioState> {
     await player.seekToNext();
   }
 
-  pauseAudio() async {
+  void pauseAudio() async {
+    emit(Pause());
     await player.pause();
   }
 
-  stopAudio() async {
+  void stopAudio() async {
     await player.stop();
   }
 
@@ -85,6 +86,8 @@ class AudioCubit extends Cubit<AudioState> {
     int id,
   ) async {
     emit(Loading());
+
+    emit(ShowMiniPLayer());
 
     try {
       NotificationService().notify(imageSong, artist, nameSong, id);

@@ -11,6 +11,8 @@ class Play extends AudioState {}
 
 class Stop extends AudioState {}
 
+class Pause extends AudioState {}
+
 class Next extends AudioState {}
 
 class Back extends AudioState {}
