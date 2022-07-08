@@ -1,5 +1,5 @@
 abstract class OnboardState {}
 
-class OnBoards extends OnboardState {}
+class OnBoardsRead extends OnboardState {}
 
 class LoadOnboard extends OnboardState {}

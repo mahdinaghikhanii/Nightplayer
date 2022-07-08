@@ -20,7 +20,6 @@ class OnBoard extends StatelessWidget {
           const FadeInImage(
             //      placeholder: AssetImage("assets/images/blackdot.png"),
             image: AssetImage("assets/img/onboardimg.jpg"),
-
             fit: BoxFit.cover,
             height: double.infinity,
             width: double.infinity,

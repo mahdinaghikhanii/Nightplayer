@@ -72,7 +72,8 @@ class MyApp extends StatelessWidget {
               builder: (BuildContext context, state) {
                 return BlocBuilder<AudioCubit, AudioState>(
                     builder: (_, stateAudio) {
-                  if (state is RequestStoragePermission || state is OnBoards) {
+                  if (state is RequestStoragePermission ||
+                      state is OnBoardsRead) {
                     return Home(stateaudio: stateAudio);
                   }
                   return OnBoard(stateaudio: stateAudio);
