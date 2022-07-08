@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nightplayer/bloc/onboard_bloc/onboard_state.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'onboard_state.dart';
 
 class OnBoardCubit extends Cubit<OnboardState> {
   OnBoardCubit() : super(OnBoardsRead()) {

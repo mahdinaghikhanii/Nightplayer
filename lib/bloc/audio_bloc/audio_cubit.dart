@@ -41,6 +41,7 @@ class AudioCubit extends Cubit<AudioState> {
   backAudio() async {}
 
   playAudio(SongModel songModel) async {
+    emit(Play());
     await player.setUrl(songModel.uri.toString());
     await player.play();
     player.setLoopMode(LoopMode.one);
@@ -80,8 +81,6 @@ class AudioCubit extends Cubit<AudioState> {
     int id,
   ) async {
     emit(Loading());
-    emit(ShowMiniPLayer());
-    //emit(AnimationMiniPLayer());
 
     try {
       NotificationService().notify(imageSong, artist, nameSong, id);

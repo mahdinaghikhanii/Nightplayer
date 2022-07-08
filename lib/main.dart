@@ -1,8 +1,6 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nightplayer/views/onboard.dart';
-
 import 'package:on_audio_query/on_audio_query.dart';
 
 import 'bloc/audio_bloc/audio_cubit.dart';
@@ -16,6 +14,7 @@ import 'bloc/theme_bloc/theme_state.dart';
 import 'bloc/theme_bloc/themebloc.dart';
 import 'module/theme.dart';
 import 'views/home.dart';
+import 'views/onboard.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
