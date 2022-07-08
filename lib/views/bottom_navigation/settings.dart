@@ -34,6 +34,8 @@ class Settings extends StatelessWidget {
               color: Colors.white.withOpacity(0.8),
               icon: Icons.person,
               ontap: () {},
+              subtitleIcon: Icons.person,
+              textStyle: context.textTheme.subtitle1,
               visibilityArrowIcons: false,
               title: 'About us',
               trailing: '',

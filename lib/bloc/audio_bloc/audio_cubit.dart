@@ -40,7 +40,11 @@ class AudioCubit extends Cubit<AudioState> {
 
   backAudio() async {}
 
-  playAudio(SongModel songModel, Duration time) async {}
+  playAudio(SongModel songModel) async {
+    await player.setUrl(songModel.uri.toString());
+    await player.play();
+    player.setLoopMode(LoopMode.one);
+  }
 
   void requestStoragePermission() async {
     //only if the platform is not web, coz web have no permissions

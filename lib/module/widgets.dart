@@ -525,6 +525,7 @@ class BuildListTile extends StatelessWidget {
       required this.ontap,
       required this.color,
       required this.icon,
+      this.subtitleIcon,
       required this.title,
       this.textStyle,
       required this.trailing})
@@ -532,6 +533,7 @@ class BuildListTile extends StatelessWidget {
   final String title, trailing;
   final IconData icon;
   final Color color;
+  final IconData? subtitleIcon;
   final bool visibilityArrowIcons;
   final Function() ontap;
   final TextStyle? textStyle;
@@ -545,8 +547,8 @@ class BuildListTile extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: borderRadius),
           contentPadding: const EdgeInsets.all(0),
           leading: Container(
-            width: 42,
-            height: 42,
+            width: 40,
+            height: 40,
             decoration: BoxDecoration(
                 shape: BoxShape.circle, color: color.withAlpha(30)),
             child: Center(
