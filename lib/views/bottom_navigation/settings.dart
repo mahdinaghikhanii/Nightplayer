@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nightplayer/module/constans.dart';
 import 'package:nightplayer/module/extention.dart';
+import 'package:nightplayer/module/widgets.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
@@ -23,6 +24,22 @@ class Settings extends StatelessWidget {
           ),
         ),
         centerTitle: false,
+      ),
+      body: Padding(
+        padding:
+            const EdgeInsets.symmetric(horizontal: Constans.kdefualtAppPading),
+        child: Column(
+          children: [
+            BuildListTile(
+              color: Colors.white.withOpacity(0.8),
+              icon: Icons.person,
+              ontap: () {},
+              visibilityArrowIcons: false,
+              title: 'About us',
+              trailing: '',
+            )
+          ],
+        ),
       ),
     );
   }
