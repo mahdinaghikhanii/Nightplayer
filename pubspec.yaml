@@ -48,6 +48,7 @@ dependencies:
   awesome_notifications: ^0.6.19
   animate_do: ^2.1.0
   alphabet_scroll_view: ^0.3.1
+  azlistview: ^2.0.0
 
 
 
