@@ -71,7 +71,7 @@ class AllSong extends StatelessWidget {
                       return const MNotFound();
                     }
 
-                    return DraggableScrollbar.rrect(
+                    return DraggableScrollbar.semicircle(
                       controller: allSongContoroller,
                       child: ListView.builder(
                           physics: const ScrollPhysics(),
