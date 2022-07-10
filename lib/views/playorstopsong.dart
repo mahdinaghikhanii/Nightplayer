@@ -40,7 +40,7 @@ class PlayOrStopSong extends StatelessWidget {
                     ),
                     child: QueryArtworkWidget(
                         nullArtworkWidget: Image.asset(
-                          'assets/icon/null.jpg',
+                          'assets/img/null.jpg',
                           fit: BoxFit.fill,
                         ),
                         artworkBorder: BorderRadius.circular(10),
@@ -152,7 +152,7 @@ class PlayOrStopSong extends StatelessWidget {
                                     ? Icons.pause
                                     : state is Play
                                         ? Icons.play_arrow
-                                        : Icons.numbers,
+                                        : Icons.pause,
                                 boxColor: true,
                               ),
                               const SizedBox(width: 20),

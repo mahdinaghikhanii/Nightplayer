@@ -29,27 +29,47 @@ class AudioCubit extends Cubit<AudioState> {
   }
 
   nextAudio() async {
-    await player.seekToNext();
+    try {
+      await player.seekToNext();
+    } catch (e) {
+      Failed(e as Exception);
+    }
   }
 
   void pauseAudio() async {
-    emit(Pause());
-    await player.pause();
+    try {
+      emit(Pause());
+      await player.pause();
+    } catch (e) {
+      Failed(e as Exception);
+    }
   }
 
   void stopAudio() async {
-    await player.stop();
+    try {
+      await player.stop();
+    } catch (e) {
+      Failed(e as Exception);
+    }
   }
 
   backAudio() async {
-    await player.seekToPrevious();
+    try {
+      await player.seekToPrevious();
+    } catch (e) {
+      Failed(e as Exception);
+    }
   }
 
   playAudio(SongModel songModel) async {
-    emit(Play());
-    await player.setUrl(songModel.uri.toString());
-    await player.play();
-    player.setLoopMode(LoopMode.one);
+    try {
+      emit(Play());
+      await player.setUrl(songModel.uri.toString());
+      await player.play();
+      player.setLoopMode(LoopMode.one);
+    } catch (e) {
+      emit(Failed(e as Exception));
+    }
   }
 
   void requestStoragePermission() async {
@@ -80,16 +100,10 @@ class AudioCubit extends Cubit<AudioState> {
   //only for showing lucall_norification
   //android and ios
   void showMusicNotification(
-    String imageSong,
-    String artist,
-    String nameSong,
-    int id,
-  ) async {
-    emit(Loading());
-
-    emit(ShowMiniPLayer());
-
+      String imageSong, String artist, String nameSong, int id) async {
     try {
+      emit(ShowMiniPLayer());
+
       NotificationService().notify(imageSong, artist, nameSong, id);
     } catch (e) {
       emit(Failed(e as Exception));

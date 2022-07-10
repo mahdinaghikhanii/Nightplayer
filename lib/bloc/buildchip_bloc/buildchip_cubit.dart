@@ -10,11 +10,9 @@ class BuildChipCubit extends Cubit<BuildChipState> {
       case BuildChip.artist:
         emit(const BuildChipState(BuildChip.artist, 0));
         break;
-      case BuildChip.album:
-        emit(const BuildChipState(BuildChip.album, 1));
-        break;
+
       case BuildChip.playlist:
-        emit(const BuildChipState(BuildChip.playlist, 2));
+        emit(const BuildChipState(BuildChip.playlist, 1));
         break;
       default:
     }

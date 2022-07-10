@@ -2,7 +2,12 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 
 class NotificationService {
-  notify(String imageSong, String artist, String nameSong, int id) async {
+  notify(
+    String imageSong,
+    String artist,
+    String nameSong,
+    int id,
+  ) async {
     // String timezom = await AwesomeNotifications().getLocalTimeZoneIdentifier();
     await AwesomeNotifications().createNotification(
         content: NotificationContent(
