@@ -342,7 +342,7 @@ class MMiniPlayer extends StatelessWidget {
                                 Constans.kdefualtBorderRadios)),
                         child: QueryArtworkWidget(
                             nullArtworkWidget: Image.asset(
-                              'assets/icon/song248.png',
+                              'assets/img/null.jpg',
                               width: 60,
                               height: 60,
                               fit: BoxFit.fill,
