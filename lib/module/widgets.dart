@@ -312,7 +312,6 @@ class MCricleButton extends StatelessWidget {
               onPressed: () {
                 AnsiPen greenPen = AnsiPen()..green();
                 context.audioCuibt.pauseAudio();
-                print(greenPen('sex sex sex'));
               },
               icon: const Icon(Icons.pause, color: Colors.white)),
     );
