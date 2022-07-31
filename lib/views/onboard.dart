@@ -18,13 +18,10 @@ class OnBoard extends StatelessWidget {
       child: Stack(
         children: [
           const FadeInImage(
-            //      placeholder: AssetImage("assets/images/blackdot.png"),
             image: AssetImage("assets/img/onboardimg.jpg"),
             fit: BoxFit.cover,
             height: double.infinity,
             width: double.infinity,
-            //if you use a larger image, you can set where in the image you like most
-            //width alignment.centerRight, bottomCenter, topRight, etc...
             alignment: Alignment.center,
             placeholder: AssetImage("assets/img/null.jpg"),
           ),

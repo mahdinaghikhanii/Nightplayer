@@ -13,14 +13,12 @@ import 'bloc/playlist_bloc/playlist_cubit.dart';
 import 'bloc/theme_bloc/theme_state.dart';
 import 'bloc/theme_bloc/themebloc.dart';
 import 'module/theme.dart';
-import 'views/home.dart';
 import 'views/onboard.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
   AwesomeNotifications().initialize(
-      // set the icon to null if you want to use the default app icon
       null,
       [
         NotificationChannel(
@@ -41,7 +39,7 @@ void main() {
             channelGroupName: 'basic_channel'),
       ],
       debug: true);
-  //zNotificationService().initNotification();
+  //NotificationService().initNotification();
 
   OnAudioQuery();
   runApp(MultiBlocProvider(providers: [
@@ -57,7 +55,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeCubit, ThemeState>(
@@ -71,10 +68,9 @@ class MyApp extends StatelessWidget {
               builder: (BuildContext context, state) {
                 return BlocBuilder<AudioCubit, AudioState>(
                     builder: (_, stateAudio) {
-                  if (state is RequestStoragePermission ||
-                      state is OnBoardsRead) {
-                    return Home(stateaudio: stateAudio);
-                  }
+                  /*    if (state is OnBoardsRead)
+                     return Home(stateaudio: stateAudio);*/
+
                   return OnBoard(stateaudio: stateAudio);
                 });
               },

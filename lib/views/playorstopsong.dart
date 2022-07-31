@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nightplayer/bloc/audio_bloc/audio_cubit.dart';
@@ -146,12 +148,15 @@ class PlayOrStopSong extends StatelessWidget {
                               const SizedBox(width: 20),
                               MButtonForSong(
                                 ontap: () {
-                                  context.audioCuibt.stopAudio();
+                                  state is Pause
+                                      ? context.audioCuibt.resumeSong()
+                                      : context.audioCuibt.pauseAudio();
+                                  log("message");
                                 },
                                 icon: state is Pause
-                                    ? Icons.pause
+                                    ? Icons.play_arrow
                                     : state is Play
-                                        ? Icons.play_arrow
+                                        ? Icons.pause
                                         : Icons.pause,
                                 boxColor: true,
                               ),

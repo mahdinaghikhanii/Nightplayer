@@ -37,6 +37,7 @@ class AudioCubit extends Cubit<AudioState> {
   }
 
   void pauseAudio() async {
+    emit(Loading());
     try {
       emit(Pause());
       await player.pause();
@@ -45,8 +46,18 @@ class AudioCubit extends Cubit<AudioState> {
     }
   }
 
+  String formatDuration(Duration d) {
+    if (d == null) return "--:--";
+    int minute = d.inMinutes;
+    int second = (d.inSeconds > 60) ? (d.inSeconds % 60) : d.inSeconds;
+    String format =
+        "${(minute < 10) ? "0$minute" : "$minute"}:${(second < 10) ? "0$second" : "$second"}";
+    return format;
+  }
+
   void stopAudio() async {
     try {
+      emit(Stop());
       await player.stop();
     } catch (e) {
       Failed(e as Exception);
@@ -58,6 +69,17 @@ class AudioCubit extends Cubit<AudioState> {
       await player.seekToPrevious();
     } catch (e) {
       Failed(e as Exception);
+    }
+  }
+
+  resumeSong() async {
+    try {
+      emit(Play());
+      emit(ShowMiniPLayer());
+      await player.play();
+      player.setLoopMode(LoopMode.one);
+    } catch (e) {
+      emit(Failed(e as Exception));
     }
   }
 

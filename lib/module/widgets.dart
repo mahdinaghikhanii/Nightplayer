@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:ansicolor/ansicolor.dart';
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -273,7 +274,9 @@ class MNotFound extends StatelessWidget {
 class MCricleButton extends StatelessWidget {
   final double? sizeWith;
   final double? sizeHeight;
-  const MCricleButton({Key? key, this.sizeHeight, this.sizeWith})
+  final AudioState audioState;
+  const MCricleButton(
+      {Key? key, this.sizeHeight, this.sizeWith, required this.audioState})
       : super(key: key);
 
   @override
@@ -298,9 +301,20 @@ class MCricleButton extends StatelessWidget {
           spreadRadius: 1.0,
         ),
       ], shape: BoxShape.circle, color: Constans.kdefultAppColor),
-      child: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.play_arrow, color: Colors.white)),
+      child: audioState is Pause
+          ? IconButton(
+              onPressed: () {
+                //    AnsiPen greenPen = AnsiPen()..red();
+                context.audioCuibt.resumeSong();
+              },
+              icon: const Icon(Icons.play_arrow, color: Colors.white))
+          : IconButton(
+              onPressed: () {
+                AnsiPen greenPen = AnsiPen()..green();
+                context.audioCuibt.pauseAudio();
+                print(greenPen('sex sex sex'));
+              },
+              icon: const Icon(Icons.pause, color: Colors.white)),
     );
   }
 }
@@ -313,7 +327,7 @@ class MMiniPlayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AudioCubit, AudioState>(
       builder: (context, state) {
-        if (state is ShowMiniPLayer) {
+        if (state is ShowMiniPLayer || state is Pause) {
           return FadeInRight(
               child: GestureDetector(
             onTap: () => context.nextPage(PlayOrStopSong(
@@ -355,7 +369,7 @@ class MMiniPlayer extends StatelessWidget {
                             type: ArtworkType.AUDIO),
                       ),
                       textColor: Colors.white,
-                      trailing: const MCricleButton(),
+                      trailing: MCricleButton(audioState: state),
                       title: Text(
                         context.audioCuibt.selectedSongforPLay[0].artist
                             .toString(),
