@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nightplayer/bloc/onboard_bloc/onboard_cubit.dart';
 import 'package:nightplayer/module/constans.dart';
 import 'package:nightplayer/module/extention.dart';
+import 'package:nightplayer/perfs/onboard_perfs.dart';
 import 'package:nightplayer/views/home.dart';
 
 import '../bloc/audio_bloc/audio_state.dart';
@@ -13,6 +14,7 @@ class OnBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    OnBoardPerfs perfs = OnBoardPerfs();
     return Scaffold(
         body: SizedBox(
       child: Stack(
@@ -58,6 +60,7 @@ class OnBoard extends StatelessWidget {
                   splashColor: Colors.white,
                   hoverColor: Colors.white,
                   onTap: () {
+                    perfs.storeInBoardScreansInfo();
                     context.nextPage(Home(stateaudio: stateaudio));
                     context.read<OnBoardCubit>().saveUserSeeOnBoard();
                   },
