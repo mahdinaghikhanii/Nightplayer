@@ -83,7 +83,10 @@ class PlayOrStopSong extends StatelessWidget {
                                       width: 200,
                                       height: 24,
                                       child: Text(
-                                        songModel.title,
+                                        context
+                                            .audioCuibt
+                                            .selectedSongforPLay[currentIndex]
+                                            .title,
                                         style: context.textTheme.subtitle1!
                                             .copyWith(fontSize: 22),
                                       ),
@@ -157,6 +160,9 @@ class PlayOrStopSong extends StatelessWidget {
                                     const SizedBox(width: 20),
                                     MButtonForSong(
                                       ontap: () {
+                                        print(context
+                                            .audioCuibt.selectedSongforPLay);
+                                        print(currentIndex);
                                         state is Pause
                                             ? context.audioCuibt.resumeSong()
                                             : context.audioCuibt.pauseAudio();

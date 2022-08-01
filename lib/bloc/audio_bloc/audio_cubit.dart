@@ -39,7 +39,7 @@ class AudioCubit extends Cubit<AudioState> {
   // backsong
   bool backAudioBool = false;
 
-  addData(List<SongModel> songModel) {
+  updateListSong(List<SongModel> songModel) {
     try {
       selectedSongforPLay.clear();
       selectedSongforPLay.addAll(songModel);
@@ -106,8 +106,9 @@ class AudioCubit extends Cubit<AudioState> {
   playAudio(SongModel songModel, int index) async {
     try {
       emit(Play());
-      await player
-          .setAudioSource(AudioSource.uri(Uri.parse(songModel.uri.toString())));
+      await player.setAudioSource(
+          AudioSource.uri(Uri.parse(songModel.uri.toString())),
+          initialIndex: index);
       await player.play();
       player.setLoopMode(LoopMode.one);
     } catch (e) {

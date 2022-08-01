@@ -316,8 +316,7 @@ class MCricleButton extends StatelessWidget {
 }
 
 class MMiniPlayer extends StatelessWidget {
-  final SongModel? songModel;
-  const MMiniPlayer({Key? key, this.songModel}) : super(key: key);
+  const MMiniPlayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -329,55 +328,66 @@ class MMiniPlayer extends StatelessWidget {
             onTap: () => context.nextPage(PlayOrStopSong(
                 songModel: context.audioCuibt.selectedSongforPLay[0],
                 song: context.audioCuibt.selectedSongforPLay)),
-            child: Container(
-                width: double.infinity,
-                clipBehavior: Clip.hardEdge,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(Constans.kdefualtBorderRadios),
-                      topRight: Radius.circular(Constans.kdefualtBorderRadios)),
-                  color: Colors.grey,
-                ),
-                height: 70,
-                child: GestureDetector(
-                  child: ListTile(
-                      subtitle: Text(
-                          context.audioCuibt.selectedSongforPLay[0].title
-                              .toString(),
-                          softWrap: false,
-                          overflow: TextOverflow.clip,
-                          style: context.textTheme.bodyText1!
-                              .copyWith(fontSize: 12, color: Colors.white)),
-                      leading: Container(
-                        clipBehavior: Clip.hardEdge,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(
-                                Constans.kdefualtBorderRadios)),
-                        child: QueryArtworkWidget(
-                            nullArtworkWidget: Image.asset(
-                              'assets/img/null.jpg',
-                              width: 60,
-                              height: 60,
-                              fit: BoxFit.fill,
-                            ),
-                            artworkBorder: BorderRadius.circular(
-                                Constans.kdefualtBorderRadios),
-                            artworkWidth: 60,
-                            artworkHeight: 60,
-                            id: context.audioCuibt.selectedSongforPLay[0].id,
-                            type: ArtworkType.AUDIO),
+            child: StreamBuilder<int?>(
+                stream: context.audioCuibt.player.currentIndexStream,
+                builder: (context, snapshot) {
+                  final currentIndex = snapshot.data;
+
+                  return Container(
+                      width: double.infinity,
+                      clipBehavior: Clip.hardEdge,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft:
+                                Radius.circular(Constans.kdefualtBorderRadios),
+                            topRight:
+                                Radius.circular(Constans.kdefualtBorderRadios)),
+                        color: Colors.grey,
                       ),
-                      textColor: Colors.white,
-                      trailing: MCricleButton(audioState: state),
-                      title: Text(
-                        context.audioCuibt.selectedSongforPLay[0].artist
-                            .toString(),
-                        softWrap: false,
-                        overflow: TextOverflow.clip,
-                        style: context.textTheme.subtitle1!.copyWith(
-                            fontSize: 15, fontWeight: FontWeight.bold),
-                      )),
-                )),
+                      height: 70,
+                      child: GestureDetector(
+                        child: ListTile(
+                            subtitle: Text(
+                                context.audioCuibt
+                                    .selectedSongforPLay[currentIndex!].title
+                                    .toString(),
+                                softWrap: false,
+                                overflow: TextOverflow.clip,
+                                style: context.textTheme.bodyText1!.copyWith(
+                                    fontSize: 12, color: Colors.white)),
+                            leading: Container(
+                              clipBehavior: Clip.hardEdge,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(
+                                      Constans.kdefualtBorderRadios)),
+                              child: QueryArtworkWidget(
+                                  nullArtworkWidget: Image.asset(
+                                    'assets/img/null.jpg',
+                                    width: 60,
+                                    height: 60,
+                                    fit: BoxFit.fill,
+                                  ),
+                                  artworkBorder: BorderRadius.circular(
+                                      Constans.kdefualtBorderRadios),
+                                  artworkWidth: 60,
+                                  artworkHeight: 60,
+                                  id: context.audioCuibt
+                                      .selectedSongforPLay[currentIndex].id,
+                                  type: ArtworkType.AUDIO),
+                            ),
+                            textColor: Colors.white,
+                            trailing: MCricleButton(audioState: state),
+                            title: Text(
+                              context.audioCuibt
+                                  .selectedSongforPLay[currentIndex].artist
+                                  .toString(),
+                              softWrap: false,
+                              overflow: TextOverflow.clip,
+                              style: context.textTheme.subtitle1!.copyWith(
+                                  fontSize: 15, fontWeight: FontWeight.bold),
+                            )),
+                      ));
+                }),
           ));
         } else {
           return Container();
