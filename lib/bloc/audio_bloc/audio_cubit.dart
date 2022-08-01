@@ -1,5 +1,7 @@
 // ignore_for_file: unnecessary_null_comparison
 
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
@@ -59,8 +61,10 @@ class AudioCubit extends Cubit<AudioState> {
   void pauseAudio() async {
     emit(Loading());
     try {
-      emit(Pause());
-      await player.pause();
+      if (player.playing) {
+        emit(Pause());
+        await player.pause();
+      }
     } catch (e) {
       Failed(e as Exception);
     }
@@ -78,6 +82,7 @@ class AudioCubit extends Cubit<AudioState> {
   void stopAudio() async {
     try {
       emit(Stop());
+
       await player.stop();
       player.dispose();
     } catch (e) {
@@ -106,12 +111,14 @@ class AudioCubit extends Cubit<AudioState> {
 
   playAudio(int index) async {
     try {
+      log(player.currentIndex.toString());
       emit(Play());
       await player.setAudioSource(
         AudioSource.uri(Uri.parse(selectedSongforPLay[index].uri!)),
       );
-      await player.play();
+
       player.setLoopMode(LoopMode.one);
+      await player.play();
     } catch (e) {
       emit(Failed(e as Exception));
     }

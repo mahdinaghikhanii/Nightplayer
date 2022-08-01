@@ -16,7 +16,7 @@ class PlayListCubit extends Cubit<PlayListState> {
       await _audioQuery.createPlaylist(namePlayList.toString());
       Navigator.pop(context, true);
 
-      emit(CreatePlayList());
+      emit(CreatePlayLists());
     } catch (e) {
       log(e.toString());
       FailCreatePlayList(e as Exception);

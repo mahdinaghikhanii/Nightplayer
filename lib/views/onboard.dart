@@ -61,7 +61,7 @@ class OnBoard extends StatelessWidget {
                   hoverColor: Colors.white,
                   onTap: () {
                     perfs.storeInBoardScreansInfo();
-                    context.nextPage(Home(stateaudio: stateaudio));
+                    context.nextPage(const Home());
                     context.read<OnBoardCubit>().saveUserSeeOnBoard();
                   },
                   child: Container(

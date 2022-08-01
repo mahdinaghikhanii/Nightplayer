@@ -14,8 +14,6 @@ import 'bloc/theme_bloc/themebloc.dart';
 import 'module/theme.dart';
 import 'views/home.dart';
 
-int? isviewed;
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -64,11 +62,7 @@ class MyApp extends StatelessWidget {
             title: 'Nightplayer',
             theme: appthemdata[
                 state is ChangeThemeState ? state.theme : AppTheme.light],
-            home: BlocBuilder<AudioCubit, AudioState>(
-              builder: (_, stateAudio) {
-                return Home(stateaudio: stateAudio);
-              },
-            ));
+            home: const Home());
       },
     );
   }

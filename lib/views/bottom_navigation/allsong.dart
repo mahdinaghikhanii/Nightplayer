@@ -79,7 +79,8 @@ class AllSong extends StatelessWidget {
                       child: ListView.builder(
                           key: songStoregeKey,
                           physics: const ScrollPhysics(),
-                          itemCount: iteam.data!.length,
+                          itemCount:
+                              context.audioCuibt.selectedSongforPLay.length,
                           itemExtent: 70,
                           primary: false,
                           controller: allSongContoroller,
@@ -121,7 +122,8 @@ class AllSong extends StatelessWidget {
                                               Constans.kdefualtBorderRadios),
                                           artworkWidth: 60,
                                           artworkHeight: 60,
-                                          id: iteam.data![index].id,
+                                          id: context.audioCuibt
+                                              .selectedSongforPLay[index].id,
                                           type: ArtworkType.AUDIO),
                                     ),
                                     const SizedBox(width: 15),
@@ -136,7 +138,10 @@ class AllSong extends StatelessWidget {
                                             width: 200,
                                             height: 24,
                                             child: Text(
-                                              iteam.data![index].title,
+                                              context
+                                                  .audioCuibt
+                                                  .selectedSongforPLay[index]
+                                                  .title,
                                               overflow: TextOverflow.ellipsis,
                                               style: context
                                                   .textTheme.subtitle1!
@@ -154,7 +159,11 @@ class AllSong extends StatelessWidget {
                                                 maxLines: 1,
                                                 softWrap: false,
                                                 overflow: TextOverflow.clip,
-                                                iteam.data![index].artist ??
+                                                context
+                                                        .audioCuibt
+                                                        .selectedSongforPLay[
+                                                            index]
+                                                        .artist ??
                                                     "No Artist",
                                                 style: context
                                                     .textTheme.subtitle1!

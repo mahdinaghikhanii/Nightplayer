@@ -63,7 +63,7 @@ class DlialogCreatePlayList extends StatelessWidget {
                             //    print(_namePlayListContoroller.text);
                             index == 1
                                 ? state is EditPlayList
-                                : state is CreatePlayList;
+                                : state is CreatePlayLists;
 
                             if (index == 1) {
                               return context.playListCubit.editNamePlaylist(

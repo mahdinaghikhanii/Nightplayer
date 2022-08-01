@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 @immutable
 abstract class PlayListState {}
 
-class CreatePlayList extends PlayListState {}
+class CreatePlayLists extends PlayListState {}
 
 class FailCreatePlayList extends PlayListState {
   final Exception exception;

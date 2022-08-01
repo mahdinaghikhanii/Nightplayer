@@ -12,8 +12,7 @@ import 'bottom_navigation/handler_buildchip.dart';
 import 'bottom_navigation/settings.dart';
 
 class Home extends StatefulWidget {
-  final AudioState stateaudio;
-  const Home({Key? key, required this.stateaudio}) : super(key: key);
+  const Home({Key? key}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
