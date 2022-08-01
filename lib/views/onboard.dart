@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nightplayer/bloc/onboard_bloc/onboard_cubit.dart';
-import 'package:nightplayer/module/constans.dart';
-import 'package:nightplayer/module/extention.dart';
-import 'package:nightplayer/perfs/onboard_perfs.dart';
-import 'package:nightplayer/views/home.dart';
 
-import '../bloc/audio_bloc/audio_state.dart';
+import '../bloc/onboard_bloc/onboard_cubit.dart';
+import '../module/constans.dart';
+import '../module/extention.dart';
+import '../perfs/onboard_perfs.dart';
+import 'home.dart';
 
 class OnBoard extends StatelessWidget {
-  final AudioState stateaudio;
-  const OnBoard({Key? key, required this.stateaudio}) : super(key: key);
+  const OnBoard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
