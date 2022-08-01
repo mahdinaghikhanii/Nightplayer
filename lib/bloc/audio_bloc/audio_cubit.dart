@@ -3,7 +3,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:nightplayer/model/duration_state.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:rxdart/rxdart.dart';
 
 import '../../notification/notification_service.dart';
 import 'audio_state.dart';
@@ -19,12 +21,28 @@ class AudioCubit extends Cubit<AudioState> {
   List<SongModel> allSongforSearch = [];
 
   // this list just for giving choice user song
-  List<SongModel> selectedSongforPLay = [];
+  List<SongModel> selectedSongforPLay = <SongModel>[];
 
-  addData(SongModel songModel) {
+  //next song
+  bool nextong = false;
+  setNextSong() {
+    nextong = true;
+  }
+
+  Stream<DurationState> get durationState =>
+      Rx.combineLatest2<Duration, Duration?, DurationState>(
+          player.positionStream,
+          player.durationStream,
+          (position, duration) => DurationState(
+              position: position, duration: duration ?? Duration.zero));
+
+  // backsong
+  bool backAudioBool = false;
+
+  addData(List<SongModel> songModel) {
     try {
       selectedSongforPLay.clear();
-      selectedSongforPLay.add(songModel);
+      selectedSongforPLay.addAll(songModel);
     } catch (e) {
       emit(Failed(e as Exception));
     }
@@ -85,10 +103,11 @@ class AudioCubit extends Cubit<AudioState> {
     }
   }
 
-  playAudio(SongModel songModel) async {
+  playAudio(SongModel songModel, int index) async {
     try {
       emit(Play());
-      await player.setUrl(songModel.uri.toString());
+      await player
+          .setAudioSource(AudioSource.uri(Uri.parse(songModel.uri.toString())));
       await player.play();
       player.setLoopMode(LoopMode.one);
     } catch (e) {

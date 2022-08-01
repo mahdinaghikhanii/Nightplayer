@@ -15,6 +15,7 @@ class AllSong extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final OnAudioQuery audioQuery = OnAudioQuery();
+    PageStorageKey songStoregeKey = const PageStorageKey("song_pas");
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Constans.kdefultAppColor,
@@ -70,10 +71,11 @@ class AllSong extends StatelessWidget {
                     if (iteam.data!.isEmpty) {
                       return const MNotFound();
                     }
-
+                    context.audioCuibt.addData(iteam.data!);
                     return DraggableScrollbar.arrows(
                       controller: allSongContoroller,
                       child: ListView.builder(
+                          key: songStoregeKey,
                           physics: const ScrollPhysics(),
                           itemCount: iteam.data!.length,
                           itemExtent: 70,
@@ -90,15 +92,13 @@ class AllSong extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20),
                                 onTap: () async {
                                   context.audioCuibt
-                                      .playAudio(iteam.data![index]);
+                                      .playAudio(iteam.data![index], index);
                                   context.audioCuibt.showMusicNotification(
                                     iteam.data![index].id.toString(),
                                     iteam.data![index].title,
                                     iteam.data![index].artist ?? "No Artist",
                                     index,
                                   );
-                                  context.audioCuibt
-                                      .addData(iteam.data![index]);
                                 },
                                 child: Row(
                                   children: [

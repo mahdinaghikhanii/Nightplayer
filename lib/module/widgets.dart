@@ -1,5 +1,4 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:ansicolor/ansicolor.dart';
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
