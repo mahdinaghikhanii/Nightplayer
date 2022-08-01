@@ -1,9 +1,7 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nightplayer/views/home.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'bloc/audio_bloc/audio_cubit.dart';
 import 'bloc/audio_bloc/audio_state.dart';
@@ -14,14 +12,12 @@ import 'bloc/playlist_bloc/playlist_cubit.dart';
 import 'bloc/theme_bloc/theme_state.dart';
 import 'bloc/theme_bloc/themebloc.dart';
 import 'module/theme.dart';
-import 'views/onboard.dart';
+import 'views/home.dart';
 
 int? isviewed;
 
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  isviewed = sharedPreferences.getInt('InBoardScreans');
 
   AwesomeNotifications().initialize(
       null,
@@ -35,7 +31,7 @@ void main() async {
             playSound: false,
             channelShowBadge: false,
             enableVibration: false,
-            enableLights: true,
+            enableLights: false,
             ledColor: Colors.white),
       ],
       channelGroups: [
@@ -44,7 +40,6 @@ void main() async {
             channelGroupName: 'basic_channel'),
       ],
       debug: true);
-  //NotificationService().initNotification();
 
   OnAudioQuery();
   runApp(MultiBlocProvider(providers: [
@@ -71,9 +66,7 @@ class MyApp extends StatelessWidget {
                 state is ChangeThemeState ? state.theme : AppTheme.light],
             home: BlocBuilder<AudioCubit, AudioState>(
               builder: (_, stateAudio) {
-                return isviewed != 0
-                    ? OnBoard(stateaudio: stateAudio)
-                    : Home(stateaudio: stateAudio);
+                return Home(stateaudio: stateAudio);
               },
             ));
       },

@@ -304,13 +304,11 @@ class MCricleButton extends StatelessWidget {
       child: audioState is Pause
           ? IconButton(
               onPressed: () {
-                //    AnsiPen greenPen = AnsiPen()..red();
                 context.audioCuibt.resumeSong();
               },
               icon: const Icon(Icons.play_arrow, color: Colors.white))
           : IconButton(
               onPressed: () {
-                AnsiPen greenPen = AnsiPen()..green();
                 context.audioCuibt.pauseAudio();
               },
               icon: const Icon(Icons.pause, color: Colors.white)),
@@ -330,7 +328,8 @@ class MMiniPlayer extends StatelessWidget {
           return FadeInRight(
               child: GestureDetector(
             onTap: () => context.nextPage(PlayOrStopSong(
-                songModel: context.audioCuibt.selectedSongforPLay[0])),
+                songModel: context.audioCuibt.selectedSongforPLay[0],
+                song: context.audioCuibt.selectedSongforPLay)),
             child: Container(
                 width: double.infinity,
                 clipBehavior: Clip.hardEdge,
@@ -346,6 +345,8 @@ class MMiniPlayer extends StatelessWidget {
                       subtitle: Text(
                           context.audioCuibt.selectedSongforPLay[0].title
                               .toString(),
+                          softWrap: false,
+                          overflow: TextOverflow.clip,
                           style: context.textTheme.bodyText1!
                               .copyWith(fontSize: 12, color: Colors.white)),
                       leading: Container(
@@ -372,6 +373,8 @@ class MMiniPlayer extends StatelessWidget {
                       title: Text(
                         context.audioCuibt.selectedSongforPLay[0].artist
                             .toString(),
+                        softWrap: false,
+                        overflow: TextOverflow.clip,
                         style: context.textTheme.subtitle1!.copyWith(
                             fontSize: 15, fontWeight: FontWeight.bold),
                       )),
