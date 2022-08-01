@@ -54,8 +54,10 @@ class Search extends SearchDelegate<String> {
             itemExtent: 60,
             itemBuilder: (context, index) {
               return GestureDetector(
-                onTap: () => context.nextPage(PlayOrStopSong(
-                    songModel: context.audioCuibt.allSongforSearch[index])),
+                // in bakhshb fix shavad
+                onTap: () => context.nextPage(const PlayOrStopSong(
+                    //    songModel: context.audioCuibt.allSongforSearch[index],
+                    )),
                 child: ListTile(
                     subtitle:
                         Text(context.audioCuibt.allSongforSearch[index].title),

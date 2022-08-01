@@ -8,11 +8,7 @@ import '../module/extention.dart';
 import '../module/widgets.dart';
 
 class PlayOrStopSong extends StatelessWidget {
-  final SongModel songModel;
-  final List<SongModel>? song;
-
-  const PlayOrStopSong({Key? key, required this.songModel, this.song})
-      : super(key: key);
+  const PlayOrStopSong({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +110,9 @@ class PlayOrStopSong extends StatelessWidget {
                                 padding:
                                     const EdgeInsets.only(left: 30, right: 30),
                                 child: Text(
-                                  songModel.artist.toString(),
+                                  context.audioCuibt
+                                      .selectedSongforPLay[currentIndex].artist
+                                      .toString(),
                                   style: context.textTheme.subtitle1!.copyWith(
                                       fontSize: 18,
                                       fontWeight: FontWeight.normal),
@@ -160,9 +158,6 @@ class PlayOrStopSong extends StatelessWidget {
                                     const SizedBox(width: 20),
                                     MButtonForSong(
                                       ontap: () {
-                                        print(context
-                                            .audioCuibt.selectedSongforPLay);
-                                        print(currentIndex);
                                         state is Pause
                                             ? context.audioCuibt.resumeSong()
                                             : context.audioCuibt.pauseAudio();

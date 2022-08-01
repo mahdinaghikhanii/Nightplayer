@@ -1,8 +1,6 @@
 import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
-import 'package:nightplayer/bloc/playlist_bloc/playlist_state.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../module/constans.dart';
@@ -16,7 +14,6 @@ class AllSong extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AudioPlayer _player = AudioPlayer();
     final OnAudioQuery audioQuery = OnAudioQuery();
     PageStorageKey songStoregeKey = const PageStorageKey("song_pas");
     return Scaffold(
@@ -74,7 +71,9 @@ class AllSong extends StatelessWidget {
                     if (iteam.data!.isEmpty) {
                       return const MNotFound();
                     }
+
                     context.audioCuibt.updateListSong(iteam.data!);
+
                     return DraggableScrollbar.arrows(
                       controller: allSongContoroller,
                       child: ListView.builder(
@@ -94,20 +93,13 @@ class AllSong extends StatelessWidget {
                               child: InkWell(
                                 borderRadius: BorderRadius.circular(20),
                                 onTap: () async {
-                                  if (!context.audioCuibt.player.playing) {
-                                    context.audioCuibt
-                                        .playAudio(iteam.data![index], index);
-                                    context.audioCuibt.showMusicNotification(
-                                      iteam.data![index].id.toString(),
-                                      iteam.data![index].title,
-                                      iteam.data![index].artist ?? "No Artist",
-                                      index,
-                                    );
-                                  } else {
-                                    context.audioCuibt.player.seek(
-                                        const Duration(microseconds: 0),
-                                        index: index);
-                                  }
+                                  context.audioCuibt.playAudio(index);
+                                  context.audioCuibt.showMusicNotification(
+                                    iteam.data![index].id.toString(),
+                                    iteam.data![index].title,
+                                    iteam.data![index].artist ?? "No Artist",
+                                    index,
+                                  );
                                 },
                                 child: Row(
                                   children: [

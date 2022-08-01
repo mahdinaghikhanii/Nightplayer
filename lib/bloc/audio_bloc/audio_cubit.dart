@@ -15,7 +15,7 @@ class AudioCubit extends Cubit<AudioState> {
     requestStoragePermission();
   }
   final _audioQuery = OnAudioQuery();
-  final player = AudioPlayer();
+  final AudioPlayer player = AudioPlayer();
 
   //list for adding all song here
   List<SongModel> allSongforSearch = [];
@@ -79,6 +79,7 @@ class AudioCubit extends Cubit<AudioState> {
     try {
       emit(Stop());
       await player.stop();
+      player.dispose();
     } catch (e) {
       Failed(e as Exception);
     }
@@ -103,12 +104,12 @@ class AudioCubit extends Cubit<AudioState> {
     }
   }
 
-  playAudio(SongModel songModel, int index) async {
+  playAudio(int index) async {
     try {
       emit(Play());
       await player.setAudioSource(
-          AudioSource.uri(Uri.parse(songModel.uri.toString())),
-          initialIndex: index);
+        AudioSource.uri(Uri.parse(selectedSongforPLay[index].uri!)),
+      );
       await player.play();
       player.setLoopMode(LoopMode.one);
     } catch (e) {
