@@ -18,7 +18,7 @@ class OnBoard extends StatelessWidget {
       child: Stack(
         children: [
           const FadeInImage(
-            image: AssetImage("assets/img/onboardimg.jpg"),
+            image: AssetImage("assets/img/onbo.png"),
             fit: BoxFit.cover,
             height: double.infinity,
             width: double.infinity,
