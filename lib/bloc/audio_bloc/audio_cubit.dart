@@ -25,10 +25,15 @@ class AudioCubit extends Cubit<AudioState> {
   // this list just for giving choice user song
   List<SongModel> selectedSongforPLay = <SongModel>[];
 
-  //next song
-  bool nextong = false;
-  setNextSong() {
-    nextong = true;
+  //
+  int index = 0;
+
+  void setIndex(int i) {
+    try {
+      index = i;
+    } catch (e) {
+      Failed(e as Exception);
+    }
   }
 
   Stream<DurationState> get durationState =>
@@ -115,6 +120,7 @@ class AudioCubit extends Cubit<AudioState> {
       emit(Play());
       await player.setAudioSource(
         AudioSource.uri(Uri.parse(selectedSongforPLay[index].uri!)),
+        initialPosition: Duration.zero,
       );
 
       player.setLoopMode(LoopMode.one);

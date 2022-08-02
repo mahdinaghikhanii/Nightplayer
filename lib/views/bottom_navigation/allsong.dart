@@ -94,6 +94,7 @@ class AllSong extends StatelessWidget {
                               child: InkWell(
                                 borderRadius: BorderRadius.circular(20),
                                 onTap: () async {
+                                  context.audioCuibt.setIndex(index);
                                   context.audioCuibt.playAudio(index);
                                   context.audioCuibt.showMusicNotification(
                                     iteam.data![index].id.toString(),

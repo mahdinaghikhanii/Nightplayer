@@ -8,13 +8,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  ansicolor:
-    dependency: "direct main"
-    description:
-      name: ansicolor
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.1"
   async:
     dependency: transitive
     description:
@@ -43,13 +36,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.21"
-  azlistview:
-    dependency: "direct main"
-    description:
-      name: azlistview
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   bloc:
     dependency: transitive
     description:
@@ -387,13 +373,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.4"
-  scrollable_positioned_list:
-    dependency: transitive
-    description:
-      name: scrollable_positioned_list
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.3"
   shared_preferences:
     dependency: "direct main"
     description:

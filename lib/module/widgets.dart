@@ -346,8 +346,11 @@ class MMiniPlayer extends StatelessWidget {
                         child: GestureDetector(
                           child: ListTile(
                               subtitle: Text(
-                                  context.audioCuibt
-                                      .selectedSongforPLay[currentIndex].title
+                                  context
+                                      .audioCuibt
+                                      .selectedSongforPLay[
+                                          context.audioCuibt.index]
+                                      .title
                                       .toString(),
                                   softWrap: false,
                                   overflow: TextOverflow.clip,
@@ -369,15 +372,21 @@ class MMiniPlayer extends StatelessWidget {
                                         Constans.kdefualtBorderRadios),
                                     artworkWidth: 60,
                                     artworkHeight: 60,
-                                    id: context.audioCuibt
-                                        .selectedSongforPLay[currentIndex].id,
+                                    id: context
+                                        .audioCuibt
+                                        .selectedSongforPLay[
+                                            context.audioCuibt.index]
+                                        .id,
                                     type: ArtworkType.AUDIO),
                               ),
                               textColor: Colors.white,
                               trailing: MCricleButton(audioState: state),
                               title: Text(
-                                context.audioCuibt
-                                    .selectedSongforPLay[currentIndex].artist
+                                context
+                                    .audioCuibt
+                                    .selectedSongforPLay[
+                                        context.audioCuibt.index]
+                                    .artist
                                     .toString(),
                                 softWrap: false,
                                 overflow: TextOverflow.clip,

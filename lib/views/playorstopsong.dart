@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nightplayer/bloc/audio_bloc/audio_cubit.dart';
-import 'package:nightplayer/bloc/audio_bloc/audio_state.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
+import '../bloc/audio_bloc/audio_cubit.dart';
+import '../bloc/audio_bloc/audio_state.dart';
 import '../module/extention.dart';
 import '../module/widgets.dart';
 
@@ -50,8 +50,10 @@ class PlayOrStopSong extends StatelessWidget {
                               artworkBorder: BorderRadius.circular(10),
                               artworkWidth: double.infinity,
                               //  artworkHeight: 65,
-                              id: context.audioCuibt
-                                  .selectedSongforPLay[currentIndex].id,
+                              id: context
+                                  .audioCuibt
+                                  .selectedSongforPLay[context.audioCuibt.index]
+                                  .id,
                               type: ArtworkType.AUDIO)),
                     ),
                     const SizedBox(height: 20),
@@ -81,7 +83,8 @@ class PlayOrStopSong extends StatelessWidget {
                                       child: Text(
                                         context
                                             .audioCuibt
-                                            .selectedSongforPLay[currentIndex]
+                                            .selectedSongforPLay[
+                                                context.audioCuibt.index]
                                             .title,
                                         style: context.textTheme.subtitle1!
                                             .copyWith(fontSize: 22),
@@ -110,8 +113,11 @@ class PlayOrStopSong extends StatelessWidget {
                                 padding:
                                     const EdgeInsets.only(left: 30, right: 30),
                                 child: Text(
-                                  context.audioCuibt
-                                      .selectedSongforPLay[currentIndex].artist
+                                  context
+                                      .audioCuibt
+                                      .selectedSongforPLay[
+                                          context.audioCuibt.index]
+                                      .artist
                                       .toString(),
                                   style: context.textTheme.subtitle1!.copyWith(
                                       fontSize: 18,
@@ -172,8 +178,7 @@ class PlayOrStopSong extends StatelessWidget {
                                     const SizedBox(width: 20),
                                     MButtonForSong(
                                       ontap: () {
-                                        context.audioCuibt.setNextSong();
-                                        //   context.audioCuibt.nextAudio();
+                                        context.audioCuibt.nextAudio();
                                       },
                                       icon: Icons.arrow_forward_ios,
                                     )

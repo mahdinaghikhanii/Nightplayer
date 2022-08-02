@@ -36,19 +36,18 @@ dependencies:
   cupertino_icons: ^1.0.2
   on_audio_query: ^2.6.1
   http: ^0.13.4
-  ansicolor: ^2.0.1
   flutter_hex_color: ^2.0.0
   shared_preferences: ^2.0.13
   audio_video_progress_bar: ^0.10.0
   flutter_bloc: ^8.0.1
   custom_navigation_bar: ^0.8.2
   draggable_scrollbar: ^0.1.0
-  just_audio: ^0.9.21
-  rxdart: ^0.27.4
+  just_audio: ^0.9.20
+  rxdart: ^0.27.3
   equatable: ^2.0.3
   awesome_notifications: ^0.6.19
   animate_do: ^2.1.0
-  azlistview: ^2.0.0
+
  
 
 
