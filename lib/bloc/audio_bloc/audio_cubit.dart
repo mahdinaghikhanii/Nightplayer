@@ -19,9 +19,6 @@ class AudioCubit extends Cubit<AudioState> {
   final _audioQuery = OnAudioQuery();
   final AudioPlayer player = AudioPlayer();
 
-  //list for adding all song here
-  List<SongModel> allSongforSearch = [];
-
   // this list just for giving choice user song
   List<SongModel> selectedSongforPLay = <SongModel>[];
 
@@ -164,7 +161,7 @@ class AudioCubit extends Cubit<AudioState> {
         WithFiltersType.AUDIOS,
         args: AudiosArgs.TITLE,
       );
-      allSongforSearch = allSongsList.toSongModel();
+      selectedSongforPLay = allSongsList.toSongModel();
     } catch (e) {
       emit(Failed(e as Exception));
     }

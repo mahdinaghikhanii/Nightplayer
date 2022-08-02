@@ -48,19 +48,19 @@ class Search extends SearchDelegate<String> {
     return query == ''
         ? const MNotFound()
         : ListView.builder(
-            itemCount: context.audioCuibt.allSongforSearch.length,
+            itemCount: context.audioCuibt.selectedSongforPLay.length,
             shrinkWrap: true,
             physics: const ScrollPhysics(),
             itemExtent: 60,
             itemBuilder: (context, index) {
               return GestureDetector(
-                // in bakhshb fix shavad
-                onTap: () => context.nextPage(const PlayOrStopSong(
-                    //    songModel: context.audioCuibt.allSongforSearch[index],
-                    )),
+                onTap: () {
+                  context.nextPage(const PlayOrStopSong());
+                  context.audioCuibt.playAudio(index);
+                },
                 child: ListTile(
-                    subtitle:
-                        Text(context.audioCuibt.allSongforSearch[index].title),
+                    subtitle: Text(context.audioCuibt
+                        .selectedSongforPLay[context.audioCuibt.index].title),
                     leading: QueryArtworkWidget(
                         nullArtworkWidget: Container(
                           decoration: BoxDecoration(
@@ -77,11 +77,12 @@ class Search extends SearchDelegate<String> {
                             Constans.kdefualtBorderRadios),
                         artworkWidth: 45,
                         artworkHeight: 45,
-                        id: context.audioCuibt.allSongforSearch[index].id,
+                        id: context.audioCuibt
+                            .selectedSongforPLay[context.audioCuibt.index].id,
                         type: ArtworkType.AUDIO),
                     textColor: Colors.white,
-                    title: Text(context
-                        .audioCuibt.allSongforSearch[index].artist
+                    title: Text(context.audioCuibt
+                        .selectedSongforPLay[context.audioCuibt.index].artist
                         .toString())),
               );
             });
