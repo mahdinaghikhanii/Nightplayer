@@ -1,9 +1,13 @@
+// ignore_for_file: unused_element
+
+import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../bloc/audio_bloc/audio_cubit.dart';
 import '../bloc/audio_bloc/audio_state.dart';
+import '../model/duration_state.dart';
 import '../module/extention.dart';
 import '../module/widgets.dart';
 
@@ -129,23 +133,36 @@ class PlayOrStopSong extends StatelessWidget {
                                   padding: const EdgeInsets.only(left: 20),
                                   child: Container()),
                               const SizedBox(height: 20),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 30, right: 30),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      "2:13",
-                                      style: context.textTheme.subtitle1,
-                                    ),
-                                    const Spacer(),
-                                    Text(
-                                      "4:10",
-                                      style: context.textTheme.subtitle1,
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              Container(
+                                  padding: EdgeInsets.zero,
+                                  margin: const EdgeInsets.only(
+                                      bottom: 4, left: 30, right: 30),
+                                  child: StreamBuilder<DurationState>(
+                                      stream: context.audioCuibt.durationState,
+                                      builder: (context, snapshot) {
+                                        final positionDurationState =
+                                            snapshot.data;
+                                        final progres =
+                                            positionDurationState?.position ??
+                                                Duration.zero;
+                                        final duration =
+                                            positionDurationState?.duration ??
+                                                Duration.zero;
+                                        return ProgressBar(
+                                          progress: progres,
+                                          total: duration,
+                                          baseBarColor: Colors.white,
+                                          progressBarColor: Colors.red,
+                                          thumbColor: Colors.white10,
+                                          thumbGlowColor: Colors.red,
+                                          timeLabelTextStyle:
+                                              TextStyle(color: Colors.white),
+                                          onSeek: (duration) {
+                                            context.audioCuibt.player
+                                                .seek(duration);
+                                          },
+                                        );
+                                      })),
                               const SizedBox(height: 10),
                               Padding(
                                 padding: const EdgeInsets.only(
