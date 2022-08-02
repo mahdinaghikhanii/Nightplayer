@@ -132,7 +132,7 @@ class PlayOrStopSong extends StatelessWidget {
                               Padding(
                                   padding: const EdgeInsets.only(left: 20),
                                   child: Container()),
-                              const SizedBox(height: 20),
+                              const SizedBox(height: 15),
                               Container(
                                   padding: EdgeInsets.zero,
                                   margin: const EdgeInsets.only(
@@ -152,11 +152,14 @@ class PlayOrStopSong extends StatelessWidget {
                                           progress: progres,
                                           total: duration,
                                           baseBarColor: Colors.white,
-                                          progressBarColor: Colors.red,
+                                          progressBarColor:
+                                              const Color(0xFF6A1B9A),
                                           thumbColor: Colors.white10,
-                                          thumbGlowColor: Colors.red,
+                                          thumbGlowColor:
+                                              const Color(0xFF6A1B9A),
+                                          timeLabelPadding: 10,
                                           timeLabelTextStyle:
-                                              TextStyle(color: Colors.white),
+                                              context.textTheme.subtitle1,
                                           onSeek: (duration) {
                                             context.audioCuibt.player
                                                 .seek(duration);
