@@ -56,8 +56,16 @@ class AudioCubit extends Cubit<AudioState> {
   }
 
   nextAudio() async {
+    index++;
     try {
-      await player.seekToNext();
+      emit(ShowMiniPLayer());
+
+      emit(Next());
+      log(player.currentIndex.toString());
+
+      await player.setAudioSource(
+        AudioSource.uri(Uri.parse(selectedSongforPLay[index].uri!)),
+      );
     } catch (e) {
       Failed(e as Exception);
     }
@@ -96,8 +104,16 @@ class AudioCubit extends Cubit<AudioState> {
   }
 
   backAudio() async {
+    index--;
     try {
-      await player.seekToPrevious();
+      emit(Back());
+      emit(ShowMiniPLayer());
+
+      emit(Next());
+      log(player.currentIndex.toString());
+
+      await player.setAudioSource(
+          AudioSource.uri(Uri.parse(selectedSongforPLay[index].uri!)));
     } catch (e) {
       Failed(e as Exception);
     }
@@ -120,7 +136,6 @@ class AudioCubit extends Cubit<AudioState> {
       emit(Play());
       await player.setAudioSource(
         AudioSource.uri(Uri.parse(selectedSongforPLay[index].uri!)),
-        initialPosition: Duration.zero,
       );
 
       player.setLoopMode(LoopMode.one);

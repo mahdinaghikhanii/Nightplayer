@@ -197,8 +197,8 @@ class PlayOrStopSong extends StatelessWidget {
                                     ),
                                     const SizedBox(width: 20),
                                     MButtonForSong(
-                                      ontap: () {
-                                        context.audioCuibt.nextAudio();
+                                      ontap: () async {
+                                        await context.audioCuibt.nextAudio();
                                       },
                                       icon: Icons.arrow_forward_ios,
                                     )

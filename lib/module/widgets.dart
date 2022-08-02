@@ -201,6 +201,9 @@ class MButtonForSong extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: ontap,
+      hoverColor: Colors.grey,
+      highlightColor: Colors.grey,
+      borderRadius: BorderRadius.circular(20),
       child: Container(
         width: 70,
         height: 70,
@@ -322,7 +325,10 @@ class MMiniPlayer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AudioCubit, AudioState>(
       builder: (context, state) {
-        if (state is ShowMiniPLayer || state is Pause) {
+        if (state is ShowMiniPLayer ||
+            state is Pause ||
+            state is Next ||
+            state is Back) {
           return FadeInRight(
               child: GestureDetector(
             onTap: () => context.nextPage(const PlayOrStopSong()),
