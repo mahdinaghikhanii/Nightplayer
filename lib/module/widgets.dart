@@ -257,6 +257,7 @@ class MNotFound extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
@@ -729,14 +730,14 @@ class ShowItemSong extends StatelessWidget {
 }
 
 class ShowItemSongFavorite extends StatelessWidget {
-  final Function() onTapMoreIteam;
+  final Function() onTapFavoriteIteam;
   final Function() ontap;
   final int imgId;
   final String titleSong;
   final String artistSong;
   const ShowItemSongFavorite(
       {Key? key,
-      required this.onTapMoreIteam,
+      required this.onTapFavoriteIteam,
       required this.ontap,
       required this.imgId,
       required this.titleSong,
@@ -748,7 +749,7 @@ class ShowItemSongFavorite extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
       width: double.infinity,
-      height: 70,
+      height: 75,
       child: InkWell(
         borderRadius: BorderRadius.circular(20),
         onTap: ontap,
@@ -808,15 +809,25 @@ class ShowItemSongFavorite extends StatelessWidget {
             ),
             const Spacer(),
             IconButton(
-                onPressed: onTapMoreIteam,
-                icon: const Icon(
-                  Icons.favorite,
-                  size: 35,
-                  color: Colors.red,
-                ))
+                onPressed: onTapFavoriteIteam,
+                icon: const Icon(Icons.favorite, size: 22, color: Colors.white))
           ],
         ),
       ),
+    );
+  }
+}
+
+class CustomSnackAlert {
+  static SnackBar showErrorSnackBar(String message) {
+    return SnackBar(
+      content: Text(message,
+          style: TextStyle(
+              color: Constans.navyblueshade2,
+              fontSize: 16,
+              fontWeight: FontWeight.bold)),
+      backgroundColor: Colors.white,
+      duration: const Duration(seconds: 4),
     );
   }
 }

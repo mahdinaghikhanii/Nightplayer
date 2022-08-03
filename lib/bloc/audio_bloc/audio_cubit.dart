@@ -5,8 +5,10 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:nightplayer/model/duration_state.dart';
+import 'package:nightplayer/module/constans.dart';
 import 'package:nightplayer/module/extention.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:on_audio_room/on_audio_room.dart';
@@ -61,11 +63,19 @@ class AudioCubit extends Cubit<AudioState> {
   }
 
   addFavorite(int index, BuildContext context) async {
-    audioRoom.addTo(RoomType.FAVORITES,
-        selectedSongforPLay[index].getMap.toFavoritesEntity(),
-        ignoreDuplicate: false);
-    audioRoom.getRoomInfo(RoomType.FAVORITES);
-    context.back();
+    try {
+      audioRoom.addTo(RoomType.FAVORITES,
+          selectedSongforPLay[index].getMap.toFavoritesEntity(),
+          ignoreDuplicate: false);
+      audioRoom.getRoomInfo(RoomType.FAVORITES);
+      context.back();
+      Fluttertoast.showToast(
+          msg: "done !save in favorite song",
+          backgroundColor: Colors.white,
+          textColor: Constans.navyblueshade2);
+    } catch (e) {
+      Failed(e as Exception);
+    }
   }
 
   nextAudio() async {
@@ -195,4 +205,7 @@ class AudioCubit extends Cubit<AudioState> {
       emit(Failed(e as Exception));
     }
   }
+
+  /// show snackbar add favorite or remove favorite
+
 }
