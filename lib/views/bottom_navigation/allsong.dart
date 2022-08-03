@@ -1,13 +1,12 @@
 import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nightplayer/views/bottom_sheet/bottomsheet.dart';
-import 'package:nightplayer/views/bottom_sheet/playlist_bottomsheet.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../module/constans.dart';
 import '../../module/extention.dart';
 import '../../module/widgets.dart';
+import '../bottom_sheet/moreiteam_bottomsheet.dart';
 import '../search.dart';
 
 class AllSong extends StatelessWidget {
@@ -88,14 +87,14 @@ class AllSong extends StatelessWidget {
                           controller: allSongContoroller,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
-                            return Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 0),
-                              width: double.infinity,
-                              height: 70,
-                              child: InkWell(
-                                borderRadius: BorderRadius.circular(20),
-                                onTap: () async {
+                            return ShowItemSong(
+                                onTapMoreIteam: () {
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: (context) => const MBottomSheet(
+                                          titleText: "More item"));
+                                },
+                                ontap: () async {
                                   context.audioCuibt.setIndex(index);
                                   context.audioCuibt.playAudio(index);
                                   context.audioCuibt.showMusicNotification(
@@ -105,94 +104,9 @@ class AllSong extends StatelessWidget {
                                     index,
                                   );
                                 },
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 5),
-                                      child: QueryArtworkWidget(
-                                          nullArtworkWidget: Container(
-                                              clipBehavior: Clip.hardEdge,
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius
-                                                      .circular(Constans
-                                                          .kdefualtAppPading)),
-                                              child: Image.asset(
-                                                  'assets/img/null.jpg',
-                                                  width: 60,
-                                                  height: 60,
-                                                  fit: BoxFit.cover)),
-                                          artworkBorder: BorderRadius.circular(
-                                              Constans.kdefualtBorderRadios),
-                                          artworkWidth: 60,
-                                          artworkHeight: 60,
-                                          id: context.audioCuibt
-                                              .selectedSongforPLay[index].id,
-                                          type: ArtworkType.AUDIO),
-                                    ),
-                                    const SizedBox(width: 15),
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        const SizedBox(height: 10),
-                                        Expanded(
-                                          child: SizedBox(
-                                            width: 200,
-                                            height: 24,
-                                            child: Text(
-                                              context
-                                                  .audioCuibt
-                                                  .selectedSongforPLay[index]
-                                                  .title,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: context
-                                                  .textTheme.subtitle1!
-                                                  .copyWith(fontSize: 16),
-                                              maxLines: 1,
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(height: 0),
-                                        Expanded(
-                                          child: SizedBox(
-                                            width: 180,
-                                            height: 24,
-                                            child: Text(
-                                                maxLines: 1,
-                                                softWrap: false,
-                                                overflow: TextOverflow.clip,
-                                                context
-                                                        .audioCuibt
-                                                        .selectedSongforPLay[
-                                                            index]
-                                                        .artist ??
-                                                    "No Artist",
-                                                style: context
-                                                    .textTheme.subtitle1!
-                                                    .copyWith(fontSize: 14)),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const Spacer(),
-                                    IconButton(
-                                        onPressed: (() {
-                                          showModalBottomSheet(
-                                              context: context,
-                                              builder: (context) =>
-                                                  const MBottomSheet(
-                                                      titleText: "More item"));
-                                        }),
-                                        icon: Icon(
-                                          Icons.more_horiz,
-                                          size: 35,
-                                          color: Constans.kwhite,
-                                        ))
-                                  ],
-                                ),
-                              ),
-                            );
+                                imgId: index,
+                                titleSongIndex: index,
+                                artistSongIndex: index);
                           }),
                     );
                   }),

@@ -36,6 +36,13 @@ class MBottomSheet extends StatelessWidget {
             textStyle: context.textTheme.subtitle1,
             ontap: () {},
           ),
+          MListTileForBottomSheet(
+            icon: Icons.delete,
+            iconColor: Colors.white,
+            text: "Delete song",
+            textStyle: context.textTheme.subtitle1,
+            ontap: () {},
+          ),
         ],
       ),
     );
