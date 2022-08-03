@@ -79,6 +79,7 @@ class AllSong extends StatelessWidget {
                       controller: allSongContoroller,
                       child: ListView.builder(
                           key: songStoregeKey,
+                          padding: EdgeInsets.zero,
                           physics: const ScrollPhysics(),
                           itemCount:
                               context.audioCuibt.selectedSongforPLay.length,
