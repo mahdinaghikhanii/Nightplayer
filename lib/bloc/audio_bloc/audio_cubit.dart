@@ -8,8 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:nightplayer/model/duration_state.dart';
-import 'package:nightplayer/module/constans.dart';
 import 'package:nightplayer/module/extention.dart';
+import 'package:nightplayer/module/widgets.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:on_audio_room/on_audio_room.dart';
 import 'package:rxdart/rxdart.dart';
@@ -27,6 +27,7 @@ class AudioCubit extends Cubit<AudioState> {
   //list for adding all song here
   List<SongModel> allSongforSearch = [];
 
+  FToast fToast = FToast();
   // this list just for giving choice user song
   List<SongModel> selectedSongforPLay = <SongModel>[];
 
@@ -63,16 +64,36 @@ class AudioCubit extends Cubit<AudioState> {
   }
 
   addFavorite(int index, BuildContext context) async {
+    fToast = FToast();
+    fToast.init(context);
     try {
       audioRoom.addTo(RoomType.FAVORITES,
           selectedSongforPLay[index].getMap.toFavoritesEntity(),
           ignoreDuplicate: false);
       audioRoom.getRoomInfo(RoomType.FAVORITES);
+
+      fToast.showToast(
+        child: const ToastRemoveOrAdd(index: 0),
+        gravity: ToastGravity.BOTTOM,
+        toastDuration: const Duration(seconds: 2),
+      );
       context.back();
-      Fluttertoast.showToast(
-          msg: "done !save in favorite song",
-          backgroundColor: Colors.white,
-          textColor: Constans.navyblueshade2);
+    } catch (e) {
+      Failed(e as Exception);
+    }
+  }
+
+  removeFavorite(
+      FavoritesEntity favoritesEntity, int index, BuildContext context) async {
+    fToast = FToast();
+    fToast.init(context);
+    try {
+      await audioRoom.deleteFrom(RoomType.FAVORITES, favoritesEntity.key);
+      fToast.showToast(
+        child: const ToastRemoveOrAdd(index: 1),
+        gravity: ToastGravity.BOTTOM,
+        toastDuration: const Duration(seconds: 2),
+      );
     } catch (e) {
       Failed(e as Exception);
     }
@@ -206,6 +227,12 @@ class AudioCubit extends Cubit<AudioState> {
     }
   }
 
-  /// show snackbar add favorite or remove favorite
-
+  ///show Toast add favorite or remove favorite
+  //
+  showToast() {
+    FToast().showToast(
+        gravity: ToastGravity.BOTTOM,
+        toastDuration: const Duration(seconds: 2),
+        child: const ToastRemoveOrAdd(index: 0));
+  }
 }

@@ -831,3 +831,38 @@ class CustomSnackAlert {
     );
   }
 }
+
+class ToastRemoveOrAdd extends StatelessWidget {
+  final int index;
+  const ToastRemoveOrAdd({Key? key, required this.index}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(25.0), color: Colors.white),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          index == 0
+              ? Icon(
+                  Icons.favorite,
+                  color: Constans.navyblueshade2,
+                )
+              : Icon(
+                  Icons.delete,
+                  color: Constans.navyblueshade2,
+                ),
+          const SizedBox(width: 12.0),
+          Text(
+              index == 0
+                  ? "done ! save in favorite song"
+                  : "done ! remove in favorite song",
+              style: context.textTheme.subtitle1!
+                  .copyWith(color: Constans.navyblueshade2)),
+        ],
+      ),
+    );
+  }
+}

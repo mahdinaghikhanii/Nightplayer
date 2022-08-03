@@ -10,7 +10,7 @@ class Favorite extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final OnAudioRoom _audioRoom = OnAudioRoom();
+    final OnAudioRoom _audioRoom = OnAudioRoom();
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Constans.kdefultAppColor,
@@ -50,7 +50,10 @@ class Favorite extends StatelessWidget {
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return ShowItemSongFavorite(
-                        onTapFavoriteIteam: () {},
+                        onTapFavoriteIteam: () async {
+                          context.audioCuibt
+                              .removeFavorite(favorite[index], index, context);
+                        },
                         ontap: () {},
                         imgId: favorite[index].id,
                         titleSong: favorite[index].title,
