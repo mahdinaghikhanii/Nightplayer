@@ -1,6 +1,8 @@
 import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nightplayer/views/bottom_sheet/bottomsheet.dart';
+import 'package:nightplayer/views/bottom_sheet/playlist_bottomsheet.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../module/constans.dart';
@@ -175,7 +177,13 @@ class AllSong extends StatelessWidget {
                                     ),
                                     const Spacer(),
                                     IconButton(
-                                        onPressed: (() {}),
+                                        onPressed: (() {
+                                          showModalBottomSheet(
+                                              context: context,
+                                              builder: (context) =>
+                                                  const MBottomSheet(
+                                                      titleText: "More item"));
+                                        }),
                                         icon: Icon(
                                           Icons.more_horiz,
                                           size: 35,
