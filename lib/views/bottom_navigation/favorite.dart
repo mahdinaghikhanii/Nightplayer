@@ -10,7 +10,6 @@ class Favorite extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final OnAudioRoom _audioRoom = OnAudioRoom();
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Constans.kdefultAppColor,

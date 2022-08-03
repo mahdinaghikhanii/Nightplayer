@@ -52,6 +52,7 @@ class PlayList extends StatelessWidget {
             );
           }
           return GridView.builder(
+              padding: EdgeInsets.zero,
               shrinkWrap: true,
               itemCount: playlistIteam.data!.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
