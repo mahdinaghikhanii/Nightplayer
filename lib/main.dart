@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nightplayer/views/onboard.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:on_audio_room/on_audio_room.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'bloc/audio_bloc/audio_cubit.dart';
@@ -21,6 +22,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences preferences = await SharedPreferences.getInstance();
   isviewed = preferences.getInt("InBoardScreans");
+  await OnAudioRoom().initRoom(RoomType.FAVORITES);
 
   AwesomeNotifications().initialize(
       null,

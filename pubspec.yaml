@@ -47,6 +47,7 @@ dependencies:
   equatable: ^2.0.3
   awesome_notifications: ^0.6.19
   animate_do: ^2.1.0
+  on_audio_room: ^2.2.1+1
 
  
 

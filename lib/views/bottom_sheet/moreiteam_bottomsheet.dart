@@ -6,8 +6,10 @@ import '../../module/widgets.dart';
 
 class MBottomSheet extends StatelessWidget {
   final String titleText;
+  final int index;
 
-  const MBottomSheet({Key? key, required this.titleText}) : super(key: key);
+  const MBottomSheet({Key? key, required this.titleText, required this.index})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,9 @@ class MBottomSheet extends StatelessWidget {
             iconColor: Colors.white,
             text: "Add favorite",
             textStyle: context.textTheme.subtitle1,
-            ontap: () {},
+            ontap: () {
+              context.audioCuibt.addFavorite(index, context);
+            },
           ),
           MListTileForBottomSheet(
             icon: Icons.delete,

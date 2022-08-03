@@ -3,10 +3,13 @@
 import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:nightplayer/model/duration_state.dart';
+import 'package:nightplayer/module/extention.dart';
 import 'package:on_audio_query/on_audio_query.dart';
+import 'package:on_audio_room/on_audio_room.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../notification/notification_service.dart';
@@ -24,6 +27,8 @@ class AudioCubit extends Cubit<AudioState> {
 
   // this list just for giving choice user song
   List<SongModel> selectedSongforPLay = <SongModel>[];
+
+  final OnAudioRoom audioRoom = OnAudioRoom();
 
   //
   int index = 0;
@@ -53,6 +58,14 @@ class AudioCubit extends Cubit<AudioState> {
     } catch (e) {
       emit(Failed(e as Exception));
     }
+  }
+
+  addFavorite(int index, BuildContext context) async {
+    audioRoom.addTo(RoomType.FAVORITES,
+        selectedSongforPLay[index].getMap.toFavoritesEntity(),
+        ignoreDuplicate: false);
+    audioRoom.getRoomInfo(RoomType.FAVORITES);
+    context.back();
   }
 
   nextAudio() async {

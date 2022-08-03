@@ -91,8 +91,9 @@ class AllSong extends StatelessWidget {
                                 onTapMoreIteam: () {
                                   showModalBottomSheet(
                                       context: context,
-                                      builder: (context) => const MBottomSheet(
-                                          titleText: "More item"));
+                                      builder: (context) => MBottomSheet(
+                                          titleText: "More item",
+                                          index: index));
                                 },
                                 ontap: () async {
                                   context.audioCuibt.setIndex(index);
