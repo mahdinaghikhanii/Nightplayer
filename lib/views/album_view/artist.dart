@@ -22,15 +22,20 @@ class Artist extends StatelessWidget {
               uriType: UriType.EXTERNAL,
               ignoreCase: false,
             ),
-            builder: (context, iteamAlbum) {
-              if (iteamAlbum.data == null) {
+            builder: (context, iteamArtist) {
+              if (iteamArtist.data == null) {
                 return const MWating();
               }
+              if (iteamArtist.data!.isEmpty) {
+                return const MNotFound();
+              }
+              context.audioCuibt.updateArtistModel(iteamArtist.data!);
+              var artistData = context.audioCuibt.artistModel;
               return DraggableScrollbar.rrect(
                 controller: albumContoroller,
                 child: GridView.builder(
                     controller: albumContoroller,
-                    itemCount: iteamAlbum.data!.length,
+                    itemCount: artistData.length,
                     padding: const EdgeInsets.symmetric(
                         horizontal: Constans.kdefualtAppPading),
                     gridDelegate:
@@ -40,7 +45,8 @@ class Artist extends StatelessWidget {
                             crossAxisCount: 2),
                     itemBuilder: (context, index) {
                       return InkWell(
-                        onTap:  (() =>  context.nextPage(DetailArtist(albumModel: )),
+                        onTap: (() => context.nextPage(
+                            DetailArtist(artistModel: artistData[index]))),
                         borderRadius: BorderRadius.circular(
                             Constans.kdefualtBorderRadios),
                         child: Column(
@@ -61,13 +67,13 @@ class Artist extends StatelessWidget {
                                 artworkBorder: BorderRadius.circular(100),
                                 artworkWidth: 130,
                                 artworkHeight: 130,
-                                id: iteamAlbum.data![index].id,
+                                id: artistData[index].id,
                                 type: ArtworkType.ARTIST),
                             const SizedBox(
                               height: 10,
                             ),
                             Text(
-                              iteamAlbum.data![index].artist,
+                              artistData[index].artist,
                               textAlign: TextAlign.center,
                               style: context.textTheme.subtitle1!,
                               overflow: TextOverflow.ellipsis,

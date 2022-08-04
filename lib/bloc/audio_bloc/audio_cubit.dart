@@ -34,49 +34,22 @@ class AudioCubit extends Cubit<AudioState> {
   /// list favorite song save local information with Hive
   List<FavoritesEntity> listfavorite = <FavoritesEntity>[];
 
-  final OnAudioRoom audioRoom = OnAudioRoom();
+  //  create an artist model for showing all artists in the song
+  List<ArtistModel> artistModel = <ArtistModel>[];
 
-  //
-
-  updateFavorite(List<FavoritesEntity> audioFavorite) {
+  updateArtistModel(List<ArtistModel> artist) {
     try {
-      listfavorite.clear();
-      listfavorite.addAll(audioFavorite);
+      artistModel.clear();
+      artistModel.addAll(artist);
     } catch (e) {
       Failed(e as Exception);
     }
   }
 
-  int index = 0;
-
-  void setIndex(int i) {
-    try {
-      index = i;
-    } catch (e) {
-      Failed(e as Exception);
-    }
-  }
-
-  Stream<DurationState> get durationState =>
-      Rx.combineLatest2<Duration, Duration?, DurationState>(
-          player.positionStream,
-          player.durationStream,
-          (position, duration) => DurationState(
-              position: position, duration: duration ?? Duration.zero));
-
-  // backsong
-  bool backAudioBool = false;
-
-  updateListSong(List<SongModel> songModel) {
-    try {
-      selectedSongforPLay.clear();
-      selectedSongforPLay.addAll(songModel);
-    } catch (e) {
-      emit(Failed(e as Exception));
-    }
-  }
+  // all these parts function for saving a favorite list
 
   addFavorite(int index, BuildContext context) async {
+    final OnAudioRoom audioRoom = OnAudioRoom();
     fToast = FToast();
     fToast.init(context);
     try {
@@ -96,8 +69,18 @@ class AudioCubit extends Cubit<AudioState> {
     }
   }
 
+  updateFavorite(List<FavoritesEntity> audioFavorite) {
+    try {
+      listfavorite.clear();
+      listfavorite.addAll(audioFavorite);
+    } catch (e) {
+      Failed(e as Exception);
+    }
+  }
+
   removeFavorite(
       FavoritesEntity favoritesEntity, int index, BuildContext context) async {
+    final OnAudioRoom audioRoom = OnAudioRoom();
     fToast = FToast();
     fToast.init(context);
     try {
@@ -110,6 +93,42 @@ class AudioCubit extends Cubit<AudioState> {
       );
     } catch (e) {
       Failed(e as Exception);
+    }
+  }
+
+  /// finishid parts function for add favorites
+
+  // all these parts function for play next stop back a play song
+  int index = 0;
+
+  // this index and functions for next audio or back audio
+
+  void setIndex(int i) {
+    try {
+      index = i;
+    } catch (e) {
+      Failed(e as Exception);
+    }
+  }
+
+  // this stream  is for watching time songs
+
+  Stream<DurationState> get durationState =>
+      Rx.combineLatest2<Duration, Duration?, DurationState>(
+          player.positionStream,
+          player.durationStream,
+          (position, duration) => DurationState(
+              position: position, duration: duration ?? Duration.zero));
+
+  // backsong
+  bool backAudioBool = false;
+
+  updateListSong(List<SongModel> songModel) {
+    try {
+      selectedSongforPLay.clear();
+      selectedSongforPLay.addAll(songModel);
+    } catch (e) {
+      emit(Failed(e as Exception));
     }
   }
 
@@ -138,15 +157,6 @@ class AudioCubit extends Cubit<AudioState> {
     } catch (e) {
       Failed(e as Exception);
     }
-  }
-
-  String formatDuration(Duration d) {
-    if (d == null) return "--:--";
-    int minute = d.inMinutes;
-    int second = (d.inSeconds > 60) ? (d.inSeconds % 60) : d.inSeconds;
-    String format =
-        "${(minute < 10) ? "0$minute" : "$minute"}:${(second < 10) ? "0$second" : "$second"}";
-    return format;
   }
 
   void stopAudio() async {

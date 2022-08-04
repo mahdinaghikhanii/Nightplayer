@@ -5,9 +5,9 @@ import '../module/constans.dart';
 import '../module/extention.dart';
 
 class DetailArtist extends StatelessWidget {
-  final AlbumModel albumModel;
+  final ArtistModel artistModel;
 
-  const DetailArtist({Key? key, required this.albumModel}) : super(key: key);
+  const DetailArtist({Key? key, required this.artistModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +29,15 @@ class DetailArtist extends StatelessWidget {
           flexibleSpace: FlexibleSpaceBar(
               expandedTitleScale: 1,
               background: QueryArtworkWidget(
+                  nullArtworkWidget: Image.asset(
+                    "assets/img/null.jpg",
+                    fit: BoxFit.cover,
+                  ),
                   artworkBorder: BorderRadius.circular(0),
-                  id: albumModel.id,
-                  type: ArtworkType.ALBUM),
+                  id: artistModel.id,
+                  type: ArtworkType.ARTIST),
               centerTitle: false,
-              title: Text(albumModel.album.toString())),
+              title: Text(artistModel.artist.toString())),
           pinned: true,
           expandedHeight: 350,
         ),
@@ -44,27 +48,28 @@ class DetailArtist extends StatelessWidget {
             child: Column(
               children: [
                 ListTile(
-                    contentPadding: const EdgeInsets.symmetric(
-                        vertical: 5, horizontal: Constans.kdefualtAppPading),
-                    subtitle: Text(albumModel.album.toString()),
-                    leading: QueryArtworkWidget(
-                        nullArtworkWidget: Image.asset(
-                          'assets/img/null.jpg',
-                          width: 65,
-                          height: 65,
-                          fit: BoxFit.fill,
-                        ),
-                        artworkBorder: BorderRadius.circular(10),
-                        artworkWidth: 60,
-                        artworkHeight: 60,
-                        id: albumModel.id,
-                        type: ArtworkType.ALBUM),
-                    textColor: Colors.white,
-                    title: Text(albumModel.artist.toString())),
+                  contentPadding: const EdgeInsets.symmetric(
+                      vertical: 5, horizontal: Constans.kdefualtAppPading),
+                  subtitle: Text(artistModel.artist.toString()),
+                  leading: QueryArtworkWidget(
+                      nullArtworkWidget: Image.asset(
+                        'assets/img/null.jpg',
+                        width: 65,
+                        height: 65,
+                        fit: BoxFit.fill,
+                      ),
+                      artworkBorder: BorderRadius.circular(10),
+                      artworkWidth: 60,
+                      artworkHeight: 60,
+                      id: artistModel.id,
+                      type: ArtworkType.ALBUM),
+                  textColor: Colors.white,
+                  //    title: Text(artistModel.numberOfTracks.toString())),
+                )
               ],
             ),
           );
-        }, childCount: albumModel.numOfSongs))
+        }, childCount: artistModel.numberOfTracks))
       ],
     ));
   }
