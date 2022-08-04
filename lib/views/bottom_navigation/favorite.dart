@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nightplayer/bloc/audio_bloc/audio_cubit.dart';
-import 'package:nightplayer/bloc/audio_bloc/audio_state.dart';
 import 'package:on_audio_room/on_audio_room.dart';
 
 import '../../module/constans.dart';
@@ -46,32 +43,29 @@ class _FavoriteState extends State<Favorite> {
               if (item.data!.isEmpty) {
                 return const Center(child: MNotFound());
               }
-              List<FavoritesEntity> favorite = item.data!;
+              context.audioCuibt.updateFavorite(item.data!);
+              var fav = context.audioCuibt.listfavorite;
 
-              return BlocBuilder<AudioCubit, AudioState>(
-                builder: (BuildContext context, state) {
-                  return ListView.builder(
-                      padding: EdgeInsets.zero,
-                      itemCount: favorite.length,
-                      physics: const ScrollPhysics(),
-                      scrollDirection: Axis.vertical,
-                      itemExtent: 75,
-                      primary: false,
-                      shrinkWrap: true,
-                      itemBuilder: (context, index) {
-                        return ShowItemSongFavorite(
-                            onTapFavoriteIteam: () async {
-                              await audioRoom.deleteFrom(
-                                  RoomType.FAVORITES, favorite[index].key);
-                              setState(() {});
-                            },
-                            ontap: () {},
-                            imgId: favorite[index].id,
-                            titleSong: favorite[index].title,
-                            artistSong: favorite[index].artist ?? "No Artist");
-                      });
-                },
-              );
+              return ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: fav.length,
+                  physics: const ScrollPhysics(),
+                  scrollDirection: Axis.vertical,
+                  itemExtent: 75,
+                  primary: false,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return ShowItemSongFavorite(
+                        onTapFavoriteIteam: () async {
+                          await audioRoom.deleteFrom(
+                              RoomType.FAVORITES, fav[index].key);
+                          setState(() {});
+                        },
+                        ontap: () {},
+                        imgId: fav[index].id,
+                        titleSong: fav[index].title,
+                        artistSong: fav[index].artist ?? "No Artist");
+                  });
             })));
   }
 }

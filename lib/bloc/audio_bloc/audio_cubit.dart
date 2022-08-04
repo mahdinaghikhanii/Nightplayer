@@ -31,9 +31,21 @@ class AudioCubit extends Cubit<AudioState> {
   // this list just for giving choice user song
   List<SongModel> selectedSongforPLay = <SongModel>[];
 
+  List<FavoritesEntity> listfavorite = <FavoritesEntity>[];
+
   final OnAudioRoom audioRoom = OnAudioRoom();
 
   //
+
+  updateFavorite(List<FavoritesEntity> audioFavorite) {
+    try {
+      listfavorite.clear();
+      listfavorite.addAll(audioFavorite);
+    } catch (e) {
+      Failed(e as Exception);
+    }
+  }
+
   int index = 0;
 
   void setIndex(int i) {
