@@ -8,11 +8,17 @@ import '../../module/constans.dart';
 import '../../module/extention.dart';
 import '../../module/widgets.dart';
 
-class Favorite extends StatelessWidget {
+class Favorite extends StatefulWidget {
   const Favorite({Key? key}) : super(key: key);
 
   @override
+  State<Favorite> createState() => _FavoriteState();
+}
+
+class _FavoriteState extends State<Favorite> {
+  @override
   Widget build(BuildContext context) {
+    final OnAudioRoom audioRoom = OnAudioRoom();
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Constans.kdefultAppColor,
@@ -55,8 +61,9 @@ class Favorite extends StatelessWidget {
                       itemBuilder: (context, index) {
                         return ShowItemSongFavorite(
                             onTapFavoriteIteam: () async {
-                              context.audioCuibt.removeFavorite(
-                                  favorite[index], index, context);
+                              await audioRoom.deleteFrom(
+                                  RoomType.FAVORITES, favorite[index].key);
+                              setState(() {});
                             },
                             ontap: () {},
                             imgId: favorite[index].id,
