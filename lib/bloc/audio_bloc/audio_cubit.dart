@@ -88,6 +88,7 @@ class AudioCubit extends Cubit<AudioState> {
     fToast = FToast();
     fToast.init(context);
     try {
+      emit(RemoveFavorite());
       await audioRoom.deleteFrom(RoomType.FAVORITES, favoritesEntity.key);
       fToast.showToast(
         child: const ToastRemoveOrAdd(index: 1),
@@ -101,12 +102,11 @@ class AudioCubit extends Cubit<AudioState> {
 
   nextAudio() async {
     index++;
+
     try {
       emit(ShowMiniPLayer());
-
       emit(Next());
       log(player.currentIndex.toString());
-
       await player.setAudioSource(
         AudioSource.uri(Uri.parse(selectedSongforPLay[index].uri!)),
       );

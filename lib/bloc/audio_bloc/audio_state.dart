@@ -22,6 +22,10 @@ class Failed extends AudioState {
   Failed(this.exception);
 }
 
+class RemoveFavorite extends AudioState {}
+
+class Favorite extends AudioState {}
+
 class Done extends AudioState {}
 
 class ShowNotifications extends AudioState {}

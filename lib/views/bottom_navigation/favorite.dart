@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nightplayer/bloc/audio_bloc/audio_cubit.dart';
+import 'package:nightplayer/bloc/audio_bloc/audio_state.dart';
 import 'package:on_audio_room/on_audio_room.dart';
 
 import '../../module/constans.dart';
@@ -39,25 +42,29 @@ class Favorite extends StatelessWidget {
               }
               List<FavoritesEntity> favorite = item.data!;
 
-              return ListView.builder(
-                  padding: EdgeInsets.zero,
-                  itemCount: favorite.length,
-                  physics: const ScrollPhysics(),
-                  scrollDirection: Axis.vertical,
-                  itemExtent: 75,
-                  primary: false,
-                  shrinkWrap: true,
-                  itemBuilder: (context, index) {
-                    return ShowItemSongFavorite(
-                        onTapFavoriteIteam: () async {
-                          context.audioCuibt
-                              .removeFavorite(favorite[index], index, context);
-                        },
-                        ontap: () {},
-                        imgId: favorite[index].id,
-                        titleSong: favorite[index].title,
-                        artistSong: favorite[index].artist ?? "No Artist");
-                  });
+              return BlocBuilder<AudioCubit, AudioState>(
+                builder: (BuildContext context, state) {
+                  return ListView.builder(
+                      padding: EdgeInsets.zero,
+                      itemCount: favorite.length,
+                      physics: const ScrollPhysics(),
+                      scrollDirection: Axis.vertical,
+                      itemExtent: 75,
+                      primary: false,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return ShowItemSongFavorite(
+                            onTapFavoriteIteam: () async {
+                              context.audioCuibt.removeFavorite(
+                                  favorite[index], index, context);
+                            },
+                            ontap: () {},
+                            imgId: favorite[index].id,
+                            titleSong: favorite[index].title,
+                            artistSong: favorite[index].artist ?? "No Artist");
+                      });
+                },
+              );
             })));
   }
 }

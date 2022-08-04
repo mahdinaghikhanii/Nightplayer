@@ -84,6 +84,7 @@ class MBottomNavigation extends StatelessWidget {
             const MMiniPlayer(),
             CustomNavigationBar(
               iconSize: 30.0,
+              blurEffect: true,
               selectedColor: Colors.white,
               strokeColor: const Color(0x30040307),
               unSelectedColor: const Color(0xffacacac),
