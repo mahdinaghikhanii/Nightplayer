@@ -1,5 +1,6 @@
 import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 import 'package:flutter/material.dart';
+import 'package:nightplayer/views/detail_artist.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../../module/constans.dart';
@@ -39,6 +40,7 @@ class Artist extends StatelessWidget {
                             crossAxisCount: 2),
                     itemBuilder: (context, index) {
                       return InkWell(
+                        onTap:  (() =>  context.nextPage(DetailArtist(albumModel: )),
                         borderRadius: BorderRadius.circular(
                             Constans.kdefualtBorderRadios),
                         child: Column(

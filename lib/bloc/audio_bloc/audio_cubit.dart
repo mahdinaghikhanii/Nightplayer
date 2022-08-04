@@ -31,6 +31,7 @@ class AudioCubit extends Cubit<AudioState> {
   // this list just for giving choice user song
   List<SongModel> selectedSongforPLay = <SongModel>[];
 
+  /// list favorite song save local information with Hive
   List<FavoritesEntity> listfavorite = <FavoritesEntity>[];
 
   final OnAudioRoom audioRoom = OnAudioRoom();

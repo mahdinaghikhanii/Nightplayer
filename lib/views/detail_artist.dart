@@ -4,12 +4,10 @@ import 'package:on_audio_query/on_audio_query.dart';
 import '../module/constans.dart';
 import '../module/extention.dart';
 
-class DetailAlbum extends StatelessWidget {
+class DetailArtist extends StatelessWidget {
   final AlbumModel albumModel;
-  final List<AlbumModel>? listl;
 
-  const DetailAlbum({Key? key, required this.albumModel, this.listl})
-      : super(key: key);
+  const DetailArtist({Key? key, required this.albumModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
