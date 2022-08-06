@@ -238,6 +238,7 @@ class PlayOrStopSong extends StatelessWidget {
                                       onTap: () {
                                         if (context
                                             .audioCuibt.player.hasPrevious) {
+                                          context.audioCuibt.backAudio();
                                           context.audioCuibt.player
                                               .seekToPrevious();
                                         }
@@ -284,6 +285,17 @@ class PlayOrStopSong extends StatelessWidget {
                                           },
                                         ),
                                       ),
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        if (context.audioCuibt.player.hasNext) {
+                                          context.audioCuibt.nextAudio();
+                                          context.audioCuibt.player
+                                              .seekToNext();
+                                        }
+                                      },
+                                      child: const Icon(Icons.skip_next,
+                                          color: Colors.white, size: 30),
                                     )
                                   ],
                                 ),

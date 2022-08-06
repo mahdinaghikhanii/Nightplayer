@@ -160,13 +160,11 @@ class AudioCubit extends Cubit<AudioState> {
       } else {
         index++;
       }
-      await player.setShuffleModeEnabled(true);
       emit(ShowMiniPLayer());
       emit(Next());
       await player.setAudioSource(
         AudioSource.uri(Uri.parse(selectedSongforPLay[index].uri!)),
       );
-      await player.setShuffleModeEnabled(true);
     } catch (e) {
       Failed(e as Exception);
     }
