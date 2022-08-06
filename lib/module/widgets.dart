@@ -202,10 +202,9 @@ class MButtonForSong extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: ontap,
-      hoverColor: Colors.grey,
-      highlightColor: Colors.grey,
+      splashColor: Colors.white,
       borderRadius: BorderRadius.circular(20),
-      child: Container(
+      child: Ink(
         width: 70,
         height: 70,
         decoration: BoxDecoration(

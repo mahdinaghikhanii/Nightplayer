@@ -153,12 +153,14 @@ class AudioCubit extends Cubit<AudioState> {
   }
 
   nextAudio() async {
-    index++;
-
     try {
+      if (index == selectedSongforPLay.length) {
+        index;
+      } else {
+        index++;
+      }
       emit(ShowMiniPLayer());
       emit(Next());
-      log(player.currentIndex.toString());
       await player.setAudioSource(
         AudioSource.uri(Uri.parse(selectedSongforPLay[index].uri!)),
       );
@@ -191,13 +193,14 @@ class AudioCubit extends Cubit<AudioState> {
   }
 
   backAudio() async {
-    index--;
     try {
+      if (index > 0) {
+        index--;
+      }
       emit(Back());
       emit(ShowMiniPLayer());
 
       emit(Next());
-      log(player.currentIndex.toString());
 
       await player.setAudioSource(
           AudioSource.uri(Uri.parse(selectedSongforPLay[index].uri!)));
@@ -219,7 +222,6 @@ class AudioCubit extends Cubit<AudioState> {
 
   playAudio(int index) async {
     try {
-      log(player.currentIndex.toString());
       emit(Play());
       await player.setAudioSource(
         AudioSource.uri(Uri.parse(selectedSongforPLay[index].uri!)),
