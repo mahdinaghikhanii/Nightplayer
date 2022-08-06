@@ -37,7 +37,7 @@ class MBottomSheet extends StatelessWidget {
             text: "Add favorite",
             textStyle: context.textTheme.subtitle1,
             ontap: () {
-              context.audioCuibt.addFavorite(index, context);
+              context.audioCuibt.addFavoriteAndPushBackScrean(index, context);
             },
           ),
           MListTileForBottomSheet(

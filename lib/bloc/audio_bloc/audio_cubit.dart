@@ -48,7 +48,7 @@ class AudioCubit extends Cubit<AudioState> {
 
   // all these parts function for saving a favorite list
 
-  addFavorite(int index, BuildContext context) async {
+  addFavoriteAndPushBackScrean(int index, BuildContext context) async {
     final OnAudioRoom audioRoom = OnAudioRoom();
     fToast = FToast();
     fToast.init(context);
@@ -64,6 +64,26 @@ class AudioCubit extends Cubit<AudioState> {
         toastDuration: const Duration(seconds: 2),
       );
       context.back();
+    } catch (e) {
+      Failed(e as Exception);
+    }
+  }
+
+  addFavorite(int index, BuildContext context) async {
+    final OnAudioRoom audioRoom = OnAudioRoom();
+    fToast = FToast();
+    fToast.init(context);
+    try {
+      audioRoom.addTo(RoomType.FAVORITES,
+          selectedSongforPLay[index].getMap.toFavoritesEntity(),
+          ignoreDuplicate: false);
+      audioRoom.getRoomInfo(RoomType.FAVORITES);
+
+      fToast.showToast(
+        child: const ToastRemoveOrAdd(index: 0),
+        gravity: ToastGravity.BOTTOM,
+        toastDuration: const Duration(seconds: 2),
+      );
     } catch (e) {
       Failed(e as Exception);
     }

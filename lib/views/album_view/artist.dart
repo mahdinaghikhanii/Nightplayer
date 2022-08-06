@@ -20,6 +20,7 @@ class Artist extends StatelessWidget {
               // sortType: AlbumSortType.ARTIST,
               orderType: OrderType.ASC_OR_SMALLER,
               uriType: UriType.EXTERNAL,
+
               ignoreCase: false,
             ),
             builder: (context, iteamArtist) {

@@ -95,18 +95,23 @@ class PlayOrStopSong extends StatelessWidget {
                                       ),
                                     ),
                                     const Spacer(),
-                                    Container(
-                                      width: 65,
-                                      height: 65,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          color: Colors.white.withAlpha(30)),
-                                      child: const Center(
-                                        child: Icon(
-                                          Icons.favorite,
-                                          color: Colors.red,
-                                          size: 40,
+                                    InkWell(
+                                      onTap: () => context.audioCuibt
+                                          .addFavorite(context.audioCuibt.index,
+                                              context),
+                                      child: Container(
+                                        width: 65,
+                                        height: 65,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: Colors.white.withAlpha(30)),
+                                        child: const Center(
+                                          child: Icon(
+                                            Icons.favorite,
+                                            color: Colors.red,
+                                            size: 40,
+                                          ),
                                         ),
                                       ),
                                     ),

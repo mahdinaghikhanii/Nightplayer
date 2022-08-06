@@ -69,7 +69,7 @@ class DetailArtist extends StatelessWidget {
               ],
             ),
           );
-        }, childCount: artistModel.numberOfTracks))
+        }, childCount: artistModel.id))
       ],
     ));
   }
