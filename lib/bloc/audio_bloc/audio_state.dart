@@ -34,4 +34,6 @@ class ShowMiniPLayer extends AudioState {}
 
 class AnimationMiniPLayer extends AudioState {}
 
+class RandoomPlay extends AudioState {}
+
 class RequestStoragePermission extends AudioState {}

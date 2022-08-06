@@ -3,6 +3,7 @@
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 
 import '../bloc/audio_bloc/audio_cubit.dart';
@@ -178,34 +179,111 @@ class PlayOrStopSong extends StatelessWidget {
                                   right: 30,
                                 ),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
                                   children: [
-                                    MButtonForSong(
-                                      ontap: () {
-                                        context.audioCuibt.backAudio();
-                                      },
-                                      icon: Icons.arrow_back_ios,
+                                    InkWell(
+                                      onTap: (() {
+                                        final loopMode =
+                                            context.audioCuibt.player.loopMode;
+                                        final shuffle = context.audioCuibt
+                                            .player.shuffleModeEnabled;
+
+                                        if (LoopMode.all == loopMode &&
+                                            !shuffle) {
+                                          context.audioCuibt.player
+                                              .setLoopMode(LoopMode.one);
+                                        } else if (LoopMode.one == loopMode &&
+                                            !shuffle) {
+                                          context.audioCuibt.player
+                                              .setLoopMode(LoopMode.all);
+                                          context.audioCuibt.player
+                                              .setShuffleModeEnabled(true);
+                                        } else {
+                                          context.audioCuibt.player
+                                              .setLoopMode(LoopMode.all);
+                                          context.audioCuibt.player
+                                              .setShuffleModeEnabled(false);
+                                        }
+                                      }),
+                                      child: StreamBuilder<LoopMode>(
+                                        stream: context
+                                            .audioCuibt.player.loopModeStream,
+                                        builder: (context, snapshot) {
+                                          final loopMode = context
+                                              .audioCuibt.player.loopMode;
+                                          final shuffle = context.audioCuibt
+                                              .player.shuffleModeEnabled;
+                                          if (LoopMode.all == loopMode &&
+                                              !shuffle) {
+                                            return const Icon(
+                                              Icons.repeat,
+                                              color: Colors.white,
+                                            );
+                                          } else if (LoopMode.one == loopMode &&
+                                              !shuffle) {
+                                            return const Icon(Icons.repeat_on,
+                                                color: Colors.white);
+                                          } else if (LoopMode.all == loopMode &&
+                                              shuffle) {
+                                            return const Icon(Icons.shuffle,
+                                                color: Colors.white);
+                                          }
+                                          return const Icon(Icons.shuffle_sharp,
+                                              color: Colors.white);
+                                        },
+                                      ),
                                     ),
-                                    const SizedBox(width: 20),
-                                    MButtonForSong(
-                                      ontap: () {
-                                        state is Pause
-                                            ? context.audioCuibt.resumeSong()
-                                            : context.audioCuibt.pauseAudio();
+                                    InkWell(
+                                      onTap: () {
+                                        if (context
+                                            .audioCuibt.player.hasPrevious) {
+                                          context.audioCuibt.player
+                                              .seekToPrevious();
+                                        }
                                       },
-                                      icon: state is Pause
-                                          ? Icons.play_arrow
-                                          : state is Play
-                                              ? Icons.pause
-                                              : Icons.pause,
-                                      boxColor: true,
+                                      child: const Icon(Icons.skip_previous,
+                                          color: Colors.white),
                                     ),
-                                    const SizedBox(width: 20),
-                                    MButtonForSong(
-                                      ontap: () async {
-                                        await context.audioCuibt.nextAudio();
+                                    InkWell(
+                                      onTap: () {
+                                        if (context.audioCuibt.player.playing) {
+                                          context.audioCuibt.player.pause();
+                                        } else {
+                                          if (context.audioCuibt.player
+                                                  .currentIndex !=
+                                              null) {
+                                            context.audioCuibt.player.play();
+                                          }
+                                        }
                                       },
-                                      icon: Icons.arrow_forward_ios,
+                                      child: Container(
+                                        padding: const EdgeInsets.all(20),
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: Colors.white,
+                                                width: 1,
+                                                style: BorderStyle.solid),
+                                            shape: BoxShape.circle),
+                                        child: StreamBuilder<bool>(
+                                          stream: context
+                                              .audioCuibt.player.playingStream,
+                                          builder: (context, snapshot) {
+                                            bool? playState = snapshot.data;
+                                            if (playState != null &&
+                                                playState) {
+                                              return const Icon(Icons.pause,
+                                                  size: 36,
+                                                  color: Colors.white);
+                                            }
+                                            return const Icon(
+                                              Icons.play_arrow,
+                                              color: Colors.white,
+                                              size: 36,
+                                            );
+                                          },
+                                        ),
+                                      ),
                                     )
                                   ],
                                 ),

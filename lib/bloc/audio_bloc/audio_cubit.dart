@@ -1,7 +1,5 @@
 // ignore_for_file: unnecessary_null_comparison
 
-import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -153,17 +151,22 @@ class AudioCubit extends Cubit<AudioState> {
   }
 
   nextAudio() async {
+    int listLenght = selectedSongforPLay.length;
     try {
-      if (index == selectedSongforPLay.length) {
+      if (index > listLenght) {
+        index;
+      } else if (index == listLenght) {
         index;
       } else {
         index++;
       }
+      await player.setShuffleModeEnabled(true);
       emit(ShowMiniPLayer());
       emit(Next());
       await player.setAudioSource(
         AudioSource.uri(Uri.parse(selectedSongforPLay[index].uri!)),
       );
+      await player.setShuffleModeEnabled(true);
     } catch (e) {
       Failed(e as Exception);
     }
@@ -209,6 +212,18 @@ class AudioCubit extends Cubit<AudioState> {
     }
   }
 
+  randomPlaySong() async {
+    try {
+      emit(ShowMiniPLayer());
+      await player.setLoopMode(LoopMode.all);
+      await player.setShuffleModeEnabled(true);
+      await player.setAudioSource(
+          AudioSource.uri(Uri.parse(selectedSongforPLay[index].uri!)));
+    } catch (e) {
+      Failed(e as Exception);
+    }
+  }
+
   resumeSong() async {
     try {
       emit(Play());
@@ -236,13 +251,13 @@ class AudioCubit extends Cubit<AudioState> {
 
   void requestStoragePermission() async {
     //only if the platform is not web, coz web have no permissions
+    emit((RequestStoragePermission()));
     if (!kIsWeb) {
       bool permissionStatus = await _audioQuery.permissionsStatus();
       if (!permissionStatus) {
         await _audioQuery.permissionsRequest();
       }
     }
-    emit((RequestStoragePermission()));
   }
 
   // using for search artist name and find your song
