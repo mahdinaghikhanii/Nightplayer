@@ -45,11 +45,11 @@ dependencies:
   just_audio: ^0.9.20
   rxdart: ^0.27.3
   equatable: ^2.0.3
-  awesome_notifications: ^0.6.21
   animate_do: ^2.1.0
   on_audio_room: ^2.2.1+1
   fluttertoast: ^8.0.9
   url_launcher: ^6.1.5
+  just_audio_background: ^0.0.1-beta.7
   
 
  

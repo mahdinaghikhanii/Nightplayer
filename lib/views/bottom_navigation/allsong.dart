@@ -101,12 +101,12 @@ class AllSong extends StatelessWidget {
                                   ontap: () async {
                                     context.audioCuibt.setIndex(index);
                                     context.audioCuibt.playAudio(index);
-                                    context.audioCuibt.showMusicNotification(
+                                    /*   context.audioCuibt.showMusicNotification(
                                       iteam.data![index].id.toString(),
                                       iteam.data![index].title,
                                       iteam.data![index].artist ?? "No Artist",
                                       index,
-                                    );
+                                    );*/
                                   },
                                   imgId: index,
                                   titleSongIndex: index,

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:nightplayer/model/duration_state.dart';
 import 'package:nightplayer/module/extention.dart';
 import 'package:nightplayer/module/widgets.dart';
@@ -12,7 +13,6 @@ import 'package:on_audio_query/on_audio_query.dart';
 import 'package:on_audio_room/on_audio_room.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../notification/notification_service.dart';
 import 'audio_state.dart';
 
 class AudioCubit extends Cubit<AudioState> {
@@ -237,7 +237,19 @@ class AudioCubit extends Cubit<AudioState> {
     try {
       emit(Play());
       await player.setAudioSource(
-        AudioSource.uri(Uri.parse(selectedSongforPLay[index].uri!)),
+        AudioSource.uri(
+          Uri.parse(
+            selectedSongforPLay[index].uri!,
+          ),
+          tag: MediaItem(
+            // Specify a unique ID for each media item:
+            id: selectedSongforPLay[index].id.toString(),
+            // Metadata to display in the notification:
+            album: selectedSongforPLay[index].album,
+            title: selectedSongforPLay[index].title,
+            artUri: Uri.parse('https://example.com/albumart.jpg'),
+          ),
+        ),
       );
 
       player.setLoopMode(LoopMode.one);
@@ -274,7 +286,7 @@ class AudioCubit extends Cubit<AudioState> {
 
   //only for showing lucall_norification
   //android and ios
-  void showMusicNotification(
+  /* void showMusicNotification(
       String imageSong, String artist, String nameSong, int id) async {
     try {
       emit(ShowMiniPLayer());
@@ -283,7 +295,7 @@ class AudioCubit extends Cubit<AudioState> {
     } catch (e) {
       emit(Failed(e as Exception));
     }
-  }
+  }*/
 
   ///show Toast add favorite or remove favorite
   //

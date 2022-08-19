@@ -1,6 +1,6 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 import 'package:nightplayer/views/onboard.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:on_audio_room/on_audio_room.dart';
@@ -24,31 +24,11 @@ void main() async {
   isviewed = preferences.getInt("InBoardScreans");
   await OnAudioRoom().initRoom(RoomType.FAVORITES);
   // await OnAudioRoom().initRoom(RoomType.PLAYLIST);
-
-  AwesomeNotifications().initialize(
-      null,
-      [
-        NotificationChannel(
-            channelGroupKey: 'music_group',
-            channelKey: 'music_chanel',
-            channelName: 'nightplayer',
-            channelDescription: 'play onsg',
-            defaultColor: Colors.red,
-            //   importance: NotificationImportance.High,
-            playSound: false,
-            channelShowBadge: false,
-            enableVibration: false,
-            enableLights: false,
-            defaultPrivacy: NotificationPrivacy.Public,
-            locked: true,
-            ledColor: Colors.white),
-      ],
-      channelGroups: [
-        NotificationChannelGroup(
-            channelGroupkey: 'basic_channel_group',
-            channelGroupName: 'basic_channel'),
-      ],
-      debug: true);
+  await JustAudioBackground.init(
+    androidNotificationChannelId: 'com.ryanheise.bg_demo.channel.audio',
+    androidNotificationChannelName: 'Audio playback',
+    androidNotificationOngoing: true,
+  );
 
   OnAudioQuery();
   runApp(MultiBlocProvider(providers: [
