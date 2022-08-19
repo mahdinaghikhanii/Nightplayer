@@ -33,7 +33,10 @@ class Settings extends StatelessWidget {
             BuildListTile(
               color: Colors.white.withOpacity(0.8),
               icon: Icons.person,
-              ontap: () {},
+              ontap: () async{
+         var client =   http_auth
+
+              },
               subtitleIcon: Icons.person,
               textStyle: context.textTheme.subtitle1,
               visibilityArrowIcons: false,
