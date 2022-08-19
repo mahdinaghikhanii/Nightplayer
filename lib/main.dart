@@ -29,15 +29,18 @@ void main() async {
       null,
       [
         NotificationChannel(
-            channelGroupKey: 'basic_channel_group',
-            channelKey: 'basic_channel',
+            channelGroupKey: 'music_group',
+            channelKey: 'music_chanel',
             channelName: 'nightplayer',
-            channelDescription: 'Notification channel for basic tests',
-            defaultColor: Colors.white,
+            channelDescription: 'play onsg',
+            defaultColor: Colors.red,
+            //   importance: NotificationImportance.High,
             playSound: false,
             channelShowBadge: false,
             enableVibration: false,
             enableLights: false,
+            defaultPrivacy: NotificationPrivacy.Public,
+            locked: true,
             ledColor: Colors.white),
       ],
       channelGroups: [

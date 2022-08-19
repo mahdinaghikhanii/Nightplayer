@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nightplayer/module/constans.dart';
 import 'package:nightplayer/module/extention.dart';
 import 'package:nightplayer/module/widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ class Settings extends StatelessWidget {
           ),
         ),
         centerTitle: false,
-      ),
+      ),   
       body: Padding(
         padding:
             const EdgeInsets.symmetric(horizontal: Constans.kdefualtAppPading),
@@ -33,9 +34,9 @@ class Settings extends StatelessWidget {
             BuildListTile(
               color: Colors.white.withOpacity(0.8),
               icon: Icons.person,
-              ontap: () async{
-         var client =   http_auth
-
+              ontap: () async {
+                await launchUrl(Uri.parse(
+                    'https://main--nostalgic-jennings-63dd2f.netlify.app/'));
               },
               subtitleIcon: Icons.person,
               textStyle: context.textTheme.subtitle1,
