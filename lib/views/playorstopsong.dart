@@ -1,5 +1,7 @@
 // ignore_for_file: unused_element
 
+import 'dart:developer';
+
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -292,6 +294,8 @@ class PlayOrStopSong extends StatelessWidget {
                                           context.audioCuibt.nextAudio();
                                           context.audioCuibt.player
                                               .seekToNext();
+                                          log(context.audioCuibt.songIndex
+                                              .toString());
                                         }
                                       },
                                       child: const Icon(Icons.skip_next,

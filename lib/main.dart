@@ -18,7 +18,7 @@ import 'views/home.dart';
 
 int? isviewed;
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences preferences = await SharedPreferences.getInstance();
   isviewed = preferences.getInt("InBoardScreans");

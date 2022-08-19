@@ -1,5 +1,7 @@
 // ignore_for_file: unnecessary_null_comparison
 
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -153,6 +155,7 @@ class AudioCubit extends Cubit<AudioState> {
   nextAudio() async {
     int listLenght = selectedSongforPLay.length;
     try {
+      songIndex++;
       if (index > listLenght) {
         index;
       } else if (index == listLenght) {
@@ -194,7 +197,11 @@ class AudioCubit extends Cubit<AudioState> {
   }
 
   backAudio() async {
+    log("anajm shood");
+    log(songIndex.toString());
     try {
+      player.seekToPrevious();
+      songIndex--;
       if (index > 0) {
         index--;
       }
@@ -203,8 +210,20 @@ class AudioCubit extends Cubit<AudioState> {
 
       emit(Next());
 
-      await player.setAudioSource(
-          AudioSource.uri(Uri.parse(selectedSongforPLay[index].uri!)));
+      await player.setAudioSource(AudioSource.uri(
+        Uri.parse(
+          selectedSongforPLay[index].uri!,
+        ),
+        tag: MediaItem(
+          artUri: Uri.parse(selectedSongforPLay[songIndex].id.toString()),
+          // Specify a unique ID for each media item:
+
+          id: songIndex.toString(),
+          // Metadata to display in the notification:
+          album: selectedSongforPLay[index].album,
+          title: selectedSongforPLay[index].title,
+        ),
+      ));
     } catch (e) {
       Failed(e as Exception);
     }
@@ -233,9 +252,14 @@ class AudioCubit extends Cubit<AudioState> {
     }
   }
 
+  int songIndex = 0;
+
   playAudio(int index) async {
+    songIndex = selectedSongforPLay[index].id;
+
     try {
       emit(Play());
+      emit(ShowMiniPLayer());
       await player.setAudioSource(
         AudioSource.uri(
           Uri.parse(
@@ -243,11 +267,10 @@ class AudioCubit extends Cubit<AudioState> {
           ),
           tag: MediaItem(
             // Specify a unique ID for each media item:
-            id: selectedSongforPLay[index].id.toString(),
+            id: songIndex.toString(),
             // Metadata to display in the notification:
             album: selectedSongforPLay[index].album,
             title: selectedSongforPLay[index].title,
-            artUri: Uri.parse('https://example.com/albumart.jpg'),
           ),
         ),
       );
